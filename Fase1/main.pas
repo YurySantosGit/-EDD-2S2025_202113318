@@ -17,11 +17,14 @@ type
     EditEmail: TEdit;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
     LblMensaje: TLabel;
     procedure BtnLoginClick(Sender: TObject);
-    procedure EditEmailChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+
+  private
+
+  public
+
   end;
 
 var
@@ -31,25 +34,20 @@ implementation
 
 {$R *.lfm}
 
-// <<< IMPORTA TU UNIT AQUÍ, NO DENTRO DEL PROCEDIMIENTO >>>
 uses
   usuarios;
+
+{ TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   InicializarUsuarios;
 
-  AgregarUsuario(0, 'Administrador', 'root', 'root@edd.com', '00000000', 'root123'); //Inicializacion usuario root
+  // Crear root por defecto
+  AgregarUsuario(0, 'Administrador', 'root', 'root@edd.com', '00000000', 'root123');
 
-  CargarUsuariosDesdeJSON('usuarios.json'); //Cargar usuarios desde JSON
-
-  // Si quieres confirmar visualmente:
-  // ShowMessage('Usuarios cargados');
-end;
-
-procedure TForm1.EditEmailChange(Sender: TObject);
-begin
-
+  // Cargar usuarios desde JSON
+  CargarUsuariosDesdeJSON('usuarios.json');
 end;
 
 procedure TForm1.BtnLoginClick(Sender: TObject);
@@ -71,3 +69,4 @@ begin
 end;
 
 end.
+
