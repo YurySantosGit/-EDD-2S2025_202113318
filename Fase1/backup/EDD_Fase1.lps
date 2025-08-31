@@ -21,13 +21,13 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
 <<<<<<< Updated upstream
-        <TopLine Value="38"/>
-        <CursorPos X="23" Y="56"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="35"/>
+        <CursorPos X="19" Y="50"/>
         <UsageCount Value="34"/>
 =======
-        <TopLine Value="18"/>
+        <TopLine Value="40"/>
         <CursorPos X="34" Y="40"/>
         <UsageCount Value="24"/>
 >>>>>>> Stashed changes
@@ -37,12 +37,14 @@
       <Unit>
         <Filename Value="usuarios.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
 <<<<<<< Updated upstream
+        <EditorIndex Value="1"/>
         <TopLine Value="108"/>
         <CursorPos X="5" Y="137"/>
         <UsageCount Value="34"/>
 =======
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <CursorPos X="107" Y="7"/>
         <UsageCount Value="24"/>
 >>>>>>> Stashed changes
@@ -86,11 +88,11 @@
         <Filename Value="main.pas"/>
         <Caret Line="39" Column="50" TopLine="4"/>
       </Position>
->>>>>>> Stashed changes
       <Position>
         <Filename Value="main.pas"/>
         <Caret Line="49" Column="3" TopLine="17"/>
       </Position>
+>>>>>>> Stashed changes
       <Position>
         <Filename Value="main.pas"/>
         <Caret Line="50" Column="3" TopLine="17"/>
@@ -213,7 +215,11 @@
       </Position>
       <Position>
         <Filename Value="main.pas"/>
-        <Caret Line="56" Column="44" TopLine="38"/>
+        <Caret Line="56" Column="23" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="53" Column="29" TopLine="35"/>
       </Position>
 =======
 >>>>>>> Stashed changes
@@ -227,26 +233,13 @@
       <List Name="LaunchingApplication" Type="File" Count="1">
         <Item1 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
       </List>
-    </HistoryLists>
-  </ProjectSession>
-  <Debugging>
-    <BreakPoints>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="main.pas"/>
-        <Line Value="53"/>
-      </Item>
-    </BreakPoints>
-  </Debugging>
 =======
       <List Name="WorkingDirectory" Type="File" Count="1"/>
       <List Name="LaunchingApplication" Type="File" Count="2">
         <Item2 Value="/usr/bin/gnome-terminal -t &apos;Lazarus Run Output&apos; -e &apos;$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)&apos;"/>
       </List>
       <List Name="CommandLineParameters" Count="1"/>
+>>>>>>> Stashed changes
     </HistoryLists>
   </ProjectSession>
->>>>>>> Stashed changes
 </CONFIG>
