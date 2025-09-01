@@ -6,6 +6,7 @@ object FormBandeja: TFormBandeja
   Caption = 'FormBandeja'
   ClientHeight = 446
   ClientWidth = 540
+  OnCreate = FormCreate
   object Label1: TLabel
     Left = 208
     Height = 18

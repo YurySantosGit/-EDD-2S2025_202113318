@@ -39,6 +39,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Papeleria'
     TabOrder = 2
+    OnClick = BtnPapeleraClick
   end
   object BtnProgramar: TButton
     Left = 72

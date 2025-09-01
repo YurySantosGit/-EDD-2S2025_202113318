@@ -37,6 +37,7 @@
         <Filename Value="main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
@@ -47,12 +48,14 @@
         <Filename Value="form_root.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormRoot"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
         <Filename Value="form_usuario.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormUsuario"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
@@ -63,6 +66,17 @@
         <Filename Value="form_bandeja.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormBandeja"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="pila_papelera.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_papelera.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormPapelera"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

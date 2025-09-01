@@ -59,7 +59,7 @@ begin
   if user <> nil then
   begin
     //Usuario Root
-    if user^.mail = 'root@edd.com' then
+    if user^.email = 'root@edd.com' then
     begin
       FormRoot := TFormRoot.Create(Self);
       FormRoot.Show;

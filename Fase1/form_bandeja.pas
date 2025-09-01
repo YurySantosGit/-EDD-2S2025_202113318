@@ -5,7 +5,7 @@ unit form_bandeja;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, lista_doble;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, lista_doble, pila_papelera;
 
 type
 
@@ -23,6 +23,7 @@ type
     procedure BtnEliminarCorreoClick(Sender: TObject);
     procedure BtnOrdenarClick(Sender: TObject);
     procedure BtnVerCorreoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -47,21 +48,32 @@ end;
 
 procedure TFormBandeja.BtnEliminarCorreoClick(Sender: TObject);
 var
-  id: Integer;
+  id, p: Integer;
   s: String;
-  p: Integer;
+  c: PCorreo;
+  info: TCorreoInfo;
+
 begin
   if ListCorreos.ItemIndex = -1 then Exit;
 
   s := ListCorreos.Items[ListCorreos.ItemIndex];
   p := Pos('(ID:', s);
   id := StrToInt(Copy(s, p+4, Length(s)-p-4));
+  c := BuscarCorreo(BandejaActual, id);
 
-  if EliminarCorreo(BandejaActual, id) then
+  if c <> nil then
   begin
-    ShowMessage('Correo eliminado.');
-    CargarBandeja(BandejaActual);
+    info := CorreoToInfo(c); //Enviar a pila (papelera)
+    PushCorreo(PapeleraGlobal, info); //Quitar de la bandeja
+
+    if EliminarCorreo(BandejaActual, id) then
+    begin
+      Showmessage('Correo enviado a la papelera');
+      CargarBandeja(BandejaActual);
+    end;
+
   end;
+
 end;
 
 procedure TFormBandeja.BtnOrdenarClick(Sender: TObject);
@@ -96,6 +108,23 @@ begin
     correo^.estado := 'L';
     CargarBandeja(BandejaActual);
   end;
+end;
+
+procedure TFormBandeja.FormCreate(Sender: TObject);
+begin
+  InicializarBandeja(BandejaActual);
+
+  InsertarCorreo(BandejaActual, 1, 'root@edd.com', 'NL', False,
+    'Bienvenido', '31/08/2025', 'Este es tu primer correo en el sistema.');
+
+  InsertarCorreo(BandejaActual, 2, 'soporte@edd.com', 'NL', False,
+    'Aviso importante', '31/08/2025', 'Recuerda cambiar tu contraseña.');
+
+  InsertarCorreo(BandejaActual, 3, 'admin@edd.com', 'L', False,
+    'Prueba interna', '31/08/2025', 'Este correo ya está leído.');
+
+  CargarBandeja(BandejaActual);
+
 end;
 
 procedure TFormBandeja.CargarBandeja(var bandeja: TBandeja);

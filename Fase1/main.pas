@@ -35,19 +35,16 @@ implementation
 {$R *.lfm}
 
 uses
-  usuarios, form_root, form_usuario;
+  usuarios, form_root, form_usuario, pila_papelera;
 
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   InicializarUsuarios;
-
-  // Crear root por defecto
-  AgregarUsuario(0, 'Administrador', 'root', 'root@edd.com', '00000000', 'root123');
-
-  // Cargar usuarios desde JSON
-  CargarUsuariosDesdeJSON('usuarios.json');
+  AgregarUsuario(0, 'Administrador', 'root', 'root@edd.com', '00000000', 'root123'); // Crear root por defecto
+  CargarUsuariosDesdeJSON('usuarios.json'); // Cargar usuarios desde JSON
+  InicializarPapelera(PapeleraGlobal);
 end;
 
 procedure TForm1.BtnLoginClick(Sender: TObject);

@@ -5,7 +5,7 @@ unit form_usuario;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, form_bandeja, lista_doble;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, form_bandeja, lista_doble, form_papelera;
 
 type
 
@@ -24,6 +24,7 @@ type
     Button9: TButton;
     Label1: TLabel;
     procedure BtnCerrarSesionClick(Sender: TObject);
+    procedure BtnPapeleraClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
     procedure BtnBandejaClick(Sender: TObject);
     procedure BtnEnviarCorreoClick(Sender: TObject);
@@ -71,6 +72,12 @@ procedure TFormUsuario.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;   // Mostrar login de nuevo
   Self.Close;   // Cerrar menú usuario
+end;
+
+procedure TFormUsuario.BtnPapeleraClick(Sender: TObject);
+begin
+  FormPapelera := TFormPapelera.Create(Self);
+  FormPapelera.ShowModal;
 end;
 
 procedure TFormUsuario.BtnEnviarCorreoClick(Sender: TObject);
