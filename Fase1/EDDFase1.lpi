@@ -55,6 +55,16 @@
         <ComponentName Value="FormUsuario"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="lista_doble.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_bandeja.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormBandeja"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

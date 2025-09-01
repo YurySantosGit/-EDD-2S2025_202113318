@@ -32,6 +32,9 @@ implementation
 
 {$R *.lfm}
 
+uses
+  main;
+
 { TFormRoot }
 
 procedure TFormRoot.Button3Click(Sender: TObject);

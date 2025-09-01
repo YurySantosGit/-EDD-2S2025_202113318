@@ -3,7 +3,7 @@ object FormRoot: TFormRoot
   Height = 253
   Top = 32
   Width = 320
-  Caption = 'FormRoot'
+  Caption = 'Menu Principal'
   ClientHeight = 253
   ClientWidth = 320
   object Label1: TLabel

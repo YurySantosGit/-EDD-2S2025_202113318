@@ -3,7 +3,7 @@ object FormRoot: TFormRoot
   Height = 253
   Top = 32
   Width = 320
-  Caption = 'FormRoot'
+  Caption = 'Menu Principal'
   ClientHeight = 253
   ClientWidth = 320
   object Label1: TLabel
@@ -13,7 +13,7 @@ object FormRoot: TFormRoot
     Width = 33
     Caption = 'Root'
   end
-  object Button1: TButton
+  object BtnCargarJSON: TButton
     Left = 72
     Height = 25
     Top = 64
@@ -21,7 +21,7 @@ object FormRoot: TFormRoot
     Caption = 'Carga Masiva'
     TabOrder = 0
   end
-  object Button2: TButton
+  object BtnReporteUsuarios: TButton
     Left = 72
     Height = 25
     Top = 112
@@ -29,22 +29,22 @@ object FormRoot: TFormRoot
     Caption = 'Reporte de Usuarios'
     TabOrder = 1
   end
-  object Button3: TButton
+  object BtnReporteRelaciones: TButton
     Left = 72
     Height = 25
     Top = 160
     Width = 171
     Caption = 'Reporte de Relaciones'
     TabOrder = 2
-    OnClick = Button3Click
+    OnClick = BtnReporteRelacionesClick
   end
-  object Button4: TButton
+  object BtnCerrarSesion: TButton
     Left = 192
     Height = 25
     Top = 216
     Width = 120
     Caption = 'Cerrar Sesion'
     TabOrder = 3
-    OnClick = Button4Click
+    OnClick = BtnCerrarSesionClick
   end
 end

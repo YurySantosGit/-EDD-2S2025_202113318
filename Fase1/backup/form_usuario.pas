@@ -12,20 +12,22 @@ type
   { TFormUsuario }
 
   TFormUsuario = class(TForm)
-    Button1: TButton;
-    Button10: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    BtnBandeja: TButton;
+    BtnCerrarSesion: TButton;
+    BtnEnviarCorreo: TButton;
+    BtnPapelera: TButton;
+    BtnProgramar: TButton;
     Button5: TButton;
     Button6: TButton;
-    Button7: TButton;
-    Button8: TButton;
+    BtnContactos: TButton;
+    BtnActualizarPerfil: TButton;
     Button9: TButton;
     Label1: TLabel;
+    procedure BtnCerrarSesionClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure BtnBandejaClick(Sender: TObject);
+    procedure BtnEnviarCorreoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -39,20 +41,33 @@ implementation
 
 {$R *.lfm}
 
+uses
+  main;
+
 { TFormUsuario }
 
-procedure TFormUsuario.Button1Click(Sender: TObject);
+procedure TFormUsuario.BtnBandejaClick(Sender: TObject);
+begin
+  ShowMessage('Abrir Bandeja de Entrada');
+end;
+
+procedure TFormUsuario.Button10Click(Sender: TObject);
 begin
 
 end;
 
-procedure TFormUsuario.Button10Click(Sender: TObject);
+procedure TFormUsuario.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;   // Mostrar login de nuevo
   Self.Close;   // Cerrar menú usuario
 end;
 
-procedure TFormUsuario.Button2Click(Sender: TObject);
+procedure TFormUsuario.BtnEnviarCorreoClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFormUsuario.FormCreate(Sender: TObject);
 begin
 
 end;

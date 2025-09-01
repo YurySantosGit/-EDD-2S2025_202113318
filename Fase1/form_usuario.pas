@@ -5,27 +5,29 @@ unit form_usuario;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, form_bandeja, lista_doble;
 
 type
 
   { TFormUsuario }
 
   TFormUsuario = class(TForm)
-    Button1: TButton;
-    Button10: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    BtnBandeja: TButton;
+    BtnCerrarSesion: TButton;
+    BtnEnviarCorreo: TButton;
+    BtnPapelera: TButton;
+    BtnProgramar: TButton;
     Button5: TButton;
     Button6: TButton;
-    Button7: TButton;
-    Button8: TButton;
+    BtnContactos: TButton;
+    BtnActualizarPerfil: TButton;
     Button9: TButton;
     Label1: TLabel;
+    procedure BtnCerrarSesionClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure BtnBandejaClick(Sender: TObject);
+    procedure BtnEnviarCorreoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
 
   public
@@ -44,18 +46,39 @@ uses
 
 { TFormUsuario }
 
-procedure TFormUsuario.Button1Click(Sender: TObject);
+procedure TFormUsuario.BtnBandejaClick(Sender: TObject);
+begin
+  // Simulación de correos recibidos
+  InicializarBandeja(BandejaActual);
+  InsertarCorreo(BandejaActual, 1, 'root@edd.com', 'NL', False,
+    'Bienvenido', '31/08/2025', 'Este es tu primer correo.');
+  InsertarCorreo(BandejaActual, 2, 'soporte@edd.com', 'NL', False,
+    'Aviso', '31/08/2025', 'Tu cuenta fue creada con éxito.');
+  InsertarCorreo(BandejaActual, 3, 'admin@edd.com', 'L', False,
+    'Prueba', '31/08/2025', 'Este correo ya está leído.');
+
+  FormBandeja := TFormBandeja.Create(Self);
+  FormBandeja.CargarBandeja(BandejaActual);
+  FormBandeja.ShowModal;
+end;
+
+procedure TFormUsuario.Button10Click(Sender: TObject);
 begin
 
 end;
 
-procedure TFormUsuario.Button10Click(Sender: TObject);
+procedure TFormUsuario.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;   // Mostrar login de nuevo
   Self.Close;   // Cerrar menú usuario
 end;
 
-procedure TFormUsuario.Button2Click(Sender: TObject);
+procedure TFormUsuario.BtnEnviarCorreoClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFormUsuario.FormCreate(Sender: TObject);
 begin
 
 end;

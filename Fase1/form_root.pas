@@ -12,13 +12,13 @@ type
   { TFormRoot }
 
   TFormRoot = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    BtnCargarJSON: TButton;
+    BtnReporteUsuarios: TButton;
+    BtnReporteRelaciones: TButton;
+    BtnCerrarSesion: TButton;
     Label1: TLabel;
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
+    procedure BtnReporteRelacionesClick(Sender: TObject);
+    procedure BtnCerrarSesionClick(Sender: TObject);
   private
 
   public
@@ -37,12 +37,12 @@ uses
 
 { TFormRoot }
 
-procedure TFormRoot.Button3Click(Sender: TObject);
+procedure TFormRoot.BtnReporteRelacionesClick(Sender: TObject);
 begin
 
 end;
 
-procedure TFormRoot.Button4Click(Sender: TObject);
+procedure TFormRoot.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;   // Mostrar login de nuevo
   Self.Close;   // Cerrar menú root
