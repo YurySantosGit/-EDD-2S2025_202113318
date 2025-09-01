@@ -1,0 +1,50 @@
+object FormRoot: TFormRoot
+  Left = 1520
+  Height = 253
+  Top = 32
+  Width = 320
+  Caption = 'FormRoot'
+  ClientHeight = 253
+  ClientWidth = 320
+  object Label1: TLabel
+    Left = 144
+    Height = 18
+    Top = 16
+    Width = 33
+    Caption = 'Root'
+  end
+  object Button1: TButton
+    Left = 72
+    Height = 25
+    Top = 64
+    Width = 171
+    Caption = 'Carga Masiva'
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 72
+    Height = 25
+    Top = 112
+    Width = 171
+    Caption = 'Reporte de Usuarios'
+    TabOrder = 1
+  end
+  object Button3: TButton
+    Left = 72
+    Height = 25
+    Top = 160
+    Width = 171
+    Caption = 'Reporte de Relaciones'
+    TabOrder = 2
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 192
+    Height = 25
+    Top = 216
+    Width = 120
+    Caption = 'Cerrar Sesion'
+    TabOrder = 3
+    OnClick = Button4Click
+  end
+end

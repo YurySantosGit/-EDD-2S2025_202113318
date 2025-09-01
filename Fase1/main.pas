@@ -35,7 +35,7 @@ implementation
 {$R *.lfm}
 
 uses
-  usuarios;
+  usuarios, form_root, form_usuario;
 
 { TForm1 }
 
@@ -58,8 +58,20 @@ begin
 
   if user <> nil then
   begin
-    LblMensaje.Caption := 'Bienvenido, ' + user^.nombre;
-    LblMensaje.Font.Color := clGreen; // Éxito en verde
+    //Usuario Root
+    if user^.email = 'root@edd.com' then
+    begin
+      FormRoot := TFormRoot.Create(Self);
+      FormRoot.Show;
+      Self.Hide;
+    end
+    else
+    begin
+      //Usuario Estandar
+      FormUsuario := TFormUsuario.Create(Self);
+      FormUsuario.Show;
+      Self.Hide;
+    end;
   end
   else
   begin

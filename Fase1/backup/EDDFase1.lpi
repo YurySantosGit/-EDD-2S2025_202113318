@@ -43,6 +43,18 @@
         <Filename Value="usuarios.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="form_root.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRoot"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_usuario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormUsuario"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
