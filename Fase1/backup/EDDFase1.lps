@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="38"/>
       </Unit>
       <Unit>
         <Filename Value="main.pas"/>
@@ -19,20 +19,19 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="37"/>
-        <CursorPos Y="50"/>
-        <UsageCount Value="35"/>
+        <TopLine Value="25"/>
+        <CursorPos X="107" Y="40"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="usuarios.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="61"/>
-        <CursorPos X="53" Y="81"/>
-        <UsageCount Value="35"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="204"/>
+        <CursorPos X="46" Y="181"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -41,10 +40,10 @@
         <ComponentName Value="FormRoot"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="14"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -54,20 +53,20 @@
         <ComponentName Value="FormUsuario"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="53"/>
         <CursorPos X="6" Y="55"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="lista_doble.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="140"/>
         <CursorPos X="5" Y="167"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -76,20 +75,20 @@
         <ComponentName Value="FormBandeja"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="40"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="13"/>
         <CursorPos X="33" Y="13"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="pila_papelera.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="111"/>
         <CursorPos Y="39"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -98,20 +97,20 @@
         <ComponentName Value="FormPapelera"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="23"/>
         <CursorPos Y="36"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="cola_correos.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="71"/>
         <CursorPos X="61" Y="94"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -120,10 +119,10 @@
         <ComponentName Value="FormProgramarCorreo"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="72"/>
         <CursorPos X="12" Y="85"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -133,114 +132,28 @@
         <ComponentName Value="FormCorreosProgramados"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="111"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="112"/>
         <CursorPos Y="137"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_registro.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRegistro"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="58"/>
+        <CursorPos X="3" Y="79"/>
         <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="form_programarcorreo.pas"/>
-        <Caret Line="43" Column="3" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="form_programarcorreo.pas"/>
-        <Caret Line="45" Column="3" TopLine="22"/>
-      </Position>
-      <Position>
-        <Filename Value="form_programarcorreo.pas"/>
-        <Caret Line="89" Column="3" TopLine="67"/>
-      </Position>
-      <Position>
-        <Filename Value="form_correosprogramados.pas"/>
-      </Position>
-      <Position>
-        <Filename Value="form_correosprogramados.pas"/>
-        <Caret Line="36" Column="3" TopLine="14"/>
-      </Position>
-      <Position>
-        <Filename Value="form_correosprogramados.pas"/>
-        <Caret Line="37" Column="3" TopLine="14"/>
-      </Position>
-      <Position>
-        <Filename Value="form_correosprogramados.pas"/>
-        <Caret Line="38" Column="3" TopLine="14"/>
-      </Position>
-      <Position>
-        <Filename Value="form_correosprogramados.pas"/>
-        <Caret Line="46" Column="3" TopLine="20"/>
-      </Position>
-      <Position>
-        <Filename Value="form_correosprogramados.pas"/>
-        <Caret Line="51" Column="3" TopLine="29"/>
-      </Position>
-      <Position>
-        <Filename Value="form_correosprogramados.pas"/>
-        <Caret Line="42" Column="3" TopLine="16"/>
-      </Position>
-      <Position>
-        <Filename Value="form_usuario.pas"/>
-        <Caret Line="65" Column="4" TopLine="62"/>
-      </Position>
-      <Position>
-        <Filename Value="form_usuario.pas"/>
-        <Caret Line="9" Column="26"/>
-      </Position>
-      <Position>
-        <Filename Value="main.pas"/>
-        <Caret Line="49" Column="31" TopLine="39"/>
-      </Position>
-      <Position>
-        <Filename Value="form_usuario.pas"/>
-        <Caret Line="99" Column="36" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="main.pas"/>
-        <Caret Line="38" Column="66" TopLine="37"/>
-      </Position>
-      <Position>
-        <Filename Value="main.pas"/>
-        <Caret Line="44" Column="3" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="form_usuario.pas"/>
-        <Caret Line="89" Column="22" TopLine="75"/>
-      </Position>
-      <Position>
-        <Filename Value="form_usuario.pas"/>
-        <Caret Line="88" Column="26" TopLine="75"/>
-      </Position>
-      <Position>
-        <Filename Value="form_usuario.pas"/>
-        <Caret Line="9" Column="48"/>
-      </Position>
-      <Position>
-        <Filename Value="form_programarcorreo.pas"/>
-        <Caret Line="14" Column="83"/>
-      </Position>
-      <Position>
-        <Filename Value="form_programarcorreo.pas"/>
-        <Caret Line="107" Column="67" TopLine="83"/>
-      </Position>
-      <Position>
-        <Filename Value="form_programarcorreo.pas"/>
-        <Caret Line="93" Column="26" TopLine="79"/>
-      </Position>
-      <Position>
-        <Filename Value="form_programarcorreo.pas"/>
-        <Caret Line="86" Column="12" TopLine="72"/>
-      </Position>
-      <Position>
-        <Filename Value="form_programarcorreo.pas"/>
-        <Caret Line="104" Column="3" TopLine="90"/>
-      </Position>
-      <Position>
-        <Filename Value="form_bandeja.pas"/>
-        <Caret Line="8" Column="41"/>
-      </Position>
       <Position>
         <Filename Value="form_usuario.pas"/>
         <Caret Line="16" Column="36"/>
@@ -260,6 +173,105 @@
       <Position>
         <Filename Value="form_correosprogramados.pas"/>
         <Caret Line="137" TopLine="111"/>
+      </Position>
+      <Position>
+        <Filename Value="lista_doble.pas"/>
+        <Caret Line="11" Column="36"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="4" Column="19"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="19" Column="59"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="20" Column="59" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="18" Column="62" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="46" Column="3" TopLine="24"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="32" Column="56" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="50" Column="77" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="usuarios.pas"/>
+        <Caret Line="9" Column="38"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="61" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="75" Column="4" TopLine="54"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="27" Column="15" TopLine="16"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="11" Column="40"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="78" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="44" Column="25" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="27" Column="15" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="44" Column="25" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="27" Column="15" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="44" Column="25" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="29" Column="15" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="27" Column="15" TopLine="14"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="44" Column="25"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="48" Column="3" TopLine="29"/>
+      </Position>
+      <Position>
+        <Filename Value="form_registro.pas"/>
+        <Caret Line="80" Column="5" TopLine="58"/>
       </Position>
     </JumpHistory>
     <RunParams>

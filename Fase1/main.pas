@@ -13,12 +13,14 @@ type
 
   TForm1 = class(TForm)
     BtnLogin: TButton;
+    BtnRegistrar: TButton;
     EditPassword: TEdit;
     EditEmail: TEdit;
     Label1: TLabel;
     Label2: TLabel;
     LblMensaje: TLabel;
     procedure BtnLoginClick(Sender: TObject);
+    procedure BtnRegistrarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
 
   private
@@ -35,7 +37,7 @@ implementation
 {$R *.lfm}
 
 uses
-  usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja, lista_doble;
+  usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja, lista_doble, form_registro;
 
 { TForm1 }
 
@@ -79,6 +81,12 @@ begin
     LblMensaje.Caption := 'Credenciales inválidas';
     LblMensaje.Font.Color := clRed;   // Error en rojo
   end;
+end;
+
+procedure TForm1.BtnRegistrarClick(Sender: TObject);
+begin
+  FormRegistro := TFormRegistro.Create(Self);
+  FormRegistro.ShowModal;
 end;
 
 end.

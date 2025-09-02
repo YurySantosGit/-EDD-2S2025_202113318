@@ -1,11 +1,11 @@
 unit usuarios;
 
-{$mode ObjFPC}{$H+}
+{$mode objfpc}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, fpjson, jsonparser;
+  SysUtils, Classes, fpjson, jsonparser;
 
 type
   PUsuario = ^TUsuario;
@@ -19,10 +19,11 @@ type
     siguiente: PUsuario;
   end;
 
+// Variable global: cabeza de la lista
 var
-  ListaUsuarios: PUsuario; // cabeza de la lista simple
+  ListaUsuarios: PUsuario;
 
-  // Operaciones principales
+// Operaciones principales
 procedure InicializarUsuarios;
 procedure AgregarUsuario(id: Integer; nombre, usuario, email, telefono, password: String);
 function BuscarUsuarioPorEmail(email, password: String): PUsuario;
@@ -37,6 +38,7 @@ begin
   ListaUsuarios := nil;
 end;
 
+// Insertar usuario al final
 procedure AgregarUsuario(id: Integer; nombre, usuario, email, telefono, password: String);
 var
   nuevo, actual: PUsuario;
@@ -79,7 +81,7 @@ begin
   BuscarUsuarioPorEmail := nil;
 end;
 
-// Mostrar lista de usuarios en consola
+// Mostrar usuarios en consola
 procedure MostrarUsuarios;
 var
   actual: PUsuario;
@@ -99,6 +101,7 @@ var
   JSONData: TJSONData;
   JSONObject, user: TJSONObject;
   JSONArray: TJSONArray;
+  contenido: TStringList;
   i: Integer;
 begin
   if not FileExists(archivo) then
@@ -107,23 +110,28 @@ begin
     Exit;
   end;
 
-  JSONData := GetJSON(ReadFileToString(archivo));
-  JSONObject := TJSONObject(JSONData);
-  JSONArray := JSONObject.Arrays['usuarios'];
+  contenido := TStringList.Create;
+  try
+    contenido.LoadFromFile(archivo);
+    JSONData := GetJSON(contenido.Text);
+    JSONObject := TJSONObject(JSONData);
+    JSONArray := JSONObject.Arrays['usuarios'];
 
-  for i := 0 to JSONArray.Count - 1 do
-  begin
-    user := JSONArray.Objects[i];
-    AgregarUsuario(
-      user.Integers['id'],
-      user.Strings['nombre'],
-      user.Strings['usuario'],
-      user.Strings['email'],
-      user.Strings['telefono'],
-      user.Strings['password']
-    );
+    for i := 0 to JSONArray.Count - 1 do
+    begin
+      user := JSONArray.Objects[i];
+      AgregarUsuario(
+        user.Integers['id'],
+        user.Strings['nombre'],
+        user.Strings['usuario'],
+        user.Strings['email'],
+        user.Strings['telefono'],
+        user.Strings['password']
+      );
+    end;
+  finally
+    contenido.Free;
   end;
 end;
 
 end.
-

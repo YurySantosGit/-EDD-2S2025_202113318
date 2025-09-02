@@ -35,7 +35,7 @@ implementation
 {$R *.lfm}
 
 uses
-  usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja;
+  usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja, lista_doble;
 
 { TForm1 }
 

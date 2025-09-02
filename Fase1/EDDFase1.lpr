@@ -12,7 +12,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, main, usuarios, form_root, form_usuario, lista_doble, form_bandeja,
   pila_papelera, form_papelera, cola_correos, form_programarcorreo, 
-form_correosprogramados
+form_correosprogramados, form_registro
   { you can add units after this };
 
 {$R *.res}
@@ -31,6 +31,7 @@ begin
   Application.CreateForm(TFormPapelera, FormPapelera);
   Application.CreateForm(TFormProgramarCorreo, FormProgramarCorreo);
   Application.CreateForm(TFormCorreosProgramados, FormCorreosProgramados);
+  Application.CreateForm(TFormRegistro, FormRegistro);
   Application.Run;
 end.
 
