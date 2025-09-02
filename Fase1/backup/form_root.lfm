@@ -1,11 +1,12 @@
 object FormRoot: TFormRoot
   Left = 1520
-  Height = 253
+  Height = 286
   Top = 32
-  Width = 320
+  Width = 467
   Caption = 'Menu Principal'
-  ClientHeight = 253
-  ClientWidth = 320
+  ClientHeight = 286
+  ClientWidth = 467
+  OnCreate = FormCreate
   object Label1: TLabel
     Left = 144
     Height = 18
@@ -13,15 +14,16 @@ object FormRoot: TFormRoot
     Width = 33
     Caption = 'Root'
   end
-  object Button1: TButton
+  object BtnCargaMasiva: TButton
     Left = 72
     Height = 25
     Top = 64
     Width = 171
     Caption = 'Carga Masiva'
     TabOrder = 0
+    OnClick = BtnCargaMasivaClick
   end
-  object Button2: TButton
+  object BtnReporteUsuarios: TButton
     Left = 72
     Height = 25
     Top = 112
@@ -29,22 +31,35 @@ object FormRoot: TFormRoot
     Caption = 'Reporte de Usuarios'
     TabOrder = 1
   end
-  object Button3: TButton
+  object BtnReporteRelaciones: TButton
     Left = 72
     Height = 25
     Top = 160
     Width = 171
     Caption = 'Reporte de Relaciones'
     TabOrder = 2
-    OnClick = Button3Click
+    OnClick = BtnReporteRelacionesClick
   end
-  object Button4: TButton
-    Left = 192
+  object BtnCerrarSesion: TButton
+    Left = 312
     Height = 25
-    Top = 216
+    Top = 240
     Width = 120
     Caption = 'Cerrar Sesion'
     TabOrder = 3
-    OnClick = Button4Click
+    OnClick = BtnCerrarSesionClick
+  end
+  object MemoLog: TMemo
+    Left = 272
+    Height = 90
+    Top = 64
+    Width = 150
+    ScrollBars = ssAutoVertical
+    TabOrder = 4
+    OnChange = MemoLogChange
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 360
+    Top = 168
   end
 end
