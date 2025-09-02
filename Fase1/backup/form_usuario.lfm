@@ -37,7 +37,7 @@ object FormUsuario: TFormUsuario
     Height = 25
     Top = 144
     Width = 174
-    Caption = 'Papeleria'
+    Caption = 'Papelera'
     TabOrder = 2
     OnClick = BtnPapeleraClick
   end
@@ -48,6 +48,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Programar Correo'
     TabOrder = 3
+    OnClick = BtnProgramarClick
   end
   object Button5: TButton
     Left = 72
@@ -56,6 +57,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Correos Programados'
     TabOrder = 4
+    OnClick = Button5Click
   end
   object Button6: TButton
     Left = 72

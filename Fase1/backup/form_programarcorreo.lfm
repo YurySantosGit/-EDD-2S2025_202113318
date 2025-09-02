@@ -1,0 +1,105 @@
+object FormProgramarCorreo: TFormProgramarCorreo
+  Left = 473
+  Height = 484
+  Top = 32
+  Width = 357
+  Caption = 'Programar Correo'
+  ClientHeight = 484
+  ClientWidth = 357
+  object LblDestinatario: TLabel
+    Left = 24
+    Height = 18
+    Top = 24
+    Width = 87
+    Caption = 'Destinatario:'
+  end
+  object EditDestinatario: TEdit
+    Left = 136
+    Height = 35
+    Top = 16
+    Width = 192
+    TabOrder = 0
+  end
+  object EditAsunto: TEdit
+    Left = 136
+    Height = 35
+    Top = 72
+    Width = 192
+    TabOrder = 1
+  end
+  object LblAsunto: TLabel
+    Left = 24
+    Height = 18
+    Top = 80
+    Width = 51
+    Caption = 'Asunto:'
+  end
+  object MemoMensaje: TMemo
+    Left = 136
+    Height = 136
+    Top = 136
+    Width = 192
+    TabOrder = 2
+    OnChange = MemoMensajeChange
+  end
+  object LblMensaje: TLabel
+    Left = 24
+    Height = 18
+    Top = 136
+    Width = 59
+    Caption = 'Mensaje:'
+  end
+  object LblFecha: TLabel
+    Left = 24
+    Height = 18
+    Top = 304
+    Width = 43
+    Caption = 'Fecha:'
+  end
+  object DateProgramada: TDateEdit
+    Left = 136
+    Height = 35
+    Top = 296
+    Width = 192
+    CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+    DateOrder = doNone
+    ButtonWidth = 23
+    NumGlyphs = 1
+    MaxLength = 0
+    TabOrder = 3
+    OnChange = DateProgramadaChange
+  end
+  object BtnProgramar: TButton
+    Left = 72
+    Height = 25
+    Top = 416
+    Width = 200
+    Caption = 'Programar correo'
+    TabOrder = 4
+    OnClick = BtnProgramarClick
+  end
+  object LblEstado: TLabel
+    Left = 144
+    Height = 1
+    Top = 448
+    Width = 1
+  end
+  object TimeProgramada: TTimeEdit
+    Left = 136
+    Height = 35
+    Top = 357
+    Width = 192
+    ButtonWidth = 23
+    NumGlyphs = 1
+    MaxLength = 0
+    TabOrder = 5
+    OnChange = TimeProgramadaChange
+  end
+  object LblHora: TLabel
+    Left = 24
+    Height = 18
+    Top = 368
+    Width = 37
+    Caption = 'Hora:'
+  end
+end

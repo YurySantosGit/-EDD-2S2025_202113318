@@ -64,7 +64,7 @@ begin
   if c <> nil then
   begin
     info := CorreoToInfo(c); //Enviar a pila (papelera)
-    PushCorreo(PapeleraGlobal, info; //Quitar de la bandeja
+    PushCorreo(PapeleraGlobal, info); //Quitar de la bandeja
 
     if EliminarCorreo(BandejaActual, id) then
     begin

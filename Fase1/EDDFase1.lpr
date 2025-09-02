@@ -11,7 +11,8 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, main, usuarios, form_root, form_usuario, lista_doble, form_bandeja,
-  pila_papelera, form_papelera
+  pila_papelera, form_papelera, cola_correos, form_programarcorreo, 
+form_correosprogramados
   { you can add units after this };
 
 {$R *.res}
@@ -28,6 +29,8 @@ begin
   Application.CreateForm(TFormUsuario, FormUsuario);
   Application.CreateForm(TFormBandeja, FormBandeja);
   Application.CreateForm(TFormPapelera, FormPapelera);
+  Application.CreateForm(TFormProgramarCorreo, FormProgramarCorreo);
+  Application.CreateForm(TFormCorreosProgramados, FormCorreosProgramados);
   Application.Run;
 end.
 

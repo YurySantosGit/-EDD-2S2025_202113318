@@ -35,7 +35,7 @@ implementation
 {$R *.lfm}
 
 uses
-  usuarios, form_root, form_usuario, pila_papelera;
+  usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja, lista_doble;
 
 { TForm1 }
 
@@ -44,7 +44,11 @@ begin
   InicializarUsuarios;
   AgregarUsuario(0, 'Administrador', 'root', 'root@edd.com', '00000000', 'root123'); // Crear root por defecto
   CargarUsuariosDesdeJSON('usuarios.json'); // Cargar usuarios desde JSON
+
   InicializarPapelera(PapeleraGlobal);
+  InicializarCola(ColaGlobal);
+  InicializarBandeja(BandejaActual);
+
 end;
 
 procedure TForm1.BtnLoginClick(Sender: TObject);

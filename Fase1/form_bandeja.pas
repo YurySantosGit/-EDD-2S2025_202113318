@@ -112,18 +112,6 @@ end;
 
 procedure TFormBandeja.FormCreate(Sender: TObject);
 begin
-  InicializarBandeja(BandejaActual);
-
-  InsertarCorreo(BandejaActual, 1, 'root@edd.com', 'NL', False,
-    'Bienvenido', '31/08/2025', 'Este es tu primer correo en el sistema.');
-
-  InsertarCorreo(BandejaActual, 2, 'soporte@edd.com', 'NL', False,
-    'Aviso importante', '31/08/2025', 'Recuerda cambiar tu contraseña.');
-
-  InsertarCorreo(BandejaActual, 3, 'admin@edd.com', 'L', False,
-    'Prueba interna', '31/08/2025', 'Este correo ya está leído.');
-
-  CargarBandeja(BandejaActual);
 
 end;
 

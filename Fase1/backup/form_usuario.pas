@@ -5,7 +5,8 @@ unit form_usuario;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, form_bandeja, lista_doble, form_papelera;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, form_bandeja, lista_doble, form_papelera,
+  form_correosprogramados, form_programarcorreo;
 
 type
 
@@ -25,9 +26,11 @@ type
     Label1: TLabel;
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
+    procedure BtnProgramarClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
     procedure BtnBandejaClick(Sender: TObject);
     procedure BtnEnviarCorreoClick(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -80,9 +83,21 @@ begin
   FormPapelera.ShowModal;
 end;
 
+procedure TFormUsuario.BtnProgramarClick(Sender: TObject);
+begin
+  FormProgramarCorreo := TFormProgramarCorreo.Create(Self);
+  FormProgramarCorreo.ShowModal;
+end;
+
 procedure TFormUsuario.BtnEnviarCorreoClick(Sender: TObject);
 begin
 
+end;
+
+procedure TFormUsuario.Button5Click(Sender: TObject);
+begin
+  FormCorreosProgramados := TFormCorreosProgramados.Create(Self);
+  FormCorreosProgramados.ShowModal;
 end;
 
 procedure TFormUsuario.FormCreate(Sender: TObject);

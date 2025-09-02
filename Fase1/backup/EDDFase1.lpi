@@ -77,6 +77,25 @@
         <Filename Value="form_papelera.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormPapelera"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="cola_correos.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_programarcorreo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormProgramarCorreo"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_correosprogramados.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormCorreosProgramados"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>
