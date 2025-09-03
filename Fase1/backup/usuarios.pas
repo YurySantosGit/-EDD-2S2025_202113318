@@ -33,6 +33,7 @@ function ExisteEmail(const email: String): Boolean;
 function ExisteUsuario(const usuario: String): Boolean;
 function ObtenerSiguienteID: Integer;
 procedure GuardarUsuariosEnJSON(const archivo: String);
+procedure CargaMasivaDesdeJSON(const archivo: String; out agregados, rechazados: Integer; log: TStrings);
 
 implementation
 
@@ -129,6 +130,19 @@ begin
   Result := maxId + 1;
 end;
 
+function ExisteID(id: Integer): Boolean;
+var
+  actual: PUsuario;
+begin
+  Result := False;
+  actual := ListaUsuarios;
+  while actual <> nil do
+  begin
+    if actual^.id = id then Exit(True);
+    actual := actual^.siguiente;
+  end;
+end;
+
 // Mostrar usuarios en consola
 procedure MostrarUsuarios;
 var
@@ -159,6 +173,8 @@ begin
   end;
 
   contenido := TStringList.Create;
+  JSONData := nil;
+
   try
     contenido.LoadFromFile(archivo);
     JSONData := GetJSON(contenido.Text);
@@ -227,5 +243,90 @@ begin
       WriteLn('Error al guardar usuarios: ', E.Message);
   end;
 end;
+
+procedure CargaMasivaDesdeJSON(const archivo: String; out agregados, rechazados: Integer; log: TStrings);
+var
+  JSONData: TJSONData;
+  JSONObject, user: TJSONObject;
+  JSONArray: TJSONArray;
+  contenido: TStringList;
+  i, id: Integer;
+  nombre, usuarioStr, email, telefono, password: String;
+begin
+  agregados := 0;
+  rechazados := 0;
+
+  if not FileExists(archivo) then
+  begin
+    if Assigned(log) then log.Add('Archivo no encontrado: ' + archivo);
+    Exit;
+  end;
+
+  contenido := TStringList.Create;
+  JSONData := nil;
+  try
+    contenido.LoadFromFile(archivo);
+    JSONData := GetJSON(contenido.Text);
+    JSONObject := TJSONObject(JSONData);
+
+    if not JSONObject.Find('usuarios', JSONArray) then
+    begin
+      if Assigned(log) then log.Add('Formato inválido: falta clave "usuarios".');
+      Exit;
+    end;
+
+    for i := 0 to JSONArray.Count - 1 do
+    begin
+      user := JSONArray.Objects[i];
+
+      // leer con defaults seguro
+      id         := user.Get('id', -1);
+      nombre     := user.Get('nombre', '');
+      usuarioStr := user.Get('usuario', '');
+      email      := user.Get('email', '');
+      telefono   := user.Get('telefono', '');
+      password   := user.Get('password', '');
+
+      // validaciones mínimas
+      if (id < 0) or (Trim(email) = '') or (Trim(usuarioStr) = '') then
+      begin
+        Inc(rechazados);
+        if Assigned(log) then
+          log.Add(Format('Registro %d inválido (id/email/usuario requeridos).', [i+1]));
+        Continue;
+      end;
+
+      // unicidad
+      if ExisteID(id) then
+      begin
+        Inc(rechazados);
+        if Assigned(log) then log.Add(Format('ID repetido (%d) → rechazado.', [id]));
+        Continue;
+      end;
+
+      if ExisteEmail(email) then
+      begin
+        Inc(rechazados);
+        if Assigned(log) then log.Add(Format('Email repetido (%s) → rechazado.', [email]));
+        Continue;
+      end;
+
+      // pasa validaciones → agregar
+      AgregarUsuario(id, nombre, usuarioStr, email, telefono, password);
+      Inc(agregados);
+    end;
+
+    // persistir cambios
+    GuardarUsuariosEnJSON('usuarios.json');
+
+    if Assigned(log) then
+      log.Add(Format('Resumen → agregados: %d, rechazados: %d', [agregados, rechazados]));
+
+  finally
+    if Assigned(JSONData) then JSONData.Free;
+    contenido.Free;
+  end;
+end;
+
 
 end.

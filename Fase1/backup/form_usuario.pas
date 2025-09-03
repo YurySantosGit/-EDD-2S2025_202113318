@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, form_bandeja, lista_doble, form_papelera,
-  form_correosprogramados, form_programarcorreo;
+  form_correosprogramados, form_programarcorreo, form_agregar_contacto;
 
 type
 
@@ -31,6 +31,7 @@ type
     procedure BtnBandejaClick(Sender: TObject);
     procedure BtnEnviarCorreoClick(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -52,15 +53,6 @@ uses
 
 procedure TFormUsuario.BtnBandejaClick(Sender: TObject);
 begin
-  // Simulación de correos recibidos
-  InicializarBandeja(BandejaActual);
-  InsertarCorreo(BandejaActual, 1, 'root@edd.com', 'NL', False,
-    'Bienvenido', '31/08/2025', 'Este es tu primer correo.');
-  InsertarCorreo(BandejaActual, 2, 'soporte@edd.com', 'NL', False,
-    'Aviso', '31/08/2025', 'Tu cuenta fue creada con éxito.');
-  InsertarCorreo(BandejaActual, 3, 'admin@edd.com', 'L', False,
-    'Prueba', '31/08/2025', 'Este correo ya está leído.');
-
   FormBandeja := TFormBandeja.Create(Self);
   FormBandeja.CargarBandeja(BandejaActual);
   FormBandeja.ShowModal;
@@ -98,6 +90,12 @@ procedure TFormUsuario.Button5Click(Sender: TObject);
 begin
   FormCorreosProgramados := TFormCorreosProgramados.Create(Self);
   FormCorreosProgramados.ShowModal;
+end;
+
+procedure TFormUsuario.Button6Click(Sender: TObject);
+begin
+  FormAgregarContacto := TFormAgregarContacto.Create(Self);
+  FormAgregarContacto.ShowModal;
 end;
 
 procedure TFormUsuario.FormCreate(Sender: TObject);

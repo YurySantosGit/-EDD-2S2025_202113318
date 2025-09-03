@@ -5,8 +5,9 @@ unit form_usuario;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, form_bandeja, lista_doble, form_papelera,
-  form_correosprogramados, form_programarcorreo;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  form_bandeja, lista_doble, form_papelera, form_correosprogramados,
+  form_programarcorreo, form_agregar_contacto, form_contactos;
 
 type
 
@@ -25,12 +26,14 @@ type
     Button9: TButton;
     Label1: TLabel;
     procedure BtnCerrarSesionClick(Sender: TObject);
+    procedure BtnContactosClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
     procedure BtnProgramarClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
     procedure BtnBandejaClick(Sender: TObject);
     procedure BtnEnviarCorreoClick(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -68,6 +71,12 @@ begin
   Self.Close;   // Cerrar menú usuario
 end;
 
+procedure TFormUsuario.BtnContactosClick(Sender: TObject);
+begin
+  FormContactos := TFormContactos.Create(Self);
+  FormContactos.ShowModal;
+end;
+
 procedure TFormUsuario.BtnPapeleraClick(Sender: TObject);
 begin
   FormPapelera := TFormPapelera.Create(Self);
@@ -89,6 +98,12 @@ procedure TFormUsuario.Button5Click(Sender: TObject);
 begin
   FormCorreosProgramados := TFormCorreosProgramados.Create(Self);
   FormCorreosProgramados.ShowModal;
+end;
+
+procedure TFormUsuario.Button6Click(Sender: TObject);
+begin
+  FormAgregarContacto := TFormAgregarContacto.Create(Self);
+  FormAgregarContacto.ShowModal;
 end;
 
 procedure TFormUsuario.FormCreate(Sender: TObject);

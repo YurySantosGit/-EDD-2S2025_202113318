@@ -1,0 +1,40 @@
+object FormAgregarContacto: TFormAgregarContacto
+  Left = 541
+  Height = 178
+  Top = 32
+  Width = 320
+  ClientHeight = 178
+  ClientWidth = 320
+  object Label1: TLabel
+    Left = 30
+    Height = 18
+    Top = 33
+    Width = 47
+    Caption = 'Correo'
+  end
+  object EditCorreo: TEdit
+    Left = 96
+    Height = 35
+    Top = 24
+    Width = 216
+    TabOrder = 0
+  end
+  object BtnAgregar: TButton
+    Left = 200
+    Height = 25
+    Top = 72
+    Width = 107
+    Caption = 'Agregar'
+    TabOrder = 1
+    OnClick = BtnAgregarClick
+  end
+  object BtnCerrar: TButton
+    Left = 208
+    Height = 25
+    Top = 136
+    Width = 99
+    Caption = 'Cerrar'
+    TabOrder = 2
+    OnClick = BtnCerrarClick
+  end
+end

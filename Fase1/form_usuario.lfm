@@ -66,6 +66,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Agregar Contacto'
     TabOrder = 5
+    OnClick = Button6Click
   end
   object BtnContactos: TButton
     Left = 72
@@ -74,6 +75,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Contactos'
     TabOrder = 6
+    OnClick = BtnContactosClick
   end
   object BtnActualizarPerfil: TButton
     Left = 72

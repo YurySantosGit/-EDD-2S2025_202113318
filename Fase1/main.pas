@@ -31,13 +31,15 @@ type
 
 var
   Form1: TForm1;
+  UsuarioActualEmail: String;
 
 implementation
 
 {$R *.lfm}
 
 uses
-  usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja, lista_doble, form_registro;
+  usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja,
+  lista_doble, form_registro, contactos;
 
 { TForm1 }
 
@@ -51,6 +53,9 @@ begin
   InicializarCola(ColaGlobal);
   InicializarBandeja(BandejaActual);
 
+  InicializarContactos(ListaContactos);
+  CargarContactosDesdeJSON(ListaContactos, 'contactos.json');
+
 end;
 
 procedure TForm1.BtnLoginClick(Sender: TObject);
@@ -61,6 +66,7 @@ begin
 
   if user <> nil then
   begin
+    UsuarioActualEmail := user^.email;
     //Usuario Root
     if user^.email = 'root@edd.com' then
     begin

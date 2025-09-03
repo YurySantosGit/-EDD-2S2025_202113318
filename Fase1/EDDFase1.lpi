@@ -102,6 +102,25 @@
         <Filename Value="form_registro.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormRegistro"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="contactos.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_contactos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormContactos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_agregar_contacto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormAgregarContacto"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

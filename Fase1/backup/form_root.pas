@@ -18,6 +18,7 @@ type
     BtnReporteRelaciones: TButton;
     BtnCerrarSesion: TButton;
     Label1: TLabel;
+    Label2: TLabel;
     MemoLog: TMemo;
     OpenDialog1: TOpenDialog;
     procedure BtnCargaMasivaClick(Sender: TObject);

@@ -2,10 +2,10 @@ object FormRoot: TFormRoot
   Left = 1520
   Height = 286
   Top = 32
-  Width = 467
+  Width = 689
   Caption = 'Menu Principal'
   ClientHeight = 286
-  ClientWidth = 467
+  ClientWidth = 689
   OnCreate = FormCreate
   object Label1: TLabel
     Left = 144
@@ -41,9 +41,9 @@ object FormRoot: TFormRoot
     OnClick = BtnReporteRelacionesClick
   end
   object BtnCerrarSesion: TButton
-    Left = 312
+    Left = 560
     Height = 25
-    Top = 240
+    Top = 248
     Width = 120
     Caption = 'Cerrar Sesion'
     TabOrder = 3
@@ -53,10 +53,17 @@ object FormRoot: TFormRoot
     Left = 272
     Height = 90
     Top = 64
-    Width = 150
+    Width = 408
     ScrollBars = ssAutoVertical
     TabOrder = 4
     OnChange = MemoLogChange
+  end
+  object Label2: TLabel
+    Left = 272
+    Height = 18
+    Top = 40
+    Width = 145
+    Caption = 'Detalles Carga Masiva'
   end
   object OpenDialog1: TOpenDialog
     Left = 360
