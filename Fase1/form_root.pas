@@ -24,6 +24,8 @@ type
     procedure BtnCargaMasivaClick(Sender: TObject);
     procedure BtnReporteRelacionesClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
+    procedure BtnReporteUsuariosClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MemoLogChange(Sender: TObject);
   private
@@ -40,13 +42,14 @@ implementation
 {$R *.lfm}
 
 uses
-  main;
+  main, reportes_root, bandejas;
 
 { TFormRoot }
 
 procedure TFormRoot.BtnReporteRelacionesClick(Sender: TObject);
 begin
-
+  GenerarReporteRelaciones;
+  ShowMessage('Reporte de Relaciones creado en "Root-Reportes/relaciones.dot".');
 end;
 
 procedure TFormRoot.BtnCargaMasivaClick(Sender: TObject);
@@ -83,6 +86,17 @@ procedure TFormRoot.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;
   Self.Close;
+end;
+
+procedure TFormRoot.BtnReporteUsuariosClick(Sender: TObject);
+begin
+  GenerarReporteUsuarios;
+  ShowMessage('Reporte de Usuarios creado en "Root-Reportes/usuarios.dot".');
+end;
+
+procedure TFormRoot.Button1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TFormRoot.FormCreate(Sender: TObject);

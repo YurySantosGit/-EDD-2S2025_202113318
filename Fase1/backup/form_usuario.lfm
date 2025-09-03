@@ -84,6 +84,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Actualizar Perfil'
     TabOrder = 7
+    OnClick = BtnActualizarPerfilClick
   end
   object Button9: TButton
     Left = 72
@@ -92,6 +93,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Generar Reportes'
     TabOrder = 8
+    OnClick = Button9Click
   end
   object BtnCerrarSesion: TButton
     Left = 192

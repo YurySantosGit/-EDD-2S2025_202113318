@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
-  bandejas;
+  bandejas, form_perfil, reportes_usuario;
 
 type
 
@@ -26,6 +26,7 @@ type
     BtnActualizarPerfil: TButton;
     Button9: TButton;
     Label1: TLabel;
+    procedure BtnActualizarPerfilClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnContactosClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
@@ -33,8 +34,10 @@ type
     procedure Button10Click(Sender: TObject);
     procedure BtnBandejaClick(Sender: TObject);
     procedure BtnEnviarCorreoClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -50,7 +53,7 @@ implementation
 {$R *.lfm}
 
 uses
-  main;
+  main, pila_papelera, cola_correos, contactos;
 
 { TFormUsuario }
 
@@ -73,6 +76,12 @@ procedure TFormUsuario.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;   // Mostrar login de nuevo
   Self.Close;   // Cerrar menú usuario
+end;
+
+procedure TFormUsuario.BtnActualizarPerfilClick(Sender: TObject);
+begin
+  FormPerfil := TFormPerfil.Create(Self);
+  FormPerfil.ShowModal;
 end;
 
 procedure TFormUsuario.BtnContactosClick(Sender: TObject);
@@ -109,6 +118,16 @@ procedure TFormUsuario.Button6Click(Sender: TObject);
 begin
   FormAgregarContacto := TFormAgregarContacto.Create(Self);
   FormAgregarContacto.ShowModal;
+end;
+
+procedure TFormUsuario.Button9Click(Sender: TObject);
+var usuarioCarp: string;
+begin
+  usuarioCarp := Copy(UsuarioActualEmail, 1, Pos('@', UsuarioActualEmail) - 1);
+  if usuarioCarp = '' then usuarioCarp := 'usuario';
+
+  GenerarReportesUsuarioPorEmail(UsuarioActualEmail);
+  ShowMessage('Reportes generados en "' + usuarioCarp + '-Reportes/".');
 end;
 
 procedure TFormUsuario.FormCreate(Sender: TObject);

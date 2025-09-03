@@ -1,0 +1,11 @@
+digraph Papelera {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=TB;
+  node [shape=box, style="filled", fillcolor="#FFECB3", fontname="Helvetica"];
+  edge [arrowhead=vee];
+  subgraph cluster_pila { label="Papelera (smejia@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    p0 [label="[DEL] Newsletter"];
+    p1 [label="[DEL] Publicidad"];
+    p0 -> p1;
+  }
+}

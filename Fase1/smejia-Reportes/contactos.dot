@@ -1,0 +1,16 @@
+digraph Contactos {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=LR;
+  node [shape=box, style="rounded,filled", fillcolor="#B2DFDB", fontname="Helvetica"];
+  edge [arrowhead=vee];
+  subgraph cluster_circular { label="Contactos (smejia@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    k0 [label="Luis Aux\n(aux-luis@edd.com)"];
+    k1 [label="Marcos Aux\n(aux-marcos@edd.com)"];
+    k0 -> k1;
+    k2 [label="Teacher\n(teacher@edd.com)"];
+    k1 -> k2;
+    k3 [label="Alan Turing\n(aturing@edd.com)"];
+    k2 -> k3;
+    k3 -> k0;
+  }
+}

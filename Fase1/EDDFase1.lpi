@@ -127,6 +127,7 @@
         <Filename Value="form_enviarcorreo.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormEnviarCorreo"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
@@ -137,7 +138,16 @@
         <Filename Value="form_perfil.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormPerfil"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="reportes_root.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="reportes_usuario.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>

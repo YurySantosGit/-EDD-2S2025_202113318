@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
-  bandejas, form_perfil;
+  bandejas, form_perfil, reportes_usuario;
 
 type
 
@@ -36,6 +36,7 @@ type
     procedure BtnEnviarCorreoClick(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
 
@@ -51,7 +52,7 @@ implementation
 {$R *.lfm}
 
 uses
-  main;
+  main, pila_papelera, cola_correos, contactos;
 
 { TFormUsuario }
 
@@ -116,6 +117,16 @@ procedure TFormUsuario.Button6Click(Sender: TObject);
 begin
   FormAgregarContacto := TFormAgregarContacto.Create(Self);
   FormAgregarContacto.ShowModal;
+end;
+
+procedure TFormUsuario.Button9Click(Sender: TObject);
+var usuarioCarp: string;
+begin
+  usuarioCarp := Copy(UsuarioActualEmail, 1, Pos('@', UsuarioActualEmail) - 1);
+  if usuarioCarp = '' then usuarioCarp := 'usuario';
+
+  GenerarReportesUsuarioPorEmail(UsuarioActualEmail);
+  ShowMessage('Reportes generados en "' + usuarioCarp + '-Reportes/".');
 end;
 
 procedure TFormUsuario.FormCreate(Sender: TObject);
