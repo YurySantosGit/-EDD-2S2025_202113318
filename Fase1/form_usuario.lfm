@@ -84,6 +84,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Actualizar Perfil'
     TabOrder = 7
+    OnClick = BtnActualizarPerfilClick
   end
   object Button9: TButton
     Left = 72

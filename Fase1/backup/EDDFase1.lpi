@@ -133,6 +133,12 @@
         <Filename Value="bandejas.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="form_perfil.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormPerfil"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

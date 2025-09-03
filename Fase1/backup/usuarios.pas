@@ -34,6 +34,7 @@ function ExisteUsuario(const usuario: String): Boolean;
 function ObtenerSiguienteID: Integer;
 procedure GuardarUsuariosEnJSON(const archivo: String);
 procedure CargaMasivaDesdeJSON(const archivo: String; out agregados, rechazados: Integer; log: TStrings);
+function BuscarUsuarioPorCorreo(const email: String): PUsuario;
 
 implementation
 
@@ -84,6 +85,20 @@ begin
     actual := actual^.siguiente;
   end;
   BuscarUsuarioPorEmail := nil;
+end;
+
+function BuscarUsuarioPorCorreo(const email: String): PUsuario;
+var
+  actual: PUsuario;
+begin
+  actual := ListaUsuarios;
+  while actual <> nil do
+  begin
+    if SameText(actual^.email, email) then
+      Exit(actual);
+    actual := actual^.siguiente;
+  end;
+  Result := nil;
 end;
 
 function ExisteEmail(const email: String): Boolean;

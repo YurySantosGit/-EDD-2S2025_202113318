@@ -46,12 +46,13 @@ uses
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   InicializarUsuarios;
-  AgregarUsuario(0, 'Administrador', 'root', 'root@edd.com', '00000000', 'root123'); // Crear root por defecto
   CargarUsuariosDesdeJSON('usuarios.json'); // Cargar usuarios desde JSON
+  if not ExisteEmail('root@edd.com') then
+    AgregarUsuario(0, 'Administrador', 'root', 'root@edd.com', '00000000', 'root123');
 
   InicializarPapelera(PapeleraGlobal);
   InicializarCola(ColaGlobal);
-  InicializarBandeja(BandejaActual);
+  //InicializarBandeja(BandejaActual);
   InicializarBandejas;
 
   InicializarContactos(ListaContactos);

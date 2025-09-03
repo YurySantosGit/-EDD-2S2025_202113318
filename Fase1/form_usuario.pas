@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
-  bandejas;
+  bandejas, form_perfil;
 
 type
 
@@ -26,6 +26,7 @@ type
     BtnActualizarPerfil: TButton;
     Button9: TButton;
     Label1: TLabel;
+    procedure BtnActualizarPerfilClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnContactosClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
@@ -73,6 +74,12 @@ procedure TFormUsuario.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;   // Mostrar login de nuevo
   Self.Close;   // Cerrar menú usuario
+end;
+
+procedure TFormUsuario.BtnActualizarPerfilClick(Sender: TObject);
+begin
+  FormPerfil := TFormPerfil.Create(Self);
+  FormPerfil.ShowModal;
 end;
 
 procedure TFormUsuario.BtnContactosClick(Sender: TObject);

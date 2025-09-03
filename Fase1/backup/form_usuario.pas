@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
-  bandejas, main;
+  bandejas;
 
 type
 

@@ -36,6 +36,9 @@ procedure GuardarUsuariosEnJSON(const archivo: String);
 procedure CargaMasivaDesdeJSON(const archivo: String; out agregados, rechazados: Integer; log: TStrings);
 function BuscarUsuarioPorCorreo(const email: String): PUsuario;
 
+function BuscarUsuarioPorEmailExacto(const email: String): PUsuario;
+function ExisteUsuarioExceptoEmail(const usuario, emailActual: String): Boolean;
+
 implementation
 
 // Inicializar lista
@@ -168,6 +171,34 @@ begin
   while actual <> nil do
   begin
     writeln('ID: ', actual^.id, ' | Nombre: ', actual^.nombre, ' | Email: ', actual^.email);
+    actual := actual^.siguiente;
+  end;
+end;
+
+function BuscarUsuarioPorEmailExacto(const email: String): PUsuario;
+var
+  actual: PUsuario;
+begin
+  actual := ListaUsuarios;
+  while actual <> nil do
+  begin
+    if SameText(actual^.email, email) then
+      Exit(actual);
+    actual := actual^.siguiente;
+  end;
+  Result := nil;
+end;
+
+function ExisteUsuarioExceptoEmail(const usuario, emailActual: String): Boolean;
+var
+  actual: PUsuario;
+begin
+  Result := False;
+  actual := ListaUsuarios;
+  while actual <> nil do
+  begin
+    if SameText(actual^.usuario, usuario) and (not SameText(actual^.email, emailActual)) then
+      Exit(True);
     actual := actual^.siguiente;
   end;
 end;
