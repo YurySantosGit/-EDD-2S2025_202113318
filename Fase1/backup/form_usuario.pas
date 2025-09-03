@@ -5,8 +5,10 @@ unit form_usuario;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, form_bandeja, lista_doble, form_papelera,
-  form_correosprogramados, form_programarcorreo, form_agregar_contacto;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  form_bandeja, lista_doble, form_papelera, form_correosprogramados,
+  form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
+  bandejas, main;
 
 type
 
@@ -25,6 +27,7 @@ type
     Button9: TButton;
     Label1: TLabel;
     procedure BtnCerrarSesionClick(Sender: TObject);
+    procedure BtnContactosClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
     procedure BtnProgramarClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
@@ -52,9 +55,12 @@ uses
 { TFormUsuario }
 
 procedure TFormUsuario.BtnBandejaClick(Sender: TObject);
+var
+  pB: ^TBandeja;
 begin
+  pB := ObtenerBandejaPtr(UsuarioActualEmail);
   FormBandeja := TFormBandeja.Create(Self);
-  FormBandeja.CargarBandeja(BandejaActual);
+  FormBandeja.CargarBandejaPtr(pB);
   FormBandeja.ShowModal;
 end;
 
@@ -67,6 +73,12 @@ procedure TFormUsuario.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;   // Mostrar login de nuevo
   Self.Close;   // Cerrar menú usuario
+end;
+
+procedure TFormUsuario.BtnContactosClick(Sender: TObject);
+begin
+  FormContactos := TFormContactos.Create(Self);
+  FormContactos.ShowModal;
 end;
 
 procedure TFormUsuario.BtnPapeleraClick(Sender: TObject);
@@ -83,7 +95,8 @@ end;
 
 procedure TFormUsuario.BtnEnviarCorreoClick(Sender: TObject);
 begin
-
+  FormEnviarCorreo := TFormEnviarCorreo.Create(Self);
+  FormEnviarCorreo.ShowModal;
 end;
 
 procedure TFormUsuario.Button5Click(Sender: TObject);

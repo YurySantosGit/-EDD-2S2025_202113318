@@ -39,7 +39,7 @@ implementation
 
 uses
   usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja,
-  lista_doble, form_registro, contactos;
+  lista_doble, form_registro, contactos, bandejas;
 
 { TForm1 }
 
@@ -51,7 +51,8 @@ begin
 
   InicializarPapelera(PapeleraGlobal);
   InicializarCola(ColaGlobal);
-  InicializarBandeja(BandejaActual);
+  //InicializarBandeja(BandejaActual);
+  InicializarBandejas;
 
   InicializarContactos(ListaContactos);
   CargarContactosDesdeJSON(ListaContactos, 'contactos.json');

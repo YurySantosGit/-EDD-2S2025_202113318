@@ -5,7 +5,8 @@ unit form_correosprogramados;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, cola_correos, lista_doble;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  cola_correos, lista_doble;
 
 type
 
@@ -39,7 +40,7 @@ implementation
 {$R *.lfm}
 
 uses
-  form_bandeja;
+  form_bandeja, bandejas, main;
 
 { TFormCorreosProgramados }
 
@@ -73,15 +74,15 @@ end;
 
 procedure TFormCorreosProgramados.EntregarCorreo(const c: TCorreoProgramado);
 begin
-  InsertarCorreo(
-    BandejaActual,
-    c.id,
+  EntregarCorreoA(
+    c.destinatario,
     c.remitente,
-    'NL',
-    False,
     c.asunto,
     c.fecha + ' ' + c.hora,
-    c.mensaje
+    c.mensaje,
+    c.id,
+    'NL',
+    False
   );
 end;
 
@@ -99,12 +100,10 @@ begin
   enviados := 0;
   ahora := Now;
 
-  // Procesa en FIFO mientras el PRIMERO esté vencido (fecha+hora <= ahora)
   while (ColaGlobal.frente <> nil) do
   begin
     if not ParseFechaHora(ColaGlobal.frente^.dato.fecha, ColaGlobal.frente^.dato.hora, dtProgramado) then
     begin
-      // Si no se logra parsear, para no trabarnos lo enviamos igual
       Desencolar(ColaGlobal, correo);
       EntregarCorreo(correo);
       Inc(enviados);
@@ -118,7 +117,7 @@ begin
       Inc(enviados);
     end
     else
-      Break; // Como es FIFO, si el primero no está listo, los demás tampoco.
+      Break;
   end;
 
   if enviados > 0 then
@@ -129,7 +128,7 @@ begin
   ActualizarLista;
 
   if Assigned(FormBandeja) and FormBandeja.Visible then
-    FormBandeja.CargarBandeja(BandejaActual);
+    FormBandeja.CargarBandejaPtr(ObtenerBandejaPtr(UsuarioActualEmail));
 
 end;
 

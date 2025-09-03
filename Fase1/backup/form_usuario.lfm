@@ -75,6 +75,7 @@ object FormUsuario: TFormUsuario
     Width = 174
     Caption = 'Contactos'
     TabOrder = 6
+    OnClick = BtnContactosClick
   end
   object BtnActualizarPerfil: TButton
     Left = 72

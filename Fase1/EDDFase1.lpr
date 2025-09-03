@@ -13,7 +13,7 @@ uses
   Forms, main, usuarios, form_root, form_usuario, lista_doble, form_bandeja,
   pila_papelera, form_papelera, cola_correos, form_programarcorreo, 
 form_correosprogramados, form_registro, contactos, form_contactos, 
-form_agregar_contacto;
+form_agregar_contacto, form_enviarcorreo, bandejas;
 
 {$R *.res}
 
@@ -34,6 +34,7 @@ begin
   Application.CreateForm(TFormRegistro, FormRegistro);
   Application.CreateForm(TFormContactos, FormContactos);
   Application.CreateForm(TFormAgregarContacto, FormAgregarContacto);
+  Application.CreateForm(TFormEnviarCorreo, FormEnviarCorreo);
   Application.Run;
 end.
 

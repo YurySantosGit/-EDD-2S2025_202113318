@@ -5,7 +5,8 @@ unit form_bandeja;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, lista_doble, pila_papelera;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  lista_doble, pila_papelera;
 
 type
 
@@ -25,15 +26,14 @@ type
     procedure BtnVerCorreoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-
+    BandejaPtr: PBandeja;
   public
-    procedure CargarBandeja(var bandeja: TBandeja);
+    procedure CargarBandejaPtr(p: PBandeja);
 
   end;
 
 var
   FormBandeja: TFormBandeja;
-  BandejaActual: TBandeja;
 
 implementation
 
@@ -43,60 +43,56 @@ implementation
 
 procedure TFormBandeja.BtnCerrarClick(Sender: TObject);
 begin
-  Self.Close;
+  Close;
 end;
 
 procedure TFormBandeja.BtnEliminarCorreoClick(Sender: TObject);
 var
-  id, p: Integer;
+  id, posId: Integer;
   s: String;
   c: PCorreo;
   info: TCorreoInfo;
-
 begin
   if ListCorreos.ItemIndex = -1 then Exit;
 
   s := ListCorreos.Items[ListCorreos.ItemIndex];
-  p := Pos('(ID:', s);
-  id := StrToInt(Copy(s, p+4, Length(s)-p-4));
-  c := BuscarCorreo(BandejaActual, id);
+  posId := Pos('(ID:', s);
+  id := StrToInt(Copy(s, posId+4, Length(s) - (posId+4) + 1));
 
+  c := BuscarCorreo(BandejaPtr^, id);
   if c <> nil then
   begin
-    info := CorreoToInfo(c); //Enviar a pila (papelera)
-    PushCorreo(PapeleraGlobal, info); //Quitar de la bandeja
+    info := CorreoToInfo(c);
+    PushCorreo(PapeleraGlobal, info);
 
-    if EliminarCorreo(BandejaActual, id) then
+    if EliminarCorreo(BandejaPtr^, id) then
     begin
-      Showmessage('Correo enviado a la papelera');
-      CargarBandeja(BandejaActual);
+      ShowMessage('Correo enviado a la papelera');
+      CargarBandejaPtr(BandejaPtr);
     end;
-
   end;
-
 end;
 
 procedure TFormBandeja.BtnOrdenarClick(Sender: TObject);
 begin
-  OrdenarPorAsunto(BandejaActual);
-  CargarBandeja(BandejaActual);
+  if BandejaPtr = nil then Exit;
+  OrdenarPorAsunto(BandejaPtr^);
+  CargarBandejaPtr(BandejaPtr);
 end;
 
 procedure TFormBandeja.BtnVerCorreoClick(Sender: TObject);
 var
-  correo: PCorreo;
-  id: Integer;
+  id, posId: Integer;
   s: String;
-  p: Integer;
+  correo: PCorreo;
 begin
   if ListCorreos.ItemIndex = -1 then Exit;
 
-  // Extraer ID desde la cadena
   s := ListCorreos.Items[ListCorreos.ItemIndex];
-  p := Pos('(ID:', s);
-  id := StrToInt(Copy(s, p+4, Length(s)-p-4));
+  posId := Pos('(ID:', s);
+  id := StrToInt(Copy(s, posId+4, Length(s) - (posId+4) + 1));
 
-  correo := BuscarCorreo(BandejaActual, id);
+  correo := BuscarCorreo(BandejaPtr^, id);
   if correo <> nil then
   begin
     ShowMessage('De: ' + correo^.remitente + LineEnding +
@@ -104,52 +100,49 @@ begin
                 'Fecha: ' + correo^.fecha + LineEnding +
                 'Mensaje:' + LineEnding + correo^.mensaje);
 
-    // Marcar como leído
     correo^.estado := 'L';
-    CargarBandeja(BandejaActual);
+    CargarBandejaPtr(BandejaPtr);
   end;
 end;
 
 procedure TFormBandeja.FormCreate(Sender: TObject);
 begin
-  InicializarBandeja(BandejaActual);
-
-  InsertarCorreo(BandejaActual, 1, 'root@edd.com', 'NL', False,
-    'Bienvenido', '31/08/2025', 'Este es tu primer correo en el sistema.');
-
-  InsertarCorreo(BandejaActual, 2, 'soporte@edd.com', 'NL', False,
-    'Aviso importante', '31/08/2025', 'Recuerda cambiar tu contraseña.');
-
-  InsertarCorreo(BandejaActual, 3, 'admin@edd.com', 'L', False,
-    'Prueba interna', '31/08/2025', 'Este correo ya está leído.');
-
-  CargarBandeja(BandejaActual);
 
 end;
 
-procedure TFormBandeja.CargarBandeja(var bandeja: TBandeja);
+procedure TFormBandeja.CargarBandejaPtr(p: PBandeja);
 var
   actual: PCorreo;
   noLeidos: Integer;
 begin
+  BandejaPtr := p;
   ListCorreos.Clear;
-  BandejaActual := bandeja;
-  actual := bandeja.cabeza;
   noLeidos := 0;
 
+  if (BandejaPtr = nil) or (BandejaPtr^.cabeza = nil) then
+  begin
+    LblNoLeidos.Caption := 'No leídos: 0';
+    Exit;
+  end;
+
+  actual := BandejaPtr^.cabeza;
   while actual <> nil do
   begin
     if actual^.estado = 'NL' then
       Inc(noLeidos);
 
-    ListCorreos.Items.Add('[' + actual^.estado + '] ' +
-                          actual^.asunto + ' - ' + actual^.remitente +
-                          ' (ID:' + IntToStr(actual^.id) + ')');
+    ListCorreos.Items.Add(
+      '[' + actual^.estado + '] ' +
+      actual^.asunto + ' - ' + actual^.remitente +
+      ' (ID:' + IntToStr(actual^.id) + ')'
+    );
+
     actual := actual^.siguiente;
   end;
 
   LblNoLeidos.Caption := 'No leídos: ' + IntToStr(noLeidos);
 end;
+
 
 end.
 

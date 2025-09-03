@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
-  form_programarcorreo, form_agregar_contacto, form_contactos;
+  form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
+  bandejas;
 
 type
 
@@ -54,9 +55,12 @@ uses
 { TFormUsuario }
 
 procedure TFormUsuario.BtnBandejaClick(Sender: TObject);
+var
+  pB: ^TBandeja;
 begin
+  pB := ObtenerBandejaPtr(UsuarioActualEmail);
   FormBandeja := TFormBandeja.Create(Self);
-  FormBandeja.CargarBandeja(BandejaActual);
+  FormBandeja.CargarBandejaPtr(pB);
   FormBandeja.ShowModal;
 end;
 
@@ -91,7 +95,8 @@ end;
 
 procedure TFormUsuario.BtnEnviarCorreoClick(Sender: TObject);
 begin
-
+  FormEnviarCorreo := TFormEnviarCorreo.Create(Self);
+  FormEnviarCorreo.ShowModal;
 end;
 
 procedure TFormUsuario.Button5Click(Sender: TObject);

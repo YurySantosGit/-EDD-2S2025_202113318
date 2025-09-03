@@ -127,6 +127,10 @@ begin
     ShowMessage('No hay correos vencidos para enviar.');
 
   ActualizarLista;
+
+  if Assigned(FormBandeja) and FormBandeja.Visible then
+    FormBandeja.CargarBandeja(BandejaActual);
+
 end;
 
 end.

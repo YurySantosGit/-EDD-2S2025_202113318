@@ -31,6 +31,7 @@ type
 
 var
   Form1: TForm1;
+  UsuarioActualEmail: String;
 
 implementation
 
@@ -38,7 +39,7 @@ implementation
 
 uses
   usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja,
-  lista_doble, form_registro, contactos;
+  lista_doble, form_registro, contactos, bandejas;
 
 { TForm1 }
 
@@ -51,6 +52,7 @@ begin
   InicializarPapelera(PapeleraGlobal);
   InicializarCola(ColaGlobal);
   InicializarBandeja(BandejaActual);
+  InicializarBandejas;
 
   InicializarContactos(ListaContactos);
   CargarContactosDesdeJSON(ListaContactos, 'contactos.json');
@@ -65,6 +67,7 @@ begin
 
   if user <> nil then
   begin
+    UsuarioActualEmail := user^.email;
     //Usuario Root
     if user^.email = 'root@edd.com' then
     begin
