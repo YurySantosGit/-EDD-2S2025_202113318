@@ -1,0 +1,9 @@
+digraph CorreosRecibidos {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=LR;
+  node [shape=record, style="rounded,filled", fillcolor="#C9DFEC", fontname="Helvetica"];
+  edge [color="#2E2E2E", arrowsize=0.8];
+  subgraph cluster_lista { label="Correos Recibidos (calificacion@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    empty [label="(sin correos)"];
+  }
+}

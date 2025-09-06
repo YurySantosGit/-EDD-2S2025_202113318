@@ -6,6 +6,7 @@ object FormProgramarCorreo: TFormProgramarCorreo
   Caption = 'Programar Correo'
   ClientHeight = 484
   ClientWidth = 450
+  OnCreate = FormCreate
   object LblDestinatario: TLabel
     Left = 24
     Height = 18

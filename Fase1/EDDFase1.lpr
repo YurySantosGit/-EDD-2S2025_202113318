@@ -14,7 +14,8 @@ uses
   pila_papelera, form_papelera, cola_correos, form_programarcorreo,
   form_correosprogramados, form_registro, contactos, form_contactos,
   form_agregar_contacto, form_enviarcorreo, bandejas, form_perfil,
-  reportes_root, reportes_usuario;
+  reportes_root, reportes_usuario, comunidades, form_comunidades, 
+reportes_comunidades;
 
 {$R *.res}
 
@@ -37,6 +38,7 @@ begin
   Application.CreateForm(TFormAgregarContacto, FormAgregarContacto);
   Application.CreateForm(TFormEnviarCorreo, FormEnviarCorreo);
   Application.CreateForm(TFormPerfil, FormPerfil);
+  Application.CreateForm(TFormComunidades, FormComunidades);
   Application.Run;
 end.
 

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  usuarios;
+  usuarios, comunidades;
 
 type
 
@@ -17,7 +17,8 @@ type
     BtnReporteUsuarios: TButton;
     BtnReporteRelaciones: TButton;
     BtnCerrarSesion: TButton;
-    Button1: TButton;
+    ReporteComunidades: TButton;
+    Comunidad: TButton;
     Label1: TLabel;
     Label2: TLabel;
     MemoLog: TMemo;
@@ -27,8 +28,10 @@ type
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnReporteUsuariosClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure ComunidadClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MemoLogChange(Sender: TObject);
+    procedure ReporteComunidadesClick(Sender: TObject);
   private
 
   public
@@ -97,21 +100,13 @@ end;
 
 procedure TFormRoot.Button1Click(Sender: TObject);
 begin
-  begin
-  // Inicializa estructura de bandejas (si ya las inicializas en otro lado, no pasa nada)
-  InicializarBandejas;
 
-  // Semilla de relaciones: remitente -> destinatario
-  // id, estado='NL', programado=False
-  EntregarCorreoA('aux-luis@edd.com',   'aux-marcos@edd.com', 'Hola 1', '2025-09-03', '...', 1, 'NL', False);
-  EntregarCorreoA('aux-marcos@edd.com', 'aux-luis@edd.com',   'Re: 1',  '2025-09-03', '...', 2, 'NL', False);
-  EntregarCorreoA('teacher@edd.com',    'aux-marcos@edd.com', 'Aviso',  '2025-09-03', '...', 3, 'NL', False);
-
-  // Repite para crear conteo > 1 en una celda específica:
-  EntregarCorreoA('teacher@edd.com',    'aux-marcos@edd.com', 'Aviso 2','2025-09-03', '...', 4, 'NL', False);
-
-  ShowMessage('Datos de demo sembrados en bandejas. Ahora genera el reporte de Relaciones.');
 end;
+
+procedure TFormRoot.ComunidadClick(Sender: TObject);
+begin
+  FormComunidades := TFormComunidades.Create(Self);
+  FormComunidades.ShowModal;
 end;
 
 procedure TFormRoot.FormCreate(Sender: TObject);
@@ -122,6 +117,12 @@ end;
 procedure TFormRoot.MemoLogChange(Sender: TObject);
 begin
 
+end;
+
+procedure TFormRoot.ReporteComunidadesClick(Sender: TObject);
+begin
+  GenerarReporteComunidades;
+  ShowMessage('Reporte de comunidades generado.');
 end;
 
 end.

@@ -46,7 +46,7 @@ uses
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   InicializarUsuarios;
-  CargarUsuariosDesdeJSON('usuarios.json'); // Cargar usuarios desde JSON
+  CargarUsuariosDesdeJSON('usuarios.json');
   if not ExisteEmail('root@edd.com') then
     AgregarUsuario(0, 'Administrador', 'root', 'root@edd.com', '00000000', 'root123');
 

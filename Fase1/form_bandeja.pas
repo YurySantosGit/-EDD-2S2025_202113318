@@ -5,7 +5,7 @@ unit form_bandeja;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, StrUtils,
   lista_doble, pila_papelera;
 
 type
@@ -54,10 +54,10 @@ begin
 
   s := ListCorreos.Items[ListCorreos.ItemIndex];
 
-  pOpen  := Pos('(ID:', s);
+  pOpen := Pos('(ID:', s);
   if pOpen = 0 then Exit;
 
-  pClose := Pos(')', s);
+  pClose := PosEx(')', s, pOpen + 4);
   if (pClose = 0) or (pClose <= pOpen + 4) then Exit;
 
   numStr := Copy(s, pOpen + 4, pClose - (pOpen + 4));

@@ -1,0 +1,11 @@
+digraph Programados {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=LR;
+  node [shape=record, style="rounded,filled", fillcolor="#D1C4E9", fontname="Helvetica"];
+  edge [arrowhead=vee];
+  subgraph cluster_cola { label="Correos Programados (calificacion@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    c0 [label="{05/09/2025 22:20:00|Asunto: pelicula|Para: mitzep@edd.com}"];
+    c1 [label="{05/09/2025 21:20:00|Asunto: nota|Para: mitzep@edd.com}"];
+    c0 -> c1;
+  }
+}

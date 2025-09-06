@@ -1,0 +1,9 @@
+digraph Programados {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=LR;
+  node [shape=record, style="rounded,filled", fillcolor="#D1C4E9", fontname="Helvetica"];
+  edge [arrowhead=vee];
+  subgraph cluster_cola { label="Correos Programados (mitzep@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    empty [label="(sin programados del usuario)"];
+  }
+}

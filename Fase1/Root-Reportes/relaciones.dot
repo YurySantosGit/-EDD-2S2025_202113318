@@ -1,0 +1,16 @@
+digraph Relaciones {
+  graph [splines=ortho, bgcolor="white"]; rankdir=TB;
+  node [shape=box, fontname="Helvetica"]; edge [arrowhead=vee, color="black"];
+  subgraph cluster_matriz { label="Matriz Dispersa"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    "rootCorner" [shape=box, style="filled", fillcolor="#9E9E9E", width=0.8, height=0.6, label=""];
+    "col_mitzep_at_edd_com" [label="mitzep@edd.com", style="filled", fillcolor="#C9DFEC"];
+    "row_calificacion_at_edd_com" [label="calificacion@edd.com", style="filled", fillcolor="#CDECC9"];
+    "rootCorner" -> "col_mitzep_at_edd_com";
+    "col_mitzep_at_edd_com" -> "rootCorner";
+    "rootCorner" -> "row_calificacion_at_edd_com";
+    "row_calificacion_at_edd_com" -> "rootCorner";
+    "f_calificacion@edd.com_c_mitzep_at_edd_com" [label="3", style="filled", fillcolor="#FFB74D"];
+    "row_calificacion_at_edd_com" -> "f_calificacion@edd.com_c_mitzep_at_edd_com"; "f_calificacion@edd.com_c_mitzep_at_edd_com" -> "row_calificacion_at_edd_com";
+    "col_mitzep_at_edd_com" -> "f_calificacion@edd.com_c_mitzep_at_edd_com"; "f_calificacion@edd.com_c_mitzep_at_edd_com" -> "col_mitzep_at_edd_com";
+  }
+}
