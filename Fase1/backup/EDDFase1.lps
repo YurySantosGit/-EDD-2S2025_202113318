@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="75"/>
       </Unit>
       <Unit>
         <Filename Value="main.pas"/>
@@ -19,19 +19,20 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="40"/>
-        <CursorPos X="70" Y="51"/>
-        <UsageCount Value="72"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="37"/>
+        <CursorPos X="3" Y="48"/>
+        <UsageCount Value="75"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="usuarios.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="204"/>
-        <CursorPos X="5" Y="204"/>
-        <UsageCount Value="72"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="25"/>
+        <CursorPos Y="377"/>
+        <UsageCount Value="75"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -40,9 +41,9 @@
         <ComponentName Value="FormRoot"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <CursorPos X="70" Y="13"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="75"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -52,10 +53,10 @@
         <ComponentName Value="FormUsuario"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="109"/>
         <CursorPos X="3" Y="112"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="75"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -65,7 +66,7 @@
         <EditorIndex Value="21"/>
         <TopLine Value="140"/>
         <CursorPos X="41" Y="146"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="75"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -76,7 +77,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="12"/>
         <CursorPos X="113" Y="8"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="75"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -84,8 +85,9 @@
         <Filename Value="pila_papelera.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="22"/>
+        <TopLine Value="13"/>
         <CursorPos Y="39"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="72"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -94,10 +96,9 @@
         <ComponentName Value="FormPapelera"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="17"/>
-        <CursorPos Y="131"/>
-        <UsageCount Value="67"/>
+        <CursorPos X="62"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -105,9 +106,9 @@
         <Filename Value="cola_correos.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="18"/>
-        <TopLine Value="72"/>
+        <TopLine Value="73"/>
         <CursorPos X="5" Y="101"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="69"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -119,7 +120,7 @@
         <EditorIndex Value="19"/>
         <TopLine Value="124"/>
         <CursorPos Y="133"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="67"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -131,7 +132,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="20"/>
         <CursorPos X="27" Y="12"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -144,7 +145,7 @@
         <EditorIndex Value="16"/>
         <TopLine Value="53"/>
         <CursorPos X="3" Y="79"/>
-        <UsageCount Value="56"/>
+        <UsageCount Value="59"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -154,7 +155,7 @@
         <EditorIndex Value="15"/>
         <TopLine Value="9"/>
         <CursorPos X="18" Y="34"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -166,7 +167,7 @@
         <EditorIndex Value="13"/>
         <TopLine Value="154"/>
         <CursorPos X="9" Y="174"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -176,10 +177,10 @@
         <ComponentName Value="FormAgregarContacto"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="54"/>
         <CursorPos X="42" Y="65"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="47"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -192,7 +193,7 @@
         <EditorIndex Value="11"/>
         <TopLine Value="51"/>
         <CursorPos X="20" Y="51"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -202,7 +203,7 @@
         <EditorIndex Value="14"/>
         <TopLine Value="8"/>
         <CursorPos X="57" Y="22"/>
-        <UsageCount Value="38"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -212,27 +213,58 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="10"/>
-        <TopLine Value="34"/>
+        <TopLine Value="36"/>
         <CursorPos X="67" Y="62"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="reportes_root.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="219"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="221"/>
         <CursorPos Y="246"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="reportes_usuario.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="278"/>
         <CursorPos Y="302"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="comunidades.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="50"/>
+        <CursorPos X="41" Y="76"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_comunidades.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormComunidades"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="15"/>
+        <CursorPos X="70" Y="22"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="reportes_comunidades.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="20"/>
+        <CursorPos X="58" Y="20"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit>
@@ -242,49 +274,8 @@
         <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
-      <Unit>
-        <Filename Value="comunidades.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
-        <CursorPos X="41" Y="76"/>
-        <UsageCount Value="26"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="form_comunidades.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="FormComunidades"/>
-        <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="15"/>
-        <CursorPos X="70" Y="22"/>
-        <UsageCount Value="26"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="reportes_comunidades.pas"/>
-        <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="87"/>
-        <CursorPos X="58" Y="20"/>
-        <UsageCount Value="25"/>
-        <Loaded Value="True"/>
-      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="reportes_comunidades.pas"/>
-        <Caret Line="6" Column="17"/>
-      </Position>
-      <Position>
-        <Filename Value="form_root.pas"/>
-        <Caret Line="107" Column="29" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="form_root.pas"/>
-        <Caret Line="109" Column="29" TopLine="87"/>
-      </Position>
       <Position>
         <Filename Value="form_root.pas"/>
         <Caret Line="124" Column="29" TopLine="103"/>
@@ -346,10 +337,6 @@
         <Caret Line="7" Column="27"/>
       </Position>
       <Position>
-        <Filename Value="lista_doble.pas"/>
-        <Caret Line="14" Column="39" TopLine="140"/>
-      </Position>
-      <Position>
         <Filename Value="form_programarcorreo.pas"/>
       </Position>
       <Position>
@@ -391,6 +378,22 @@
       <Position>
         <Filename Value="form_papelera.pas"/>
         <Caret Line="88" TopLine="75"/>
+      </Position>
+      <Position>
+        <Filename Value="form_papelera.pas"/>
+        <Caret Line="131"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="51" Column="70" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="93" Column="5" TopLine="37"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="48" Column="3" TopLine="37"/>
       </Position>
     </JumpHistory>
     <RunParams>

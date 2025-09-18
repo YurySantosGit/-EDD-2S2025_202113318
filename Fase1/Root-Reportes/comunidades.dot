@@ -6,10 +6,8 @@ digraph Comunidades {
     "com_amigos" [label="amigos", shape=box, style="filled,rounded", fillcolor="#B3D9EA"];
     "com_tareas" -> "com_amigos";
     "com_amigos" -> "com_tareas";
-    "m_calificacion_at_edd_com" [label="calificacion@edd.com", shape=box, style="filled", fillcolor="#FFF9C4"];
-    "com_amigos" -> "m_calificacion_at_edd_com";
     "m_mitzep_at_edd_com" [label="mitzep@edd.com", shape=box, style="filled", fillcolor="#FFF9C4"];
-    "m_calificacion_at_edd_com" -> "m_mitzep_at_edd_com";
+    "com_amigos" -> "m_mitzep_at_edd_com";
     "com_uni" [label="uni", shape=box, style="filled,rounded", fillcolor="#B3D9EA"];
     "com_amigos" -> "com_uni";
     "com_uni" -> "com_amigos";
