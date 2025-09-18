@@ -27,6 +27,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     BandejaPtr: PBandeja;
+    function TryGetIDSeleccionado(out AID: Integer): Boolean;
   public
     procedure CargarBandejaPtr(p: PBandeja);
 
@@ -41,6 +42,30 @@ implementation
 
 { TFormBandeja }
 
+function TFormBandeja.TryGetIDSeleccionado(out AID: Integer): Boolean;
+var
+  s, numStr: String;
+  pOpen, pClose: Integer;
+begin
+  Result := False;
+  AID := -1;
+
+  if ListCorreos.ItemIndex = -1 then Exit;
+
+  s := ListCorreos.Items[ListCorreos.ItemIndex];
+
+  pOpen  := Pos('(ID:', s);
+  if pOpen = 0 then Exit;
+
+  pClose := Pos(')', s);
+  if (pClose = 0) or (pClose <= pOpen + 4) then Exit;
+
+  numStr := Copy(s, pOpen + 4, pClose - (pOpen + 4));
+  numStr := Trim(numStr);
+
+  Result := TryStrToInt(numStr, AID);
+end;
+
 procedure TFormBandeja.BtnCerrarClick(Sender: TObject);
 begin
   Close;
@@ -48,16 +73,15 @@ end;
 
 procedure TFormBandeja.BtnEliminarCorreoClick(Sender: TObject);
 var
-  id, posId: Integer;
-  s: String;
+  id: Integer;
   c: PCorreo;
   info: TCorreoInfo;
 begin
-  if ListCorreos.ItemIndex = -1 then Exit;
-
-  s := ListCorreos.Items[ListCorreos.ItemIndex];
-  posId := Pos('(ID:', s);
-  id := StrToInt(Copy(s, posId+4, Length(s) - (posId+4) + 1));
+  if not TryGetIDSeleccionado(id) then
+  begin
+    ShowMessage('No se pudo leer el ID del correo seleccionado.');
+    Exit;
+  end;
 
   c := BuscarCorreo(BandejaPtr^, id);
   if c <> nil then
@@ -82,15 +106,14 @@ end;
 
 procedure TFormBandeja.BtnVerCorreoClick(Sender: TObject);
 var
-  id, posId: Integer;
-  s: String;
+  id: Integer;
   correo: PCorreo;
 begin
-  if ListCorreos.ItemIndex = -1 then Exit;
-
-  s := ListCorreos.Items[ListCorreos.ItemIndex];
-  posId := Pos('(ID:', s);
-  id := StrToInt(Copy(s, posId+4, Length(s) - (posId+4) + 1));
+  if not TryGetIDSeleccionado(id) then
+  begin
+    ShowMessage('No se pudo leer el ID del correo seleccionado.');
+    Exit;
+  end;
 
   correo := BuscarCorreo(BandejaPtr^, id);
   if correo <> nil then

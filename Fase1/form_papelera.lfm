@@ -6,6 +6,7 @@ object FormPapelera: TFormPapelera
   Caption = 'Papelera'
   ClientHeight = 390
   ClientWidth = 456
+  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   object Label1: TLabel
     Left = 200

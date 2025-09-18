@@ -3,9 +3,9 @@ digraph Papelera {
   rankdir=TB;
   node [shape=box, style="filled", fillcolor="#FFECB3", fontname="Helvetica"];
   edge [arrowhead=vee];
-  subgraph cluster_pila { label="Papelera (smejia@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
-    p0 [label="[DEL] Newsletter"];
-    p1 [label="[DEL] Publicidad"];
+  subgraph cluster_pila { label="Papelera (mitzep@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    p0 [label="[L] nota"];
+    p1 [label="[L] pelicula"];
     p0 -> p1;
   }
 }

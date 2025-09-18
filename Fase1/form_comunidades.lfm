@@ -1,0 +1,91 @@
+object FormComunidades: TFormComunidades
+  Left = 325
+  Height = 483
+  Top = 32
+  Width = 410
+  Caption = 'FormComunidades'
+  ClientHeight = 483
+  ClientWidth = 410
+  OnCreate = FormCreate
+  OnShow = FormShow
+  object Label1: TLabel
+    Left = 24
+    Height = 18
+    Top = 32
+    Width = 59
+    Caption = 'Nombre:'
+    OnClick = Label1Click
+  end
+  object EditNombre: TEdit
+    Left = 112
+    Height = 35
+    Top = 24
+    Width = 264
+    TabOrder = 0
+  end
+  object BtnCrear: TButton
+    Left = 112
+    Height = 32
+    Top = 72
+    Width = 112
+    Caption = 'Crear'
+    TabOrder = 1
+    OnClick = BtnCrearClick
+  end
+  object ComboComunidades: TComboBox
+    Left = 112
+    Height = 34
+    Top = 120
+    Width = 264
+    ItemHeight = 0
+    Style = csDropDownList
+    TabOrder = 2
+  end
+  object Label2: TLabel
+    Left = 24
+    Height = 18
+    Top = 128
+    Width = 81
+    Caption = 'Comunidad:'
+    OnClick = Label2Click
+  end
+  object EditCorreo: TEdit
+    Left = 112
+    Height = 35
+    Top = 168
+    Width = 200
+    TabOrder = 3
+  end
+  object Label3: TLabel
+    Left = 24
+    Height = 18
+    Top = 176
+    Width = 51
+    Caption = 'Correo:'
+  end
+  object BtnAgregar: TButton
+    Left = 112
+    Height = 33
+    Top = 224
+    Width = 112
+    Caption = 'Agregar'
+    TabOrder = 4
+    OnClick = BtnAgregarClick
+  end
+  object MemoLog: TMemo
+    Left = 16
+    Height = 104
+    Top = 280
+    Width = 374
+    TabOrder = 5
+  end
+  object Cerrar: TButton
+    Left = 320
+    Height = 25
+    Top = 400
+    Width = 75
+    Caption = 'Cerrar'
+    TabOrder = 6
+    OnClick = CerrarClick
+  end
+end

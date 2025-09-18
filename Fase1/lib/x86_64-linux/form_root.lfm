@@ -1,10 +1,10 @@
 object FormRoot: TFormRoot
   Left = 1520
-  Height = 245
+  Height = 336
   Top = 32
   Width = 689
   Caption = 'Menu Principal'
-  ClientHeight = 245
+  ClientHeight = 336
   ClientWidth = 689
   OnCreate = FormCreate
   object Label1: TLabel
@@ -65,6 +65,24 @@ object FormRoot: TFormRoot
     Top = 40
     Width = 145
     Caption = 'Detalles Carga Masiva'
+  end
+  object Comunidad: TButton
+    Left = 72
+    Height = 25
+    Top = 208
+    Width = 171
+    Caption = 'Comunidades'
+    TabOrder = 5
+    OnClick = ComunidadClick
+  end
+  object ReporteComunidades: TButton
+    Left = 72
+    Height = 25
+    Top = 256
+    Width = 171
+    Caption = 'Reporte Comunidades'
+    TabOrder = 6
+    OnClick = ReporteComunidadesClick
   end
   object OpenDialog1: TOpenDialog
     Left = 616

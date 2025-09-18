@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  usuarios;
+  usuarios, comunidades;
 
 type
 
@@ -17,6 +17,8 @@ type
     BtnReporteUsuarios: TButton;
     BtnReporteRelaciones: TButton;
     BtnCerrarSesion: TButton;
+    ReporteComunidades: TButton;
+    Comunidad: TButton;
     Label1: TLabel;
     Label2: TLabel;
     MemoLog: TMemo;
@@ -26,8 +28,10 @@ type
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnReporteUsuariosClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure ComunidadClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MemoLogChange(Sender: TObject);
+    procedure ReporteComunidadesClick(Sender: TObject);
   private
 
   public
@@ -42,7 +46,7 @@ implementation
 {$R *.lfm}
 
 uses
-  main, reportes_root, bandejas;
+  main, reportes_root, bandejas, reportes_comunidades, form_comunidades;
 
 { TFormRoot }
 
@@ -99,6 +103,12 @@ begin
 
 end;
 
+procedure TFormRoot.ComunidadClick(Sender: TObject);
+begin
+  FormComunidades := TFormComunidades.Create(Self);
+  FormComunidades.ShowModal;
+end;
+
 procedure TFormRoot.FormCreate(Sender: TObject);
 begin
 
@@ -107,6 +117,12 @@ end;
 procedure TFormRoot.MemoLogChange(Sender: TObject);
 begin
 
+end;
+
+procedure TFormRoot.ReporteComunidadesClick(Sender: TObject);
+begin
+  GenerarReporteComunidades;
+  ShowMessage('Reporte de comunidades generado.');
 end;
 
 end.

@@ -2,10 +2,10 @@ object FormProgramarCorreo: TFormProgramarCorreo
   Left = 473
   Height = 484
   Top = 32
-  Width = 357
+  Width = 450
   Caption = 'Programar Correo'
   ClientHeight = 484
-  ClientWidth = 357
+  ClientWidth = 450
   object LblDestinatario: TLabel
     Left = 24
     Height = 18
@@ -72,14 +72,14 @@ object FormProgramarCorreo: TFormProgramarCorreo
   object BtnProgramar: TButton
     Left = 72
     Height = 25
-    Top = 416
+    Top = 408
     Width = 200
     Caption = 'Programar correo'
     TabOrder = 4
     OnClick = BtnProgramarClick
   end
   object LblEstado: TLabel
-    Left = 144
+    Left = 72
     Height = 1
     Top = 448
     Width = 1
