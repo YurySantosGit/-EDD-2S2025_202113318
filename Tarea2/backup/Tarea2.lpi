@@ -27,6 +27,7 @@
       <Unit>
         <Filename Value="Tarea2.lpr"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="arbolbst"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -39,6 +40,11 @@
       <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf3"/>
+      </Debugging>
+    </Linking>
   </CompilerOptions>
   <Debugging>
     <Exceptions>

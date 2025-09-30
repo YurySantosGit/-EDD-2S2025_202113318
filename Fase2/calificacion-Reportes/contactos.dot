@@ -1,0 +1,14 @@
+digraph Contactos {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=LR;
+  node [shape=box, style="rounded,filled", fillcolor="#B2DFDB", fontname="Helvetica"];
+  edge [arrowhead=vee];
+  subgraph cluster_circular { label="Contactos (calificacion@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    k0 [label="Marcos Itzep\n(mitzep@edd.com)"];
+    k1 [label="Brian Fox\n(bfox@edd.com)"];
+    k0 -> k1;
+    k2 [label="Andre Baker\n(Andre@edd.com)"];
+    k1 -> k2;
+    k2 -> k0;
+  }
+}

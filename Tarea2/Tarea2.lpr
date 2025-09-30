@@ -6,7 +6,6 @@ uses
   Classes, SysUtils, crt, fpjson, jsonparser;
 
 type
-  // Nodo
   PTnode = ^Tnode;
   Tnode = record
     ID: Integer;
@@ -14,7 +13,6 @@ type
     left: PTnode;
   end;
 
-  // Árbol
   Tree = class
   private
     procedure recursive(curr: PTnode; newNode: PTnode);
@@ -31,19 +29,15 @@ type
     procedure Agregar(id: Integer);
     function Buscar(id: Integer): Boolean;
 
-    // Recorridos
     procedure RecorridoInOrder;
     procedure RecorridoPreOrder;
     procedure RecorridoPostOrder;
 
-    // Liberación
     procedure LiberarArbol(nodo: PTnode);
 
-    // Graphviz
     procedure GuardarDOT(const FileName: string);
   end;
 
-// ============== Implementación Tree ==============
 
 constructor Tree.Create;
 begin
@@ -99,7 +93,7 @@ begin
   end
   else
   begin
-    Writeln('El valor ', newNode^.ID, ' ya esta en el arbol (duplicado). Se ignora.');
+    Writeln('El valor ', newNode^.ID, ' ya esta en el arbol (duplicado)');
     Dispose(newNode);
   end;
 end;
@@ -157,20 +151,15 @@ begin
   Writeln('Nodo: ', curr^.ID);
 end;
 
-// ---- Graphviz ----
-// Crea líneas "  ID;" para nodos y "  ID -> hijo;" para conexiones
 procedure Tree.dotRecursive(curr: PTnode; var sl: TStringList);
 begin
   if curr = nil then Exit;
 
-  // Asegurar declaración de nodo
   sl.Add('  ' + IntToStr(curr^.ID) + ';');
 
-  // Conexión izquierda
   if curr^.left <> nil then
     sl.Add(Format('  %d -> %d;', [curr^.ID, curr^.left^.ID]));
 
-  // Conexión derecha
   if curr^.right <> nil then
     sl.Add(Format('  %d -> %d;', [curr^.ID, curr^.right^.ID]));
 
@@ -200,7 +189,6 @@ begin
   end;
 end;
 
-// ============== Utilidades JSON ==============
 
 procedure CargarDesdeJSONYInsertar(const JSONPath: string; ATree: Tree);
 var
@@ -228,7 +216,6 @@ begin
         if Arr.Items[i].JSONType = jtObject then
         begin
           obj := TJSONObject(Arr.Items[i]);
-          // Busca la clave 'id' (en minúsculas, como en tu archivo)
           idValue := obj.Find('id');
           if (idValue <> nil) and (idValue.JSONType = jtNumber) then
             ATree.Agregar(idValue.AsInteger)
@@ -246,7 +233,6 @@ begin
   end;
 end;
 
-// ============== Programa principal ==============
 
 var
   miArbol: Tree;
@@ -255,15 +241,12 @@ var
 begin
   miArbol := Tree.Create;
   try
-    // Ajusta la ruta si es necesario. Si el JSON está junto al .exe, basta 'datos.json'
-    rutaJSON := 'datos.json';   // <- cambia si lo ejecutas desde otra carpeta
+    rutaJSON := 'datos.json';
     rutaDOT  := 'bst.dot';
 
-    // Cargar JSON e insertar por ID
     Writeln('Cargando: ', rutaJSON);
     CargarDesdeJSONYInsertar(rutaJSON, miArbol);
 
-    // Mostrar recorridos (opcional)
     Writeln(#10, 'Recorrido InOrder:');
     miArbol.RecorridoInOrder;
 
@@ -273,7 +256,6 @@ begin
     Writeln(#10, 'Recorrido PostOrder:');
     miArbol.RecorridoPostOrder;
 
-    // Guardar Graphviz DOT
     miArbol.GuardarDOT(rutaDOT);
     Writeln(#10, 'Archivo DOT generado: ', rutaDOT);
     Writeln('Para generar PNG: dot -Tpng bst.dot -o bst.png');
