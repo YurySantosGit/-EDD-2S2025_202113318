@@ -1,0 +1,68 @@
+object FormEnviarCorreo: TFormEnviarCorreo
+  Left = 358
+  Height = 379
+  Top = 32
+  Width = 320
+  ClientHeight = 379
+  ClientWidth = 320
+  object LblPara: TLabel
+    Left = 32
+    Height = 18
+    Top = 32
+    Width = 35
+    Caption = 'Para:'
+  end
+  object EditPara: TEdit
+    Left = 112
+    Height = 35
+    Top = 24
+    Width = 176
+    TabOrder = 0
+  end
+  object EditAsunto: TEdit
+    Left = 112
+    Height = 35
+    Top = 80
+    Width = 176
+    TabOrder = 1
+  end
+  object LblAsunto: TLabel
+    Left = 32
+    Height = 18
+    Top = 88
+    Width = 51
+    Caption = 'Asunto:'
+  end
+  object MemoMensaje: TMemo
+    Left = 112
+    Height = 144
+    Top = 136
+    Width = 176
+    TabOrder = 2
+  end
+  object LblMensaje: TLabel
+    Left = 32
+    Height = 18
+    Top = 144
+    Width = 59
+    Caption = 'Mensaje:'
+  end
+  object BtnEnviar: TButton
+    Left = 213
+    Height = 25
+    Top = 296
+    Width = 75
+    Caption = 'Enviar'
+    TabOrder = 3
+    OnClick = BtnEnviarClick
+  end
+  object BtnCerrar: TButton
+    Left = 213
+    Height = 25
+    Top = 344
+    Width = 75
+    Caption = 'Cerrar'
+    TabOrder = 4
+    OnClick = BtnCerrarClick
+  end
+end

@@ -1,0 +1,15 @@
+digraph CorreosRecibidos {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=LR;
+  node [shape=record, style="rounded,filled", fillcolor="#C9DFEC", fontname="Helvetica"];
+  edge [color="#2E2E2E", arrowsize=0.8];
+  subgraph cluster_lista { label="Correos Recibidos (mitzep@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    n0 [label="{ID: 54881|Remitente: calificacion@edd.com|Asunto: calificacion|Fecha: 05-09-2025 23:19|Estado: L}"];
+    n1 [label="{ID: 59284|Remitente: calificacion@edd.com|Asunto: proyecto|Fecha: 05-09-2025 23:19|Estado: L}"];
+    n0 -> n1;
+    n1 -> n0;
+    n2 [label="{ID: 71518|Remitente: calificacion@edd.com|Asunto: horarios|Fecha: 05-09-2025 23:19|Estado: L}"];
+    n1 -> n2;
+    n2 -> n1;
+  }
+}

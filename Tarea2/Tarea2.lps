@@ -9,8 +9,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="arbolbst"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="255"/>
-        <CursorPos Y="215"/>
+        <CursorPos X="41" Y="8"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit>

@@ -1,0 +1,96 @@
+object FormRegistro: TFormRegistro
+  Left = 430
+  Height = 410
+  Top = 32
+  Width = 395
+  ClientHeight = 410
+  ClientWidth = 395
+  object Label1: TLabel
+    Left = 32
+    Height = 18
+    Top = 32
+    Width = 55
+    Caption = 'Nombre'
+  end
+  object EditNombre: TEdit
+    Left = 152
+    Height = 35
+    Top = 24
+    Width = 200
+    TabOrder = 0
+  end
+  object EditUsuario: TEdit
+    Left = 152
+    Height = 35
+    Top = 80
+    Width = 200
+    TabOrder = 1
+  end
+  object EditCorreo: TEdit
+    Left = 152
+    Height = 35
+    Top = 136
+    Width = 200
+    TabOrder = 2
+  end
+  object EditTelefono: TEdit
+    Left = 152
+    Height = 35
+    Top = 192
+    Width = 112
+    TabOrder = 3
+  end
+  object EditPassword: TEdit
+    Left = 152
+    Height = 35
+    Top = 248
+    Width = 200
+    TabOrder = 4
+  end
+  object Label2: TLabel
+    Left = 32
+    Height = 18
+    Top = 88
+    Width = 51
+    Caption = 'Usuario'
+  end
+  object Label3: TLabel
+    Left = 32
+    Height = 18
+    Top = 144
+    Width = 47
+    Caption = 'Correo'
+  end
+  object Label4: TLabel
+    Left = 32
+    Height = 18
+    Top = 200
+    Width = 59
+    Caption = 'Telefono'
+  end
+  object Label5: TLabel
+    Left = 32
+    Height = 18
+    Top = 256
+    Width = 64
+    Caption = 'Password'
+  end
+  object BtnGuardar: TButton
+    Left = 272
+    Height = 25
+    Top = 320
+    Width = 107
+    Caption = 'Guardar'
+    TabOrder = 5
+    OnClick = BtnGuardarClick
+  end
+  object BtnCancelar: TButton
+    Left = 272
+    Height = 25
+    Top = 360
+    Width = 107
+    Caption = 'Cancelar'
+    TabOrder = 6
+    OnClick = BtnCancelarClick
+  end
+end
