@@ -9,6 +9,7 @@ uses
 
 type
   PCorreo = ^TCorreo;
+  PBandeja = ^TBandeja;
 
   TCorreo = record
     id: Integer;

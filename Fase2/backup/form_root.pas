@@ -46,7 +46,7 @@ implementation
 {$R *.lfm}
 
 uses
-  main, reportes_root, bandejas;
+  main, reportes_root, bandejas, reportes_comunidades, form_comunidades;
 
 { TFormRoot }
 

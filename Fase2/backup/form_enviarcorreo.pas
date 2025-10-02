@@ -5,7 +5,8 @@ unit form_enviarcorreo;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  app_state, avl_borradores;
 
 type
 
@@ -14,6 +15,7 @@ type
   TFormEnviarCorreo = class(TForm)
     BtnEnviar: TButton;
     BtnCerrar: TButton;
+    Borrador: TButton;
     EditAsunto: TEdit;
     EditPara: TEdit;
     LblMensaje: TLabel;
@@ -22,10 +24,12 @@ type
     MemoMensaje: TMemo;
     procedure BtnCerrarClick(Sender: TObject);
     procedure BtnEnviarClick(Sender: TObject);
+    procedure BorradorClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     function EmailValido(const s: String): Boolean;
   public
-
+    DraftIdLoaded: Integer;
   end;
 
 var
@@ -48,6 +52,7 @@ end;
 procedure TFormEnviarCorreo.BtnEnviarClick(Sender: TObject);
 var
   para, asunto, msg, fechaHora: String;
+  nuevoId: Integer;
 begin
   para   := Trim(EditPara.Text);
   asunto := Trim(EditAsunto.Text);
@@ -85,11 +90,46 @@ begin
     False
   );
 
-  ShowMessage('Envío exitoso.');
+  if DraftIdLoaded >= 0 then
+  begin
+    if BAVL_Delete(BorradoresAVL, DraftIdLoaded) then
+      ShowMessage('Envío exitoso. Borrador eliminado.')
+    else
+      ShowMessage('Envío exitoso);
+    DraftIdLoaded := -1;
+  end
+  else
+    ShowMessage('Envío exitoso.');
+
   EditPara.Clear;
   EditAsunto.Clear;
   MemoMensaje.Clear;
   EditPara.SetFocus;
+end;
+
+procedure TFormEnviarCorreo.BorradorClick(Sender: TObject);
+var
+  B: TBorrador;
+begin
+  if Trim(EditAsunto.Text) = '' then
+  begin
+    ShowMessage('El asunto no puede estar vacío para guardar como borrador.');
+    Exit;
+  end;
+
+  B.id           := NextDraftId;
+  B.remitente    := UsuarioActualEmail;
+  B.destinatario := Trim(EditPara.Text);
+  B.asunto       := Trim(EditAsunto.Text);
+  B.mensaje      := MemoMensaje.Lines.Text;
+
+  BAVL_Insert(BorradoresAVL, B);
+  ShowMessage('Borrador guardado');
+end;
+
+procedure TFormEnviarCorreo.FormCreate(Sender: TObject);
+begin
+  DraftIdLoaded := -1;
 end;
 
 procedure TFormEnviarCorreo.BtnCerrarClick(Sender: TObject);

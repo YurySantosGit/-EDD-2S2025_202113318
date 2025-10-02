@@ -19,7 +19,7 @@ var
   ListaBandejas: PBandejaNodo = nil;
 
 procedure InicializarBandejas;
-function  ObtenerBandejaPtr(const ownerEmail: String): ^TBandeja;
+function  ObtenerBandejaPtr(const ownerEmail: String): PBandeja;
 procedure EntregarCorreoA(const destinatario, remitente, asunto, fecha, mensaje: String;
   id: Integer; estado: String = 'NL'; programado: Boolean = False);
 

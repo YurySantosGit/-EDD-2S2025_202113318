@@ -25,7 +25,6 @@ type
     MemoLog: TMemo;
     procedure BtnAgregarClick(Sender: TObject);
     procedure BtnCrearClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure CerrarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);

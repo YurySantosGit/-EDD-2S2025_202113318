@@ -27,6 +27,7 @@ type
 var
   ListaContactos: TListaContactos;
 
+
 procedure InicializarContactos(var lista: TListaContactos);
 procedure LiberarContactos(var lista: TListaContactos);
 
@@ -62,13 +63,17 @@ procedure LiberarContactos(var lista: TListaContactos);
 var
   act, sig: PContacto;
 begin
-  act := lista.cabeza;
-  while act <> nil do
+  if lista.cabeza = nil then Exit;
+
+  act := lista.cabeza^.siguiente;
+  while act <> lista.cabeza do
   begin
     sig := act^.siguiente;
     Dispose(act);
     act := sig;
   end;
+  Dispose(lista.cabeza);
+
   lista.cabeza := nil;
   lista.tamano := 0;
 end;
@@ -76,27 +81,30 @@ end;
 procedure AgregarContacto(var lista: TListaContactos; id: Integer;
   const ownerEmail, nombre, email, telefono: String);
 var
-  nuevo, act: PContacto;
+  nuevo, cola: PContacto;
 begin
   New(nuevo);
-  nuevo^.id := id;
+  nuevo^.id         := id;
   nuevo^.ownerEmail := ownerEmail;
-  nuevo^.nombre := nombre;
-  nuevo^.email := email;
-  nuevo^.telefono := telefono;
-  nuevo^.siguiente := nil;
+  nuevo^.nombre     := nombre;
+  nuevo^.email      := email;
+  nuevo^.telefono   := telefono;
 
   if lista.cabeza = nil then
   begin
     lista.cabeza := nuevo;
+    nuevo^.siguiente := nuevo;
   end
   else
   begin
-    act := lista.cabeza;
-    while act^.siguiente <> nil do
-      act := act^.siguiente;
-    act^.siguiente := nuevo;
+    cola := lista.cabeza;
+    while cola^.siguiente <> lista.cabeza do
+      cola := cola^.siguiente;
+
+    cola^.siguiente := nuevo;
+    nuevo^.siguiente := lista.cabeza;
   end;
+
   Inc(lista.tamano);
 end;
 
@@ -106,13 +114,14 @@ var
   act: PContacto;
 begin
   Result := False;
+  if lista.cabeza = nil then Exit;
+
   act := lista.cabeza;
-  while act <> nil do
-  begin
+  repeat
     if SameText(act^.ownerEmail, ownerEmail) and SameText(act^.email, email) then
       Exit(True);
     act := act^.siguiente;
-  end;
+  until act = lista.cabeza;
 end;
 
 function EsContacto(const lista: TListaContactos;
@@ -127,41 +136,73 @@ var
   act: PContacto;
 begin
   if items <> nil then items.Clear;
+  if lista.cabeza = nil then Exit;
+
   act := lista.cabeza;
-  while act <> nil do
-  begin
+  repeat
     if SameText(act^.ownerEmail, ownerEmail) then
       if items <> nil then
-        items.Add(Format('%s (%s) - %s [ID:%d]', [act^.nombre, act^.email, act^.telefono, act^.id]));
+        items.Add(Format('%s (%s) - %s [ID:%d]',
+                  [act^.nombre, act^.email, act^.telefono, act^.id]));
     act := act^.siguiente;
-  end;
+  until act = lista.cabeza;
 end;
 
 function EliminarContacto(var lista: TListaContactos; const ownerEmail: String;
   id: Integer): Boolean;
 var
-  act, ant: PContacto;
+  act, ant, cola: PContacto;
+  found: Boolean;
 begin
   Result := False;
-  act := lista.cabeza;
-  ant := nil;
+  if lista.cabeza = nil then Exit;
 
-  while act <> nil do
-  begin
+  ant := nil;
+  act := lista.cabeza;
+  found := False;
+
+  repeat
     if (act^.id = id) and SameText(act^.ownerEmail, ownerEmail) then
     begin
-      if ant = nil then
-        lista.cabeza := act^.siguiente
-      else
-        ant^.siguiente := act^.siguiente;
-
-      Dispose(act);
-      Dec(lista.tamano);
-      Exit(True);
+      found := True;
+      Break;
     end;
     ant := act;
     act := act^.siguiente;
+  until act = lista.cabeza;
+
+  if not found then Exit(False);
+
+
+  if (act = lista.cabeza) and (act^.siguiente = act) then
+  begin
+    Dispose(act);
+    lista.cabeza := nil;
+    Dec(lista.tamano);
+    Exit(True);
   end;
+
+  if act = lista.cabeza then
+  begin
+
+    cola := lista.cabeza;
+    while cola^.siguiente <> lista.cabeza do
+      cola := cola^.siguiente;
+
+
+    lista.cabeza := act^.siguiente;
+    cola^.siguiente := lista.cabeza;
+    Dispose(act);
+  end
+  else
+  begin
+
+    ant^.siguiente := act^.siguiente;
+    Dispose(act);
+  end;
+
+  Dec(lista.tamano);
+  Result := True;
 end;
 
 function ObtenerSiguienteIDContacto(const lista: TListaContactos): Integer;
@@ -169,14 +210,17 @@ var
   act: PContacto;
   maxId: Integer;
 begin
+  if lista.cabeza = nil then
+    Exit(1);
+
   maxId := 0;
   act := lista.cabeza;
-  while act <> nil do
-  begin
+  repeat
     if act^.id > maxId then
       maxId := act^.id;
     act := act^.siguiente;
-  end;
+  until act = lista.cabeza;
+
   Result := maxId + 1;
 end;
 
@@ -186,8 +230,7 @@ var
   root, item: TJSONObject;
   arr: TJSONArray;
   sl: TStringList;
-  i: Integer;
-  id: Integer;
+  i, id: Integer;
   ownerEmail, nombre, email, telefono: String;
 begin
   if not FileExists(archivo) then Exit;
@@ -228,22 +271,25 @@ var
 begin
   arr := TJSONArray.Create;
   try
-    act := lista.cabeza;
-    while act <> nil do
+    if lista.cabeza <> nil then
     begin
-      obj := TJSONObject.Create;
-      obj.Add('id',         act^.id);
-      obj.Add('ownerEmail', act^.ownerEmail);
-      obj.Add('nombre',     act^.nombre);
-      obj.Add('email',      act^.email);
-      obj.Add('telefono',   act^.telefono);
-      arr.Add(obj);
-      act := act^.siguiente;
+      act := lista.cabeza;
+      repeat
+        obj := TJSONObject.Create;
+        obj.Add('id',         act^.id);
+        obj.Add('ownerEmail', act^.ownerEmail);
+        obj.Add('nombre',     act^.nombre);
+        obj.Add('email',      act^.email);
+        obj.Add('telefono',   act^.telefono);
+        arr.Add(obj);
+
+        act := act^.siguiente;
+      until act = lista.cabeza;
     end;
 
     root := TJSONObject.Create;
     try
-      root.Add('contactos', arr);
+      root.Add('contactos', arr); // root toma propiedad de arr
       sl := TStringList.Create;
       try
         sl.Text := root.AsJSON;
@@ -262,3 +308,4 @@ begin
 end;
 
 end.
+

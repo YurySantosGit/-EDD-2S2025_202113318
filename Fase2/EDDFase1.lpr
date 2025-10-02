@@ -15,7 +15,7 @@ uses
   form_correosprogramados, form_registro, contactos, form_contactos,
   form_agregar_contacto, form_enviarcorreo, bandejas, form_perfil,
   reportes_root, reportes_usuario, comunidades, form_comunidades, 
-reportes_comunidades;
+reportes_comunidades, avl_borradores, app_state, form_borradores;
 
 {$R *.res}
 
@@ -26,6 +26,7 @@ begin
   Application.MainFormOnTaskbar:=True;
   {$POP}
   Application.Initialize;
+  AppStateInit;
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TFormRoot, FormRoot);
   Application.CreateForm(TFormUsuario, FormUsuario);
@@ -39,6 +40,7 @@ begin
   Application.CreateForm(TFormEnviarCorreo, FormEnviarCorreo);
   Application.CreateForm(TFormPerfil, FormPerfil);
   Application.CreateForm(TFormComunidades, FormComunidades);
+  Application.CreateForm(TFormBorradores, FormBorradores);
   Application.Run;
 end.
 

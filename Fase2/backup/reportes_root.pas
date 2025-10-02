@@ -56,27 +56,13 @@ begin
   try
     P.Executable := 'dot';
     P.Parameters.Add('-Tpng');
-    P.Parameters.Add('-o'); P.Parameters.Add(OutPngPath);
+    P.Parameters.Add('-o');
+    P.Parameters.Add(OutPngPath);
     P.Parameters.Add(DotPath);
     P.Options := [poWaitOnExit, poUsePipes];
     try
       P.Execute;
       Result := (P.ExitStatus = 0) and FileExists(OutPngPath);
-
-      // 🚀 Si se creó el PNG, abrimos con visor de imágenes
-      if Result then
-      begin
-        with TProcess.Create(nil) do
-        try
-          Executable := 'xdg-open';
-          Parameters.Add(OutPngPath);
-          Options := [];
-          Execute;
-        finally
-          Free;
-        end;
-      end;
-
     except
       Result := False;
     end;
@@ -85,7 +71,7 @@ begin
   end;
 end;
 
-{ --------------------- REPORTE DE USUARIOS --------------------- }
+//Reporte Usuarios
 procedure GenerarReporteUsuarios(const BaseDir: string);
 var rutaDir, rutaDot, rutaPng: string; dot: TStringList;
     actual: PUsuario; idx: Integer; prevId, nowId: string;
@@ -118,7 +104,7 @@ begin
   RunGraphviz(rutaDot, rutaPng);
 end;
 
-{ --------------------- REPORTE DE RELACIONES --------------------- }
+//Reporte de relaciones
 procedure GenerarReporteRelaciones(const BaseDir: string);
 var rutaDir, rutaDot, rutaPng: string; dot: TStringList;
     filas, cols, celdas: TStringList;
@@ -143,8 +129,8 @@ var rutaDir, rutaDot, rutaPng: string; dot: TStringList;
       c := nB^.bandeja.cabeza;
       while c <> nil do
       begin
-        GetIndex(filas, c^.remitente);   // filas = remitentes
-        GetIndex(cols,  nB^.ownerEmail); // columnas = destinatarios
+        GetIndex(filas, c^.remitente);
+        GetIndex(cols,  nB^.ownerEmail);
         IncCelda(c^.remitente, nB^.ownerEmail);
         c := c^.siguiente;
       end;
@@ -164,7 +150,7 @@ var rutaDir, rutaDot, rutaPng: string; dot: TStringList;
     Result := prefix+s;
   end;
 
-  // Envolver SIEMPRE ids en comillas
+
   function Q(const id: string): string; inline;
   begin
     Result := '"' + id + '"';
@@ -192,7 +178,7 @@ begin
 
       dot.Add('    ' + Q('rootCorner') + ' [shape=box, style="filled", fillcolor="#9E9E9E", width=0.8, height=0.6, label=""];');
 
-      // Cabeceras de columnas (destinatarios)
+
       for i:=0 to cols.Count-1 do
       begin
         colId := SafeId('col_', cols[i]);
@@ -200,7 +186,6 @@ begin
           [Q(colId), Esc(cols[i])]));
       end;
 
-      // Cabeceras de filas (remitentes)
       for i:=0 to filas.Count-1 do
       begin
         rowId := SafeId('row_', filas[i]);
@@ -208,7 +193,6 @@ begin
           [Q(rowId), Esc(filas[i])]));
       end;
 
-      // Enlaces de decoración rootCorner <-> primera cabecera (si existen)
       if cols.Count>0 then
       begin
         colId := SafeId('col_', cols[0]);
@@ -222,7 +206,6 @@ begin
         dot.Add(Format('    %s -> %s;', [Q(rowId), Q('rootCorner')]));
       end;
 
-      // Encadenar columnas y filas (doble enlace)
       for i:=0 to cols.Count-2 do
       begin
         dot.Add(Format('    %s -> %s;', [Q(SafeId('col_', cols[i])), Q(SafeId('col_', cols[i+1]))]));
@@ -234,7 +217,6 @@ begin
         dot.Add(Format('    %s -> %s;', [Q(SafeId('row_', filas[i+1])), Q(SafeId('row_', filas[i]))]));
       end;
 
-      // Celdas con conteo y enlaces a cabeceras
       for i:=0 to celdas.Count-1 do
       begin
         k := celdas[i];
@@ -262,7 +244,6 @@ begin
     filas.Free; cols.Free; celdas.Free;
   end;
 
-  // Crea PNG y (si tienes la mejora) lo abre con xdg-open
   RunGraphviz(rutaDot, rutaPng);
 end;
 

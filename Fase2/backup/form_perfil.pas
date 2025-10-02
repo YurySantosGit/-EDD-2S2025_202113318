@@ -56,11 +56,7 @@ var
   nuevoUsuario, nuevoTelefono: String;
 begin
   u := BuscarUsuarioPorEmailExacto(UsuarioActualEmail);
-  if u = nil then
-  begin
-    ShowMessage('No se encontró el usuario logueado.');
-    Exit;
-  end;
+  if u = nil then Exit;
 
   nuevoUsuario  := Trim(EditUsuario.Text);
   nuevoTelefono := Trim(EditTelefono.Text);
@@ -71,7 +67,6 @@ begin
     Exit;
   end;
 
-  // Validar unicidad del "usuario" si cambió
   if not SameText(nuevoUsuario, u^.usuario) then
   begin
     if ExisteUsuarioExceptoEmail(nuevoUsuario, u^.email) then
@@ -81,23 +76,22 @@ begin
     end;
   end;
 
-  // Validar teléfono (opcional: 8 dígitos)
-  if (nuevoTelefono <> '') then
+  if nuevoTelefono = '' then
   begin
-    if (Length(nuevoTelefono) <> 8) or (not SoloDigitos(nuevoTelefono)) then
-    begin
-      ShowMessage('El teléfono debe tener 8 dígitos numéricos.');
-      Exit;
-    end;
+    ShowMessage('El teléfono es obligatorio.');
+    Exit;
   end;
 
-  // Actualizar en memoria
-  u^.usuario := nuevoUsuario;
+  if (Length(nuevoTelefono) <> 8) or (not SoloDigitos(nuevoTelefono)) then
+  begin
+    ShowMessage('El teléfono debe tener exactamente 8 dígitos numéricos.');
+    Exit;
+  end;
+
+  u^.usuario  := nuevoUsuario;
   u^.telefono := nuevoTelefono;
 
-  // Persistir a JSON
   GuardarUsuariosEnJSON('usuarios.json');
-
   ShowMessage('Datos actualizados correctamente.');
   Close;
 end;

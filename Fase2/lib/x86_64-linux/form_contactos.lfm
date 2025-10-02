@@ -5,6 +5,7 @@ object FormContactos: TFormContactos
   Width = 320
   ClientHeight = 271
   ClientWidth = 320
+  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   object LblTitulo: TLabel
     Left = 128

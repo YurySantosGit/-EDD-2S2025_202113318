@@ -119,7 +119,7 @@ begin
 
   s := ListPapelera.Items[ListPapelera.ItemIndex];
 
-  pID := PosText('ID:', s);
+  pID := AnsiPos('ID:', UpperCase(s));
   if pID = 0 then Exit;
 
   nstart := pID + 3;

@@ -374,19 +374,6 @@ begin
   end;
 end;
 
-function BuscarUsuarioPorUsuario(const nombreUsuario, password: String): PUsuario;
-var
-  actual: PUsuario;
-begin
-  actual := UsuariosGlobal.cabeza;
-  while actual <> nil do
-  begin
-    if (actual^.usuario = nombreUsuario) and (actual^.password = password) then
-      Exit(actual);
-    actual := actual^.siguiente;
-  end;
-  Result := nil;
-end;
 
 
 

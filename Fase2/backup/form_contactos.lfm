@@ -1,10 +1,11 @@
 object FormContactos: TFormContactos
   Left = 549
-  Height = 240
+  Height = 271
   Top = 32
   Width = 320
-  ClientHeight = 240
+  ClientHeight = 271
   ClientWidth = 320
+  OnCreate = FormCreate
   object LblTitulo: TLabel
     Left = 128
     Height = 18
@@ -39,5 +40,32 @@ object FormContactos: TFormContactos
     Top = 152
     Width = 39
     Caption = '0 de 0'
+  end
+  object BtnAnterior: TButton
+    Left = 40
+    Height = 25
+    Top = 184
+    Width = 107
+    Caption = '⟵ Anterior'
+    TabOrder = 0
+    OnClick = BtnAnteriorClick
+  end
+  object BtnSiguiente: TButton
+    Left = 168
+    Height = 25
+    Top = 184
+    Width = 104
+    Caption = 'Siguiente ⟶'
+    TabOrder = 1
+    OnClick = BtnSiguienteClick
+  end
+  object BtnCerrar: TButton
+    Left = 232
+    Height = 25
+    Top = 240
+    Width = 75
+    Caption = 'Cerrar'
+    TabOrder = 2
+    OnClick = BtnCerrarClick
   end
 end

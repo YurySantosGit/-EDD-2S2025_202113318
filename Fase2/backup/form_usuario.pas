@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
-  bandejas, form_perfil, reportes_usuario;
+  bandejas, form_perfil, reportes_usuario, form_borradores, app_state, avl_borradores;
 
 type
 
@@ -20,6 +20,7 @@ type
     BtnEnviarCorreo: TButton;
     BtnPapelera: TButton;
     BtnProgramar: TButton;
+    BtnBorradores: TButton;
     Button5: TButton;
     Button6: TButton;
     BtnContactos: TButton;
@@ -27,6 +28,7 @@ type
     Button9: TButton;
     Label1: TLabel;
     procedure BtnActualizarPerfilClick(Sender: TObject);
+    procedure BtnBorradoresClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnContactosClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
@@ -34,7 +36,6 @@ type
     procedure Button10Click(Sender: TObject);
     procedure BtnBandejaClick(Sender: TObject);
     procedure BtnEnviarCorreoClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
@@ -82,6 +83,13 @@ procedure TFormUsuario.BtnActualizarPerfilClick(Sender: TObject);
 begin
   FormPerfil := TFormPerfil.Create(Self);
   FormPerfil.ShowModal;
+end;
+
+procedure TFormUsuario.BtnBorradoresClick(Sender: TObject);
+begin
+  if FormBorradores = nil then
+    FormBorradores := TFormBorradores.Create(Self);
+  FormBorradores.ShowModal;
 end;
 
 procedure TFormUsuario.BtnContactosClick(Sender: TObject);

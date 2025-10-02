@@ -1,10 +1,11 @@
 object FormEnviarCorreo: TFormEnviarCorreo
   Left = 358
-  Height = 379
+  Height = 433
   Top = 32
   Width = 320
-  ClientHeight = 379
+  ClientHeight = 433
   ClientWidth = 320
+  OnCreate = FormCreate
   object LblPara: TLabel
     Left = 32
     Height = 18
@@ -48,21 +49,30 @@ object FormEnviarCorreo: TFormEnviarCorreo
     Caption = 'Mensaje:'
   end
   object BtnEnviar: TButton
-    Left = 213
+    Left = 192
     Height = 25
     Top = 296
-    Width = 75
+    Width = 96
     Caption = 'Enviar'
     TabOrder = 3
     OnClick = BtnEnviarClick
   end
   object BtnCerrar: TButton
-    Left = 213
+    Left = 240
     Height = 25
-    Top = 344
+    Top = 400
     Width = 75
     Caption = 'Cerrar'
     TabOrder = 4
     OnClick = BtnCerrarClick
+  end
+  object Borrador: TButton
+    Left = 192
+    Height = 25
+    Top = 336
+    Width = 96
+    Caption = 'Borrador'
+    TabOrder = 5
+    OnClick = BorradorClick
   end
 end

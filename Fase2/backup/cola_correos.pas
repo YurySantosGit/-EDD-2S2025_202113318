@@ -14,7 +14,9 @@ type
     destinatario: String;
     asunto: String;
     mensaje: String;
-    fecha: String;   // formato DD/MM/AAAA
+    fecha: String;
+    hora: String;
+
   end;
 
   PColaNodo = ^TColaNodo;
@@ -89,7 +91,7 @@ begin
   actual := cola.frente;
   while actual <> nil do
   begin
-    items.Add(actual^.dato.fecha + ' ' +
+    items.Add(actual^.dato.fecha + ' ' + actual^.dato.hora +
               ' - ' + actual^.dato.asunto +
               ' -> ' + actual^.dato.destinatario);
     actual := actual^.siguiente;

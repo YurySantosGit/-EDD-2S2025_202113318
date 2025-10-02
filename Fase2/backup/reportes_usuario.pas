@@ -6,14 +6,17 @@ interface
 
 uses
   Classes, SysUtils, Process, StrUtils,
-  usuarios, bandejas, lista_doble, cola_correos, pila_papelera, contactos;
+  usuarios, bandejas, lista_doble, cola_correos, pila_papelera, contactos,
+  app_state, avl_borradores;
 
-procedure GenerarReportesUsuario(const usuarioSistema: string; const BaseDir: string = '');
+procedure GenerarReportesUsuarioPorEmail(const email: string; const BaseDir: string = '');
 
 procedure ReporteCorreosRecibidos(const userEmail, carpeta: string);
 procedure ReportePapelera(const userEmail, carpeta: string);
 procedure ReporteProgramados(const userEmail, carpeta: string);
 procedure ReporteContactos(const userEmail, carpeta: string);
+procedure GenerarReporteBorradoresAVLPorEmail(const UsuarioEmail: String);
+
 
 implementation
 
@@ -288,12 +291,52 @@ begin
   RunDot(rutaDot, rutaPng);
 end;
 
-procedure GenerarReportesUsuario(const usuarioSistema: string; const BaseDir: string);
-var email, carpeta: string;
+//Borradores
+procedure GenerarReporteBorradoresAVLPorEmail(const UsuarioEmail: String);
+var
+  dirU, dotPath, dotFile, pngFile: String;
+  P: TProcess;
 begin
-  email := BuscarEmailPorUsuario(usuarioSistema);
+  dirU := UsuarioEmail + '-Reportes' + DirectorySeparator;
+  ForceDirectories(dirU);
+
+  dotFile := dirU + 'borradores_avl.dot';
+  pngFile := dirU + 'borradores_avl.png';
+
+
+  BAVL_ToDOT(BorradoresAVL, dotFile);
+
+  dotPath := '/usr/bin/dot';
+  if FileExists(dotPath) then
+  begin
+    P := TProcess.Create(nil);
+    try
+      P.Executable := dotPath;
+      P.Parameters.Add('-Tpng');
+      P.Parameters.Add(dotFile);
+      P.Parameters.Add('-o');
+      P.Parameters.Add(pngFile);
+      P.Options := [poWaitOnExit];
+      P.Execute;
+    finally
+      P.Free;
+    end;
+  end
+  else
+  begin
+  end;
+end;
+
+
+procedure GenerarReportesUsuarioPorEmail(const email: string; const BaseDir: string);
+var usuarioSistema, carpeta: string;
+begin
   if Trim(email) = '' then
-    raise Exception.Create('No se encontró email para el usuario: ' + usuarioSistema);
+    raise Exception.Create('Email vacío.');
+
+  usuarioSistema := Copy(email, 1, Pos('@', email) - 1);
+  if usuarioSistema = '' then
+    usuarioSistema := StringReplace(email, '@', '_at_', [rfReplaceAll]);
 
   carpeta := MkUserFolder(usuarioSistema, BaseDir);
 

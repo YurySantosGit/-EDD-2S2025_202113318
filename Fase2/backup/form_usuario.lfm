@@ -2,10 +2,10 @@ object FormUsuario: TFormUsuario
   Left = 1520
   Height = 483
   Top = 32
-  Width = 320
+  Width = 598
   Caption = 'Menu Principal'
   ClientHeight = 483
-  ClientWidth = 320
+  ClientWidth = 598
   OnCreate = FormCreate
   object Label1: TLabel
     Left = 112
@@ -103,5 +103,14 @@ object FormUsuario: TFormUsuario
     Caption = 'Cerrar Sesion'
     TabOrder = 9
     OnClick = BtnCerrarSesionClick
+  end
+  object BtnBorradores: TButton
+    Left = 336
+    Height = 25
+    Top = 64
+    Width = 174
+    Caption = 'Borradores'
+    TabOrder = 10
+    OnClick = BtnBorradoresClick
   end
 end

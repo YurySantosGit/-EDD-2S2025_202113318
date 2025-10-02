@@ -6,6 +6,7 @@ object FormComunidades: TFormComunidades
   Caption = 'FormComunidades'
   ClientHeight = 483
   ClientWidth = 410
+  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   OnShow = FormShow
   object Label1: TLabel

@@ -5,6 +5,7 @@ object FormRegistro: TFormRegistro
   Width = 395
   ClientHeight = 410
   ClientWidth = 395
+  LCLVersion = '4.2.0.0'
   object Label1: TLabel
     Left = 32
     Height = 18

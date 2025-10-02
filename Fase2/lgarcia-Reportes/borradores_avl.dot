@@ -1,0 +1,10 @@
+digraph AVL {
+  node [shape=box, fontname="Helvetica"];
+  "2" [label="Borrador 2\nID:2"];
+  "2" -> "1";
+  "2" -> "3";
+  "1" [label="Borrador 1\nID:1"];
+  "3" [label="Borrador 3\nID:3"];
+  "3" -> "4";
+  "4" [label="Borrador 4\nID:4"];
+}

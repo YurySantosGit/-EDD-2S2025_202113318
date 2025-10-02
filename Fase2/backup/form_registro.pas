@@ -74,5 +74,10 @@ begin
   Close;
 end;
 
+procedure TFormRegistro.BtnCancelarClick(Sender: TObject);
+begin
+  Close;
+end;
+
 end.
 

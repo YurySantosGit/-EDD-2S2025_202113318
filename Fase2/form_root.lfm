@@ -6,6 +6,7 @@ object FormRoot: TFormRoot
   Caption = 'Menu Principal'
   ClientHeight = 336
   ClientWidth = 689
+  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   object Label1: TLabel
     Left = 144

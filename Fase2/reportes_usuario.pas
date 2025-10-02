@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Process, StrUtils,
-  usuarios, bandejas, lista_doble, cola_correos, pila_papelera, contactos;
+  usuarios, bandejas, lista_doble, cola_correos, pila_papelera, contactos,
+  app_state, avl_borradores;
 
 procedure GenerarReportesUsuarioPorEmail(const email: string; const BaseDir: string = '');
 
@@ -14,6 +15,8 @@ procedure ReporteCorreosRecibidos(const userEmail, carpeta: string);
 procedure ReportePapelera(const userEmail, carpeta: string);
 procedure ReporteProgramados(const userEmail, carpeta: string);
 procedure ReporteContactos(const userEmail, carpeta: string);
+procedure GenerarReporteBorradoresAVLPorEmail(const UsuarioEmail: String);
+
 
 implementation
 
@@ -287,6 +290,51 @@ begin
 
   RunDot(rutaDot, rutaPng);
 end;
+
+//Borradores
+procedure GenerarReporteBorradoresAVLPorEmail(const UsuarioEmail: String);
+var
+  userCarp, dirU, dotPath, dotFile, pngFile: String;
+  P: TProcess;
+  atPos: SizeInt;
+
+begin
+  atPos := Pos('@', UsuarioEmail);
+  if atPos > 1 then
+    userCarp := Copy(UsuarioEmail, 1, atPos - 1)
+  else
+    userCarp := 'usuario';
+
+  dirU := userCarp + '-Reportes' + DirectorySeparator;
+  ForceDirectories(dirU);
+
+  dotFile := dirU + 'borradores_avl.dot';
+  pngFile := dirU + 'borradores_avl.png';
+
+
+  BAVL_ToDOT(BorradoresAVL, dotFile);
+
+  dotPath := '/usr/bin/dot';
+  if FileExists(dotPath) then
+  begin
+    P := TProcess.Create(nil);
+    try
+      P.Executable := dotPath;
+      P.Parameters.Add('-Tpng');
+      P.Parameters.Add(dotFile);
+      P.Parameters.Add('-o');
+      P.Parameters.Add(pngFile);
+      P.Options := [poWaitOnExit];
+      P.Execute;
+    finally
+      P.Free;
+    end;
+  end
+  else
+  begin
+  end;
+end;
+
 
 procedure GenerarReportesUsuarioPorEmail(const email: string; const BaseDir: string);
 var usuarioSistema, carpeta: string;
