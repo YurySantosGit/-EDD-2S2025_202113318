@@ -14,11 +14,12 @@ type
   TCorreo = record
     id: Integer;
     remitente: String;
-    estado: String;      // 'NL' = no leído, 'L' = leído
-    programado: Boolean; // True = programado
+    estado: String;
+    programado: Boolean;
     asunto: String;
     fecha: String;
     mensaje: String;
+    favorito: Boolean;
     anterior: PCorreo;
     siguiente: PCorreo;
   end;
@@ -60,6 +61,7 @@ begin
   nuevo^.asunto := asunto;
   nuevo^.fecha := fecha;
   nuevo^.mensaje := mensaje;
+  nuevo^.favorito   := False;
   nuevo^.anterior := bandeja.cola;
   nuevo^.siguiente := nil;
 
@@ -142,6 +144,7 @@ begin
         temp.asunto := i^.asunto;
         temp.fecha := i^.fecha;
         temp.mensaje := i^.mensaje;
+        temp.favorito   := i^.favorito;
 
         i^.id := j^.id;
         i^.remitente := j^.remitente;
@@ -150,6 +153,7 @@ begin
         i^.asunto := j^.asunto;
         i^.fecha := j^.fecha;
         i^.mensaje := j^.mensaje;
+        i^.favorito   := j^.favorito
 
         j^.id := temp.id;
         j^.remitente := temp.remitente;
@@ -158,6 +162,8 @@ begin
         j^.asunto := temp.asunto;
         j^.fecha := temp.fecha;
         j^.mensaje := temp.mensaje;
+        j^.favorito   := temp.favorito;
+
       end;
       j := j^.siguiente;
     end;

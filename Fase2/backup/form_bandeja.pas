@@ -17,14 +17,17 @@ type
     BtnEliminarCorreo: TButton;
     BtnOrdenar: TButton;
     BtnCerrar: TButton;
+    BtnFavorito: TButton;
     Label1: TLabel;
     LblNoLeidos: TLabel;
     ListCorreos: TListBox;
     procedure BtnCerrarClick(Sender: TObject);
     procedure BtnEliminarCorreoClick(Sender: TObject);
+    procedure BtnFavoritoClick(Sender: TObject);
     procedure BtnOrdenarClick(Sender: TObject);
     procedure BtnVerCorreoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ListCorreosClick(Sender: TObject);
   private
     BandejaPtr: PBandeja;
     function TryGetIDSeleccionado(out AID: Integer): Boolean;
@@ -97,6 +100,37 @@ begin
   end;
 end;
 
+procedure TFormBandeja.BtnFavoritoClick(Sender: TObject);
+var
+  id: Integer;
+  c: PCorreo;
+begin
+  if (BandejaPtr = nil) then Exit;
+
+  if not TryGetIDSeleccionado(id) then
+  begin
+    ShowMessage('Selecciona un correo.');
+    Exit;
+  end;
+
+  c := BuscarCorreo(BandejaPtr^, id);
+  if c = nil then
+  begin
+    ShowMessage('No se encontró el correo.');
+    Exit;
+  end;
+
+  c^.favorito := not c^.favorito;
+
+  if c^.favorito then
+    ShowMessage('Correo marcado como favorito.')
+  else
+    ShowMessage('Correo quitado de favoritos.');
+
+  // Refresca lista y contador NL
+  CargarBandejaPtr(BandejaPtr);
+end;
+
 procedure TFormBandeja.BtnOrdenarClick(Sender: TObject);
 begin
   if BandejaPtr = nil then Exit;
@@ -133,10 +167,17 @@ begin
 
 end;
 
+procedure TFormBandeja.ListCorreosClick(Sender: TObject);
+begin
+
+end;
+
 procedure TFormBandeja.CargarBandejaPtr(p: PBandeja);
 var
   actual: PCorreo;
   noLeidos: Integer;
+  favMark: String;
+
 begin
   BandejaPtr := p;
   ListCorreos.Clear;
@@ -153,6 +194,9 @@ begin
   begin
     if actual^.estado = 'NL' then
       Inc(noLeidos);
+
+    if actual^.favorito then favMark := ' *** '
+    else favMark := '';
 
     ListCorreos.Items.Add(
       '[' + actual^.estado + '] ' +

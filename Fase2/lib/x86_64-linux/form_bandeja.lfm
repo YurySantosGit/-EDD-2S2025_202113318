@@ -6,7 +6,6 @@ object FormBandeja: TFormBandeja
   Caption = 'FormBandeja'
   ClientHeight = 446
   ClientWidth = 540
-  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   object Label1: TLabel
     Left = 208
@@ -23,6 +22,7 @@ object FormBandeja: TFormBandeja
     ItemHeight = 0
     TabOrder = 0
     TopIndex = -1
+    OnClick = ListCorreosClick
   end
   object LblNoLeidos: TLabel
     Left = 40
@@ -41,9 +41,9 @@ object FormBandeja: TFormBandeja
     OnClick = BtnVerCorreoClick
   end
   object BtnEliminarCorreo: TButton
-    Left = 200
+    Left = 202
     Height = 25
-    Top = 312
+    Top = 392
     Width = 136
     Caption = 'Eliminar'
     TabOrder = 2
@@ -66,5 +66,14 @@ object FormBandeja: TFormBandeja
     Caption = 'Cerrar'
     TabOrder = 4
     OnClick = BtnCerrarClick
+  end
+  object BtnFavorito: TButton
+    Left = 202
+    Height = 25
+    Top = 312
+    Width = 136
+    Caption = 'Favorito'
+    TabOrder = 5
+    OnClick = BtnFavoritoClick
   end
 end
