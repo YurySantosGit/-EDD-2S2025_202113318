@@ -5,9 +5,9 @@ unit reportes_usuario;
 interface
 
 uses
-  Classes, SysUtils, Process, StrUtils,
+  Classes, SysUtils, Process, StrUtils, FileUtil, Dialogs,
   usuarios, bandejas, lista_doble, cola_correos, pila_papelera, contactos,
-  app_state, avl_borradores;
+  app_state, avl_borradores, bst_contactos;
 
 procedure GenerarReportesUsuarioPorEmail(const email: string; const BaseDir: string = '');
 
@@ -16,6 +16,8 @@ procedure ReportePapelera(const userEmail, carpeta: string);
 procedure ReporteProgramados(const userEmail, carpeta: string);
 procedure ReporteContactos(const userEmail, carpeta: string);
 procedure GenerarReporteBorradoresAVLPorEmail(const UsuarioEmail: String);
+procedure GenerarReporteContactosBSTPorEmail(const UsuarioEmail: String);
+procedure SyncBSTContactosDesdeLista(const ownerEmail: String);
 
 
 implementation
@@ -335,6 +337,51 @@ begin
   end;
 end;
 
+procedure GenerarReporteContactosBSTPorEmail(const UsuarioEmail: String);
+var
+  atPos: SizeInt;
+  userCarp, dirU, dotFile, pngFile, dotPath: String;
+  P: TProcess;
+begin
+  SyncBSTContactosDesdeLista(UsuarioEmail);
+
+  atPos := Pos('@', UsuarioEmail);
+  if atPos > 1 then userCarp := Copy(UsuarioEmail, 1, atPos - 1)
+               else userCarp := 'usuario';
+  dirU := userCarp + '-Reportes' + DirectorySeparator;
+  ForceDirectories(dirU);
+
+  dotFile := dirU + 'contactos_bst.dot';
+  pngFile := dirU + 'contactos_bst.png';
+
+  BST_ToDOT(ContactosBST, dotFile);
+
+  dotPath := FindDefaultExecutablePath({$IFDEF WINDOWS}'dot.exe'{$ELSE}'dot'{$ENDIF});
+  if (dotPath = '') and FileExists('/usr/bin/dot') then dotPath := '/usr/bin/dot';
+
+  if (dotPath = '') or (not FileExists(dotPath)) then
+  begin
+    ShowMessage('Graphviz no encontrado: se generó "'+dotFile+'" pero no el PNG.');
+    Exit;
+  end;
+
+  P := TProcess.Create(nil);
+  try
+    P.Executable := dotPath;
+    P.Parameters.Add('-Tpng');
+    P.Parameters.Add(dotFile);
+    P.Parameters.Add('-o');
+    P.Parameters.Add(pngFile);
+    P.Options := [poWaitOnExit];
+    P.Execute;
+
+    if P.ExitStatus <> 0 then
+      ShowMessage('Graphviz falló (exit='+IntToStr(P.ExitStatus)+'). Revisa el .dot.');
+  finally
+    P.Free;
+  end;
+end;
+
 
 procedure GenerarReportesUsuarioPorEmail(const email: string; const BaseDir: string);
 var usuarioSistema, carpeta: string;
@@ -352,6 +399,27 @@ begin
   ReportePapelera(email, carpeta);
   ReporteProgramados(email, carpeta);
   ReporteContactos(email, carpeta);
+end;
+
+procedure SyncBSTContactosDesdeLista(const ownerEmail: String);
+var
+  p: PContacto;
+  C: TBSTContacto;
+begin
+  BST_Init(ContactosBST);
+  if (ListaContactos.cabeza = nil) then Exit;
+
+  p := ListaContactos.cabeza;
+  repeat
+    if CompareText(p^.ownerEmail, ownerEmail) = 0 then
+    begin
+      C.email    := p^.email;
+      C.nombre   := p^.nombre;
+      C.telefono := p^.telefono;
+      BST_Insert(ContactosBST, C);
+    end;
+    p := p^.siguiente;
+  until p = ListaContactos.cabeza;
 end;
 
 end.

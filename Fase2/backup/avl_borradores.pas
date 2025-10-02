@@ -24,7 +24,7 @@ type
 
 procedure BAVL_Init(var T: PAVL_Borr);
 procedure BAVL_Insert(var T: PAVL_Borr; const B: TBorrador);
-function  BAVL_Find(T: PAVL_Borr; id: Integer): PAVL_Borr;
+function BAVL_Find(T: PAVL_Borr; id: Integer): PAVL_Borr;
 function BAVL_Delete(var T: PAVL_Borr; id: Integer): Boolean;
 
 
@@ -94,44 +94,29 @@ begin
 end;
 
 function _Delete(var N: PAVL_Borr; id: Integer): Boolean;
-var
-  tmp, succ: PAVL_Borr;
-  bf: Integer;
+var tmp, succ: PAVL_Borr; bf: Integer;
 begin
   if N=nil then Exit(False);
-
-  if id < N^.key then
-    Result := _Delete(N^.L, id)
-  else if id > N^.key then
-    Result := _Delete(N^.R, id)
-  else
-  begin
+  if id < N^.key then Exit(_Delete(N^.L, id))
+  else if id > N^.key then Exit(_Delete(N^.R, id))
+  else begin
     Result := True;
-    if (N^.L=nil) or (N^.R=nil) then
-    begin
+    if (N^.L=nil) or (N^.R=nil) then begin
       if N^.L<>nil then tmp := N^.L else tmp := N^.R;
-      Dispose(N);
-      N := tmp;
-      Exit;
-    end
-    else
-    begin
+      Dispose(N); N := tmp; Exit;
+    end else begin
       succ := MinNode(N^.R);
-      N^.key  := succ^.key;
-      N^.data := succ^.data;
-      Result := _Delete(N^.R, succ^.key);
+      N^.key := succ^.key; N^.data := succ^.data;
+      Exit(_Delete(N^.R, succ^.key));
     end;
   end;
 
-  if N=nil then Exit(Result);
-
-  RecalcHeight(N);
-  bf := Balance(N);
-
-  if (bf > 1) and (Balance(N^.L) >= 0) then begin N := RotR(N); Exit(Result) end;
-  if (bf > 1) and (Balance(N^.L) < 0)  then begin N^.L := RotL(N^.L); N := RotR(N); Exit(Result) end;
-  if (bf < -1) and (Balance(N^.R) <= 0) then begin N := RotL(N); Exit(Result) end;
-  if (bf < -1) and (Balance(N^.R) > 0)  then begin N^.R := RotR(N^.R); N := RotL(N); Exit(Result) end;
+  if N=nil then Exit(True);
+  RecalcHeight(N); bf := Balance(N);
+  if (bf > 1) and (Balance(N^.L) >= 0) then begin N := RotR(N); Exit(True) end;
+  if (bf > 1) and (Balance(N^.L) < 0)  then begin N^.L := RotL(N^.L); N := RotR(N); Exit(True) end;
+  if (bf < -1) and (Balance(N^.R) <= 0) then begin N := RotL(N); Exit(True) end;
+  if (bf < -1) and (Balance(N^.R) > 0)  then begin N^.R := RotR(N^.R); N := RotL(N); Exit(True) end;
 end;
 
 function BAVL_Delete(var T: PAVL_Borr; id: Integer): Boolean;

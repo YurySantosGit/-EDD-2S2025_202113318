@@ -1,9 +1,9 @@
 object FormContactos: TFormContactos
   Left = 549
-  Height = 271
+  Height = 301
   Top = 32
   Width = 320
-  ClientHeight = 271
+  ClientHeight = 301
   ClientWidth = 320
   OnCreate = FormCreate
   object LblTitulo: TLabel
@@ -60,12 +60,21 @@ object FormContactos: TFormContactos
     OnClick = BtnSiguienteClick
   end
   object BtnCerrar: TButton
-    Left = 232
+    Left = 240
     Height = 25
-    Top = 240
+    Top = 264
     Width = 75
     Caption = 'Cerrar'
     TabOrder = 2
     OnClick = BtnCerrarClick
+  end
+  object BtnEliminar: TButton
+    Left = 120
+    Height = 25
+    Top = 216
+    Width = 75
+    Caption = 'Eliminar'
+    TabOrder = 3
+    OnClick = BtnEliminarClick
   end
 end

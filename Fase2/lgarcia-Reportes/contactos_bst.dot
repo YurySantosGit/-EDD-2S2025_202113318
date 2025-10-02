@@ -1,0 +1,8 @@
+digraph BST_Contactos {
+  node [shape=box, fontname="Helvetica"];
+  "mitzep@edd.com" [label="Email: mitzep@edd.com\nNombre: Marcos Itzep\nTel: 87654321"];
+  "mitzep@edd.com" -> "gkroah-hartman@edd.com";
+  "gkroah-hartman@edd.com" [label="Email: gkroah-hartman@edd.com\nNombre: Greg Kroah-Hartman\nTel: 31628954"];
+  "gkroah-hartman@edd.com" -> "jcorbet@edd.com";
+  "jcorbet@edd.com" [label="Email: jcorbet@edd.com\nNombre: Jon Corbet\nTel: 75849231"];
+}

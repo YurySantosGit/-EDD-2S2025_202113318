@@ -185,15 +185,48 @@ procedure BAVL_ToStrings_InOrder (T: PAVL_Borr; outList: TStrings); begin _In (T
 procedure BAVL_ToStrings_PostOrder(T: PAVL_Borr; outList: TStrings); begin _Post(T, outList) end;
 
 procedure BAVL_ToDOT(T: PAVL_Borr; const fileDot: String);
-  procedure EmitNode(var f: Text; N: PAVL_Borr);
+
+  function Esc(const S: String): String;
+  var tmp: String;
   begin
-    if N=nil then Exit;
-    WriteLn(f, '  "', N^.key, '" [label="', StringReplace(N^.data.asunto,'"','\"',[rfReplaceAll]),
-            '\nID:', N^.key, '"];');
-    if N^.L<>nil then WriteLn(f, '  "', N^.key, '" -> "', N^.L^.key, '";');
-    if N^.R<>nil then WriteLn(f, '  "', N^.key, '" -> "', N^.R^.key, '";');
-    EmitNode(f, N^.L); EmitNode(f, N^.R);
+    // Escapar backslashes y comillas, y convertir saltos de línea a \n
+    tmp := StringReplace(S, '\', '\\', [rfReplaceAll]);
+    tmp := StringReplace(tmp, '"', '\"', [rfReplaceAll]);
+    tmp := StringReplace(tmp, #13#10, '\n', [rfReplaceAll]);
+    tmp := StringReplace(tmp, #10, '\n', [rfReplaceAll]);
+    tmp := StringReplace(tmp, #13, '\n', [rfReplaceAll]);
+    Result := tmp;
   end;
+
+  function TruncEllipsis(const S: String; MaxLen: Integer): String;
+  begin
+    if (MaxLen > 0) and (Length(S) > MaxLen) then
+      Result := Copy(S, 1, MaxLen) + '…'
+    else
+      Result := S;
+  end;
+
+  procedure EmitNode(var f: Text; N: PAVL_Borr);
+  var labelStr, msgShown: String;
+  begin
+    if N = nil then Exit;
+
+    msgShown := TruncEllipsis(N^.data.mensaje, 120);
+
+    labelStr :=
+      'ID: ' + IntToStr(N^.data.id) + '\n' +
+      'Remitente: ' + Esc(N^.data.remitente) + '\n' +
+      'Asunto: ' + Esc(N^.data.asunto) + '\n' +
+      'Mensaje: ' + Esc(msgShown);
+
+    WriteLn(f, '  "', N^.key, '" [label="', labelStr, '"];');
+    if N^.L <> nil then WriteLn(f, '  "', N^.key, '" -> "', N^.L^.key, '";');
+    if N^.R <> nil then WriteLn(f, '  "', N^.key, '" -> "', N^.R^.key, '";');
+
+    EmitNode(f, N^.L);
+    EmitNode(f, N^.R);
+  end;
+
 var f: Text;
 begin
   Assign(f, fileDot); Rewrite(f);

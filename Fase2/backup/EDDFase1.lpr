@@ -40,7 +40,7 @@ begin
   Application.CreateForm(TFormEnviarCorreo, FormEnviarCorreo);
   Application.CreateForm(TFormPerfil, FormPerfil);
   Application.CreateForm(TFormComunidades, FormComunidades);
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TFormBorradores, FormBorradores);
   Application.Run;
 end.
 

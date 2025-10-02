@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  app_state, avl_borradores;
+  app_state, avl_borradores, bst_contactos;
 
 type
 
@@ -70,7 +70,8 @@ begin
     Exit;
   end;
 
-  if not EsContacto(ListaContactos, UsuarioActualEmail, para) then
+  if (BST_Search(ContactosBST, para) = nil)
+     and (not EsContacto(ListaContactos, UsuarioActualEmail, para)) then
   begin
     ShowMessage('Envío fallido: el destinatario NO es tu contacto.');
     Exit;
@@ -125,6 +126,12 @@ begin
 
   BAVL_Insert(BorradoresAVL, B);
   ShowMessage('Borrador guardado');
+
+  EditPara.Clear;
+  EditAsunto.Clear;
+  MemoMensaje.Clear;
+  EditPara.SetFocus;
+
 end;
 
 procedure TFormEnviarCorreo.FormCreate(Sender: TObject);

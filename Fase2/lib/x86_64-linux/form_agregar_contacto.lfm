@@ -5,7 +5,7 @@ object FormAgregarContacto: TFormAgregarContacto
   Width = 320
   ClientHeight = 178
   ClientWidth = 320
-  LCLVersion = '4.2.0.0'
+  OnCreate = FormCreate
   object Label1: TLabel
     Left = 30
     Height = 18

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  contactos;
+  contactos, app_state, bst_contactos;
 
 type
 
@@ -16,6 +16,7 @@ type
     BtnAnterior: TButton;
     BtnSiguiente: TButton;
     BtnCerrar: TButton;
+    BtnEliminar: TButton;
     LblPos: TLabel;
     LblTelefono: TLabel;
     LblEmail: TLabel;
@@ -23,6 +24,7 @@ type
     LblTitulo: TLabel;
     procedure BtnAnteriorClick(Sender: TObject);
     procedure BtnCerrarClick(Sender: TObject);
+    procedure BtnEliminarClick(Sender: TObject);
     procedure BtnSiguienteClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -34,6 +36,7 @@ type
     procedure MostrarActual;
     function  SiguienteDelDueno(p: PContacto): PContacto;
     function  AnteriorDelDueno(p: PContacto): PContacto;
+    function  EliminarContactoPropioDeLista(const ownerEmail, email: String): Boolean;
     function  PosicionActual: Integer;
 
   public
@@ -68,7 +71,7 @@ begin
 
   if ListaContactos.cabeza = nil then Exit;
 
-  // Recorremos circular una sola vuelta buscando los del dueño
+
   act := ListaContactos.cabeza;
   repeat
     if SameText(act^.ownerEmail, UsuarioActualEmail) then
@@ -117,7 +120,6 @@ begin
   if (p = nil) or (ListaContactos.cabeza = nil) then Exit(nil);
 
   q := p^.siguiente;
-  // avanzar hasta encontrar otro del dueño (con wrap garantizado por circular)
   while not SameText(q^.ownerEmail, UsuarioActualEmail) do
     q := q^.siguiente;
 
@@ -128,10 +130,10 @@ function TFormContactos.AnteriorDelDueno(p: PContacto): PContacto;
 var
   q, ultimoValido: PContacto;
 begin
-  // Buscamos el anterior "válido" (del mismo owner) recorriendo una vuelta
+
   if (p = nil) or (ListaContactos.cabeza = nil) then Exit(nil);
 
-  ultimoValido := p; // por si solo hay uno
+  ultimoValido := p;
   q := p^.siguiente;
   repeat
     if SameText(q^.ownerEmail, UsuarioActualEmail) then
@@ -151,7 +153,7 @@ begin
 
   pos := 1;
   q := FInicio;
-  // contar hasta llegar a FActual, solo sobre contactos del dueño
+
   if q = FActual then Exit(pos);
 
   repeat
@@ -161,6 +163,51 @@ begin
 
   Result := pos;
 end;
+
+function TFormContactos.EliminarContactoPropioDeLista(const ownerEmail, email: String): Boolean;
+var
+  cur, prev, tail: PContacto;
+  esPropio: Boolean;
+begin
+  Result := False;
+  if (ListaContactos.cabeza = nil) then Exit;
+
+  cur  := ListaContactos.cabeza;
+  prev := nil;
+
+  repeat
+    esPropio := SameText(cur^.ownerEmail, ownerEmail) and SameText(cur^.email, email);
+    if esPropio then
+    begin
+      if cur = ListaContactos.cabeza then
+      begin
+        if cur^.siguiente = cur then
+        begin
+          ListaContactos.cabeza := nil;
+        end
+        else
+        begin
+          tail := cur;
+          while tail^.siguiente <> ListaContactos.cabeza do
+            tail := tail^.siguiente;
+          ListaContactos.cabeza := cur^.siguiente;
+          tail^.siguiente := ListaContactos.cabeza;
+        end;
+      end
+      else
+      begin
+        prev^.siguiente := cur^.siguiente;
+      end;
+
+      Dispose(cur);
+      Exit(True);
+    end;
+
+    prev := cur;
+    cur  := cur^.siguiente;
+  until (cur = ListaContactos.cabeza);
+end;
+
 
 procedure TFormContactos.BtnAnteriorClick(Sender: TObject);
 begin
@@ -172,6 +219,45 @@ end;
 procedure TFormContactos.BtnCerrarClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TFormContactos.BtnEliminarClick(Sender: TObject);
+var
+  emailDel: String;
+  okBST: Boolean;
+begin
+  if (FCount = 0) or (FActual = nil) then
+  begin
+    ShowMessage('No hay contacto seleccionado.');
+    Exit;
+  end;
+
+  emailDel := Trim(FActual^.email);
+
+  okBST := BST_Delete(ContactosBST, emailDel);
+
+  if EliminarContactoPropioDeLista(UsuarioActualEmail, emailDel) then
+  begin
+    if okBST then
+      ShowMessage('Contacto eliminado')
+    else
+      ShowMessage('Contacto eliminado de la lista');
+  end
+  else
+  begin
+    if okBST then
+      ShowMessage('Contacto eliminado del BST.')
+    else
+      ShowMessage('No se encontró el contacto para eliminar.');
+  end;
+
+  if BST_Search(ContactosBST, emailDel) = nil then
+    ShowMessage('Contacto ya no existe en el arbol.')
+  else
+    ShowMessage('Contacto no eliminado, revisar email');
+
+  PrepararVista;
+  MostrarActual;
 end;
 
 procedure TFormContactos.BtnSiguienteClick(Sender: TObject);

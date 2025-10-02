@@ -15,7 +15,7 @@ uses
   form_correosprogramados, form_registro, contactos, form_contactos,
   form_agregar_contacto, form_enviarcorreo, bandejas, form_perfil,
   reportes_root, reportes_usuario, comunidades, form_comunidades, 
-reportes_comunidades, avl_borradores, app_state, form_borradores;
+reportes_comunidades, avl_borradores, app_state, form_borradores, bst_contactos;
 
 {$R *.res}
 

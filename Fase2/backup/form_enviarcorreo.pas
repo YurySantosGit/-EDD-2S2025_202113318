@@ -95,7 +95,7 @@ begin
     if BAVL_Delete(BorradoresAVL, DraftIdLoaded) then
       ShowMessage('Envío exitoso. Borrador eliminado.')
     else
-      ShowMessage('Envío exitoso);
+      ShowMessage('Envío exitoso');
     DraftIdLoaded := -1;
   end
   else
@@ -125,6 +125,12 @@ begin
 
   BAVL_Insert(BorradoresAVL, B);
   ShowMessage('Borrador guardado');
+
+  EditPara.Clear;
+  EditAsunto.Clear;
+  MemoMensaje.Clear;
+  EditPara.SetFocus;
+
 end;
 
 procedure TFormEnviarCorreo.FormCreate(Sender: TObject);
