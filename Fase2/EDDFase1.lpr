@@ -16,7 +16,7 @@ uses
   form_agregar_contacto, form_enviarcorreo, bandejas, form_perfil,
   reportes_root, reportes_usuario, comunidades, form_comunidades,
   reportes_comunidades, avl_borradores, app_state, form_borradores,
-  bst_contactos, btree_favoritos, form_favoritos;
+  bst_contactos, btree_favoritos, form_favoritos, carga_masiva_correos;
 
 {$R *.res}
 

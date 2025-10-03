@@ -42,7 +42,7 @@ begin
   Application.CreateForm(TFormPerfil, FormPerfil);
   Application.CreateForm(TFormComunidades, FormComunidades);
   Application.CreateForm(TFormBorradores, FormBorradores);
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TFormFavoritos, FormFavoritos);
   Application.Run;
 end.
 
