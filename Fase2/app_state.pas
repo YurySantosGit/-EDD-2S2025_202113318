@@ -5,12 +5,13 @@ unit app_state;
 interface
 
 uses
-  avl_borradores, bst_contactos;
+  avl_borradores, bst_contactos, btree_favoritos;
 
 var
   BorradoresAVL: PAVL_Borr;
   DraftSeq: Integer;
   ContactosBST: PBST;
+  FavoritosBTree: PBNode;
 
 procedure AppStateInit;
 function  NextDraftId: Integer;
@@ -22,6 +23,7 @@ begin
   BAVL_Init(BorradoresAVL);
   DraftSeq := 0;
   BST_Init(ContactosBST);
+  BFav_Init(FavoritosBTree);
 end;
 
 function NextDraftId: Integer;

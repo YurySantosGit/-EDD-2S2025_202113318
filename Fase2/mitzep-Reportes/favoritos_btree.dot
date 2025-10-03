@@ -1,0 +1,4 @@
+digraph BTree_Favoritos {
+  rankdir=TB;
+  n138976169094144 [shape=box, fontname="Helvetica", label="ID: 54488\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: 7\nFecha: 02-10-2025 23:53\nMensaje: 7\n---\nID: 54881\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: 1\nFecha: 02-10-2025 23:53\nMensaje: 1\n---\nID: 59284\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: 2\nFecha: 02-10-2025 23:53\nMensaje: 2\n---\nID: 84426\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: 4\nFecha: 02-10-2025 23:53\nMensaje: 4"];
+}

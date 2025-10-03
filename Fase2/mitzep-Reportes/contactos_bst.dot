@@ -1,0 +1,4 @@
+digraph BST_Contactos {
+  node [shape=box, fontname="Helvetica"];
+  "lgarcia@edd.com" [label="Email: lgarcia@edd.com\nNombre: Luis Garcia\nTel: 12345678"];
+}

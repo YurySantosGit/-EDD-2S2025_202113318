@@ -14,8 +14,9 @@ uses
   pila_papelera, form_papelera, cola_correos, form_programarcorreo,
   form_correosprogramados, form_registro, contactos, form_contactos,
   form_agregar_contacto, form_enviarcorreo, bandejas, form_perfil,
-  reportes_root, reportes_usuario, comunidades, form_comunidades, 
-reportes_comunidades, avl_borradores, app_state, form_borradores;
+  reportes_root, reportes_usuario, comunidades, form_comunidades,
+  reportes_comunidades, avl_borradores, app_state, form_borradores,
+  bst_contactos, btree_favoritos, form_favoritos;
 
 {$R *.res}
 
@@ -41,6 +42,7 @@ begin
   Application.CreateForm(TFormPerfil, FormPerfil);
   Application.CreateForm(TFormComunidades, FormComunidades);
   Application.CreateForm(TFormBorradores, FormBorradores);
+  Application.CreateForm(TForm2, Form2);
   Application.Run;
 end.
 

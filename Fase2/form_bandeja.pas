@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, StrUtils,
-  lista_doble, pila_papelera;
+  lista_doble, pila_papelera, btree_favoritos, app_state;
 
 type
 
@@ -79,6 +79,8 @@ var
   id: Integer;
   c: PCorreo;
   info: TCorreoInfo;
+  wasFav: Boolean;
+
 begin
   if not TryGetIDSeleccionado(id) then
   begin
@@ -89,11 +91,13 @@ begin
   c := BuscarCorreo(BandejaPtr^, id);
   if c <> nil then
   begin
+    wasFav := c^.favorito;
     info := CorreoToInfo(c);
     PushCorreo(PapeleraGlobal, info);
 
     if EliminarCorreo(BandejaPtr^, id) then
     begin
+      if wasFav then BFav_Delete(FavoritosBTree, id);
       ShowMessage('Correo enviado a la papelera');
       CargarBandejaPtr(BandejaPtr);
     end;
@@ -104,6 +108,8 @@ procedure TFormBandeja.BtnFavoritoClick(Sender: TObject);
 var
   id: Integer;
   c: PCorreo;
+  F: TFavorito;
+
 begin
   if (BandejaPtr = nil) then Exit;
 
@@ -123,9 +129,21 @@ begin
   c^.favorito := not c^.favorito;
 
   if c^.favorito then
-    ShowMessage('Correo marcado como favorito.')
+  begin
+    F.id        := c^.id;
+    F.remitente := c^.remitente;
+    F.estado    := c^.estado;
+    F.asunto    := c^.asunto;
+    F.fecha     := c^.fecha;
+    F.mensaje   := c^.mensaje;
+    BFav_Insert(FavoritosBTree, F);
+    ShowMessage('Correo marcado como favorito.');
+  end
   else
+  begin
+    BFav_Delete(FavoritosBTree, c^.id);
     ShowMessage('Correo quitado de favoritos.');
+  end;
 
   // Refresca lista y contador NL
   CargarBandejaPtr(BandejaPtr);
@@ -142,6 +160,7 @@ procedure TFormBandeja.BtnVerCorreoClick(Sender: TObject);
 var
   id: Integer;
   correo: PCorreo;
+  F: TFavorito;
 begin
   if not TryGetIDSeleccionado(id) then
   begin
@@ -158,6 +177,18 @@ begin
                 'Mensaje:' + LineEnding + correo^.mensaje);
 
     correo^.estado := 'L';
+
+    if correo^.favorito then
+    begin
+      F.id        := correo^.id;
+      F.remitente := correo^.remitente;
+      F.estado    := correo^.estado;
+      F.asunto    := correo^.asunto;
+      F.fecha     := correo^.fecha;
+      F.mensaje   := correo^.mensaje;
+      BFav_Insert(FavoritosBTree, F);
+    end;
+
     CargarBandejaPtr(BandejaPtr);
   end;
 end;

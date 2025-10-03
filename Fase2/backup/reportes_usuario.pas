@@ -5,9 +5,9 @@ unit reportes_usuario;
 interface
 
 uses
-  Classes, SysUtils, Process, StrUtils, FileUtil,
+  Classes, SysUtils, Process, StrUtils, FileUtil, Dialogs,
   usuarios, bandejas, lista_doble, cola_correos, pila_papelera, contactos,
-  app_state, avl_borradores, bst_contactos;
+  app_state, avl_borradores, bst_contactos, btree_favoritos;
 
 procedure GenerarReportesUsuarioPorEmail(const email: string; const BaseDir: string = '');
 
@@ -334,6 +334,39 @@ begin
   end
   else
   begin
+  end;
+end;
+
+//Favoritos
+procedure GenerarReporteFavoritosBTreePorEmail(const UsuarioEmail: String);
+var
+  usuarioCarp, dirU, dotFile, pngFile, dotPath: String;
+  P: TProcess;
+begin
+  usuarioCarp := Copy(UsuarioEmail, 1, Pos('@', UsuarioEmail) - 1);
+  if usuarioCarp = '' then usuarioCarp := 'usuario';
+  dirU := usuarioCarp + '-Reportes' + DirectorySeparator;
+  ForceDirectories(dirU);
+
+  dotFile := dirU + 'favoritos_btree.dot';
+  pngFile := dirU + 'favoritos_btree.png';
+
+  BFav_ToDOT(FavoritosBTree, dotFile);
+
+  dotPath := '/usr/bin/dot';
+  if not FileExists(dotPath) then Exit;
+
+  P := TProcess.Create(nil);
+  try
+    P.Executable := dotPath;
+    P.Parameters.Add('-Tpng');
+    P.Parameters.Add(dotFile);
+    P.Parameters.Add('-o');
+    P.Parameters.Add(pngFile);
+    P.Options := [poWaitOnExit];
+    P.Execute;
+  finally
+    P.Free;
   end;
 end;
 

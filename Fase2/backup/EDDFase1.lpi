@@ -183,6 +183,16 @@
         <Filename Value="bst_contactos.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="btree_favoritos.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_favoritos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormFavoritos"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

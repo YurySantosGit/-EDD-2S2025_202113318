@@ -195,11 +195,10 @@ begin
     if actual^.estado = 'NL' then
       Inc(noLeidos);
 
-    if actual^.favorito then favMark := ' *** '
-    else favMark := '';
+    if actual^.favorito then favMark := '*** ' else favMark := '';
 
     ListCorreos.Items.Add(
-      '[' + actual^.estado + '] ' +
+      favMark + '[' + actual^.estado + '] ' +
       actual^.asunto + ' - ' + actual^.remitente +
       ' (ID:' + IntToStr(actual^.id) + ')'
     );

@@ -113,4 +113,13 @@ object FormUsuario: TFormUsuario
     TabOrder = 10
     OnClick = BtnBorradoresClick
   end
+  object BtnFavoritos: TButton
+    Left = 336
+    Height = 25
+    Top = 104
+    Width = 174
+    Caption = 'Favoritos'
+    TabOrder = 11
+    OnClick = BtnFavoritosClick
+  end
 end

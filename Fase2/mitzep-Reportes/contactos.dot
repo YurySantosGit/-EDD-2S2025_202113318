@@ -1,0 +1,22 @@
+digraph Contactos {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=LR;
+  node [shape=box, style="rounded,filled", fillcolor="#B2DFDB", fontname="Helvetica"];
+  edge [arrowhead=vee];
+  subgraph cluster_circular { label="Contactos (mitzep@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    k0 [label="Luis Garcia\n(lgarcia@edd.com)"];
+    k1 [label="Marcos Itzep\n(mitzep@edd.com)"];
+    k0 -> k1;
+    k2 [label="Greg Kroah-Hartman\n(gkroah-hartman@edd.com)"];
+    k1 -> k2;
+    k3 [label="Mark Shuttleworth\n(mshuttleworth@edd.com)"];
+    k2 -> k3;
+    k4 [label="Steven Mejia\n(smejia@edd.com)"];
+    k3 -> k4;
+    k5 [label="Brian Fox\n(bfox@edd.com)"];
+    k4 -> k5;
+    k6 [label="Jon Corbet\n(jcorbet@edd.com)"];
+    k5 -> k6;
+    k6 -> k0;
+  }
+}

@@ -9,7 +9,7 @@ uses
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
   bandejas, form_perfil, reportes_usuario, form_borradores, app_state, avl_borradores,
-  bst_contactos;
+  bst_contactos, btree_favoritos;
 
 type
 
@@ -138,6 +138,7 @@ begin
   GenerarReportesUsuarioPorEmail(UsuarioActualEmail);
   GenerarReporteBorradoresAVLPorEmail(UsuarioActualEmail);
   GenerarReporteContactosBSTPorEmail(UsuarioActualEmail);
+  GenerarReporteFavoritosBTreePorEmail(UsuarioActualEmail);
 
 
   ShowMessage('Reportes generados en "' + usuarioCarp + '-Reportes/".');
