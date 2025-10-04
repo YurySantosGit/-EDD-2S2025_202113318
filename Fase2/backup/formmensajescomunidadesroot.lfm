@@ -1,0 +1,39 @@
+object FormVerMensajes: TFormVerMensajes
+  Left = 251
+  Height = 429
+  Top = 32
+  Width = 541
+  Caption = 'FormVerMensajes'
+  ClientHeight = 429
+  ClientWidth = 541
+  OnShow = FormShow
+  object MemoTodo: TMemo
+    Left = 0
+    Height = 429
+    Top = 0
+    Width = 541
+    Align = alClient
+    Font.Height = -13
+    Font.Name = 'Monospace'
+    ParentFont = False
+    TabOrder = 0
+  end
+  object BtnRefrescar: TButton
+    Left = 16
+    Height = 32
+    Top = 328
+    Width = 75
+    Caption = 'Refrescar'
+    TabOrder = 1
+    OnClick = BtnRefrescarClick
+  end
+  object BtnCerrar: TButton
+    Left = 453
+    Height = 33
+    Top = 384
+    Width = 75
+    Caption = 'Cerrar'
+    TabOrder = 2
+    OnClick = BtnCerrarClick
+  end
+end

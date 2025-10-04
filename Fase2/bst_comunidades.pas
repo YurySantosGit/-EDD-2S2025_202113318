@@ -34,6 +34,9 @@ function  BSTC_EnsureCommunity(var T: PBSTC; const nombreGrupo, fechaCreacion: S
 function  BSTC_AddMessage(var T: PBSTC; const nombreGrupo, correo, mensaje, fechaPub: String): Boolean;
 function  BSTC_ListMessages(T: PBSTC; const nombreGrupo: String; out SL: TStringList): Boolean;
 procedure BSTC_ToDOT(T: PBSTC; const fileDot: String);
+procedure BSTC_ListCommunities(T: PBSTC; items: TStrings);
+function  BSTC_GetCommunityInfo(T: PBSTC; const groupName: String; out fechaCreacion: String; out count: Integer): Boolean;
+procedure BSTC_ListMessages(T: PBSTC; const groupName: String; lines: TStrings);
 
 implementation
 
@@ -188,5 +191,59 @@ begin
     Close(f);
   end;
 end;
+
+procedure BSTC_ListCommunities(T: PBSTC; items: TStrings);
+  procedure InOrder(N: PBSTC);
+  begin
+    if N = nil then Exit;
+    InOrder(N^.L);
+    items.Add(N^.nombre);
+    InOrder(N^.R);
+  end;
+begin
+  if items <> nil then items.Clear;
+  InOrder(T);
+end;
+
+function BSTC_GetCommunityInfo(T: PBSTC; const groupName: String; out fechaCreacion: String; out count: Integer): Boolean;
+var
+  N: PBSTC;
+  M: PMsg;
+begin
+  fechaCreacion := '';
+  count := 0;
+
+  N := BSTC_Find(T, groupName);
+  Result := (N <> nil);
+  if not Result then Exit;
+
+  fechaCreacion := N^.fechaCreacion;
+
+  M := N^.msgsHead;
+  while M <> nil do
+  begin
+    Inc(count);
+    M := M^.sig;
+  end;
+end;
+
+procedure BSTC_ListMessages(T: PBSTC; const groupName: String; lines: TStrings);
+var
+  N: PBSTC;
+  M: PMsg;
+begin
+  if lines <> nil then lines.Clear;
+
+  N := BSTC_Find(T, groupName);
+  if N = nil then Exit;
+
+  M := N^.msgsHead;
+  while M <> nil do
+  begin
+    lines.Add(Format('%s | %s | %s', [M^.fecha, M^.correo, M^.mensaje]));
+    M := M^.sig;
+  end;
+end;
+
 
 end.

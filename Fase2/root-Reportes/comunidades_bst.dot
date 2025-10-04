@@ -1,0 +1,13 @@
+digraph ComunidadesBST {
+  rankdir=TB;
+  node [style="rounded"];
+  n140458989543744 [shape=box, fontname="Helvetica", label="Grupo: Tareas\nCreado: 03-10-2025\nMensajes: 0"];
+  n140458989543744 -> n140458989544256;
+  n140458989543744 -> n140458989544640;
+  n140458989544256 [shape=box, fontname="Helvetica", label="Grupo: Series\nCreado: 03-10-2025\nMensajes: 0"];
+  n140458989544256 -> n140458989545152;
+  n140458989545152 [shape=box, fontname="Helvetica", label="Grupo: Proyectos\nCreado: 03-10-2025\nMensajes: 0"];
+  n140458989545152 -> n140458989545664;
+  n140458989545664 [shape=box, fontname="Helvetica", label="Grupo: Reddit\nCreado: 03-10-2025\nMensajes: 0"];
+  n140458989544640 [shape=box, fontname="Helvetica", label="Grupo: Ventas\nCreado: 03-10-2025\nMensajes: 0"];
+}

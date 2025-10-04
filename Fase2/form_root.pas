@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  usuarios, comunidades, carga_masiva_correos, form_comunidades_bst;
+  usuarios, comunidades, carga_masiva_correos, form_comunidades_bst,
+  FormMensajesComunidadesRoot, reportes_comunidades_bst, app_state;
 
 type
 
@@ -18,6 +19,8 @@ type
     BtnReporteRelaciones: TButton;
     BtnCerrarSesion: TButton;
     BtnCrearComunidadBST: TButton;
+    BtnVerMensajesComunidades: TButton;
+    BtnReporteComunidadesBST: TButton;
     CargaMasivaCorreos: TButton;
     ReporteComunidades: TButton;
     Comunidad: TButton;
@@ -26,9 +29,11 @@ type
     MemoLog: TMemo;
     OpenDialog1: TOpenDialog;
     procedure BtnCargaMasivaClick(Sender: TObject);
+    procedure BtnReporteComunidadesBSTClick(Sender: TObject);
     procedure BtnReporteRelacionesClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnReporteUsuariosClick(Sender: TObject);
+    procedure BtnVerMensajesComunidadesClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure CargaMasivaCorreosClick(Sender: TObject);
     procedure ComunidadClick(Sender: TObject);
@@ -90,6 +95,18 @@ begin
   end;
 end;
 
+procedure TFormRoot.BtnReporteComunidadesBSTClick(Sender: TObject);
+var
+  usuarioCarp: string;
+begin
+  usuarioCarp := Copy(UsuarioActualEmail, 1, Pos('@', UsuarioActualEmail) - 1);
+  if usuarioCarp = '' then usuarioCarp := 'usuario';
+
+  GenerarReporteComunidadesBSTPorEmail(UsuarioActualEmail);
+  ShowMessage('Reporte de Comunidades BST generado en "' +
+              usuarioCarp + '-Reportes/comunidades_bst.png".');
+end;
+
 procedure TFormRoot.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;
@@ -100,6 +117,13 @@ procedure TFormRoot.BtnReporteUsuariosClick(Sender: TObject);
 begin
   GenerarReporteUsuarios;
   ShowMessage('Reporte de Usuarios creado en "Root-Reportes/usuarios.dot".');
+end;
+
+procedure TFormRoot.BtnVerMensajesComunidadesClick(Sender: TObject);
+begin
+  if FormVerMensajes = nil then
+    FormVerMensajes := TFormVerMensajes.Create(Self);
+  FormVerMensajes.ShowModal;
 end;
 
 procedure TFormRoot.Button1Click(Sender: TObject);

@@ -17,7 +17,8 @@ uses
   reportes_root, reportes_usuario, comunidades, form_comunidades,
   reportes_comunidades, avl_borradores, app_state, form_borradores,
   bst_contactos, btree_favoritos, form_favoritos, carga_masiva_correos,
-bst_comunidades, form_comunidades_bst, form_mensaje_comunidad;
+bst_comunidades, form_comunidades_bst, form_mensaje_comunidad,
+FormMensajesComunidadesRoot;
 
 {$R *.res}
 
@@ -45,7 +46,8 @@ begin
   Application.CreateForm(TFormBorradores, FormBorradores);
   Application.CreateForm(TFormFavoritos, FormFavoritos);
   Application.CreateForm(TFormComunidadesBST, FormComunidadesBST);
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TFormMensajeComunidad, FormMensajeComunidad);
+  Application.CreateForm(TFormVerMensajes, FormVerMensajes);
   Application.Run;
 end.
 

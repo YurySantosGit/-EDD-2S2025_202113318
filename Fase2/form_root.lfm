@@ -1,10 +1,10 @@
 object FormRoot: TFormRoot
   Left = 1520
-  Height = 400
+  Height = 438
   Top = 32
   Width = 689
   Caption = 'Menu Principal'
-  ClientHeight = 400
+  ClientHeight = 438
   ClientWidth = 689
   OnCreate = FormCreate
   object Label1: TLabel
@@ -97,10 +97,28 @@ object FormRoot: TFormRoot
     Left = 72
     Height = 25
     Top = 336
-    Width = 171
+    Width = 208
     Caption = 'Comunidad BST'
     TabOrder = 8
     OnClick = BtnCrearComunidadBSTClick
+  end
+  object BtnVerMensajesComunidades: TButton
+    Left = 72
+    Height = 25
+    Top = 368
+    Width = 208
+    Caption = 'Ver Mensajes Comunidades'
+    TabOrder = 9
+    OnClick = BtnVerMensajesComunidadesClick
+  end
+  object BtnReporteComunidadesBST: TButton
+    Left = 72
+    Height = 25
+    Top = 400
+    Width = 208
+    Caption = 'Reporte Comunidades BST'
+    TabOrder = 10
+    OnClick = BtnReporteComunidadesBSTClick
   end
   object OpenDialog1: TOpenDialog
     Left = 616

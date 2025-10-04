@@ -13,6 +13,7 @@ var
   ContactosBST: PBST;
   FavoritosBTree: PBNode;
   ComunidadesBST: PBSTC;
+  UsuarioActualEmail: String;
 
 procedure AppStateInit;
 function  NextDraftId: Integer;

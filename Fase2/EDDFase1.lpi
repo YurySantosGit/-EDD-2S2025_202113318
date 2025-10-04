@@ -214,6 +214,17 @@
         <ComponentName Value="FormMensajeComunidad"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="formmensajescomunidadesroot.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormVerMensajes"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="FormMensajesComunidadesRoot"/>
+      </Unit>
+      <Unit>
+        <Filename Value="reportes_comunidades_bst.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
