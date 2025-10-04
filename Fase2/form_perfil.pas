@@ -40,7 +40,7 @@ implementation
 {$R *.lfm}
 
 uses
-  main, usuarios;
+  main, usuarios, app_state;
 
 { TFormPerfil }
 

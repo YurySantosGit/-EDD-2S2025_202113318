@@ -1,11 +1,11 @@
 object FormUsuario: TFormUsuario
   Left = 1520
-  Height = 483
+  Height = 370
   Top = 32
-  Width = 598
+  Width = 528
   Caption = 'Menu Principal'
-  ClientHeight = 483
-  ClientWidth = 598
+  ClientHeight = 370
+  ClientWidth = 528
   OnCreate = FormCreate
   object Label1: TLabel
     Left = 112
@@ -33,9 +33,9 @@ object FormUsuario: TFormUsuario
     OnClick = BtnEnviarCorreoClick
   end
   object BtnPapelera: TButton
-    Left = 72
+    Left = 336
     Height = 25
-    Top = 144
+    Top = 264
     Width = 174
     Caption = 'Papelera'
     TabOrder = 2
@@ -44,7 +44,7 @@ object FormUsuario: TFormUsuario
   object BtnProgramar: TButton
     Left = 72
     Height = 25
-    Top = 184
+    Top = 224
     Width = 174
     Caption = 'Programar Correo'
     TabOrder = 3
@@ -53,64 +53,73 @@ object FormUsuario: TFormUsuario
   object Button5: TButton
     Left = 72
     Height = 25
-    Top = 224
+    Top = 264
     Width = 174
     Caption = 'Correos Programados'
     TabOrder = 4
     OnClick = Button5Click
   end
   object Button6: TButton
-    Left = 72
+    Left = 336
     Height = 25
-    Top = 264
+    Top = 104
     Width = 174
     Caption = 'Agregar Contacto'
     TabOrder = 5
     OnClick = Button6Click
   end
   object BtnContactos: TButton
-    Left = 72
+    Left = 336
     Height = 25
-    Top = 304
+    Top = 64
     Width = 174
     Caption = 'Contactos'
     TabOrder = 6
     OnClick = BtnContactosClick
   end
   object BtnActualizarPerfil: TButton
-    Left = 72
+    Left = 336
     Height = 25
-    Top = 344
+    Top = 144
     Width = 174
     Caption = 'Actualizar Perfil'
     TabOrder = 7
     OnClick = BtnActualizarPerfilClick
   end
   object Button9: TButton
-    Left = 72
+    Left = 336
     Height = 25
-    Top = 384
+    Top = 184
     Width = 174
     Caption = 'Generar Reportes'
     TabOrder = 8
     OnClick = Button9Click
   end
   object BtnCerrarSesion: TButton
-    Left = 192
+    Left = 390
     Height = 25
-    Top = 448
+    Top = 328
     Width = 120
     Caption = 'Cerrar Sesion'
     TabOrder = 9
     OnClick = BtnCerrarSesionClick
   end
   object BtnBorradores: TButton
-    Left = 336
+    Left = 72
     Height = 25
-    Top = 64
+    Top = 144
     Width = 174
     Caption = 'Borradores'
     TabOrder = 10
     OnClick = BtnBorradoresClick
+  end
+  object BtnFavoritos: TButton
+    Left = 72
+    Height = 25
+    Top = 184
+    Width = 174
+    Caption = 'Favoritos'
+    TabOrder = 11
+    OnClick = BtnFavoritosClick
   end
 end

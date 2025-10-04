@@ -48,7 +48,7 @@ implementation
 {$R *.lfm}
 
 uses
-  usuarios, main;
+  usuarios, main, app_state;
 
 { TFormProgramarCorreo }
 

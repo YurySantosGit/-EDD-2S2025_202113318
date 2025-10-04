@@ -41,6 +41,8 @@ function UsuarioExisteEnSistema(const email: string): Boolean;
 function AgregarMiembro(const comunidad, email: string): Integer;
 procedure ListarComunidades(const L: TListaComunidades; items: TStrings);
 procedure ListarMiembros(const comunidad: string; items: TStrings);
+procedure ListarComunidadesDeUsuario(const email: string; items: TStrings);
+function  EsMiembroEnComunidad(const nombre, email: string): Boolean;
 
 procedure SembrarComunidadesDemo;
 
@@ -130,6 +132,56 @@ begin
   if c = nil then Exit;
   it := c^.miembros.cabeza;
   while it <> nil do begin items.Add(it^.email); it := it^.sig; end;
+end;
+
+
+function EsMiembroEnComunidad(const nombre, email: string): Boolean;
+var
+  c: PComunidad;
+  m: PMiembro;
+begin
+  Result := False;
+  c := BuscarComunidad(nombre);
+  if c = nil then Exit;
+
+  m := c^.miembros.cabeza;
+  while m <> nil do
+  begin
+    if SameText(Trim(m^.email), Trim(email)) then
+      Exit(True);
+    m := m^.sig;
+  end;
+end;
+
+procedure ListarComunidadesDeUsuario(const email: string; items: TStrings);
+var
+  itC: PComunidad;
+  itM: PMiembro;
+  pertenece: Boolean;
+begin
+  if items <> nil then items.Clear;
+
+  itC := ListaComunidades.cabeza;
+  while itC <> nil do
+  begin
+    pertenece := False;
+
+    itM := itC^.miembros.cabeza;
+    while itM <> nil do
+    begin
+      if SameText(Trim(itM^.email), Trim(email)) then
+      begin
+        pertenece := True;
+        Break;
+      end;
+      itM := itM^.sig;
+    end;
+
+    if pertenece and (items <> nil) then
+      items.Add(itC^.nombre);
+
+    itC := itC^.sig;
+  end;
 end;
 
 procedure SembrarComunidadesDemo;

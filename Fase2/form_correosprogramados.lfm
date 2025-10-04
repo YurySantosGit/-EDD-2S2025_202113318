@@ -5,7 +5,6 @@ object FormCorreosProgramados: TFormCorreosProgramados
   Width = 401
   ClientHeight = 344
   ClientWidth = 401
-  LCLVersion = '4.2.0.0'
   OnCreate = FormCreate
   object LblTitulo: TLabel
     Left = 128

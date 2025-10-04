@@ -135,8 +135,37 @@ begin
 end;
 
 procedure TFormRoot.CargaMasivaCorreosClick(Sender: TObject);
+var
+  agregados, rechazados: Integer;
+  log: TStringList;
 begin
+  if not Assigned(OpenDialog1) then
+  begin
+    ShowMessage('No se encontró OpenDialog1 en el formulario.');
+    Exit;
+  end;
 
+  OpenDialog1.Title  := 'Selecciona el archivo JSON de correos';
+  OpenDialog1.Filter := 'Archivos JSON|*.json|Todos|*.*';
+  if not OpenDialog1.Execute then Exit;
+
+  log := TStringList.Create;
+  try
+    CargaMasivaCorreosDesdeJSON(OpenDialog1.FileName, agregados, rechazados, log);
+
+    ShowMessage(Format('Carga masiva de correos finalizada.' + LineEnding +
+                       'Agregados: %d' + LineEnding +
+                       'Rechazados: %d',
+                       [agregados, rechazados]));
+
+    if Assigned(MemoLog) then
+    begin
+      MemoLog.Lines.Clear;
+      MemoLog.Lines.AddStrings(log);
+    end;
+  finally
+    log.Free;
+  end;
 end;
 
 procedure TFormRoot.ComunidadClick(Sender: TObject);

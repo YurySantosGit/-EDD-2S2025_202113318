@@ -9,7 +9,7 @@ uses
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
   bandejas, form_perfil, reportes_usuario, form_borradores, app_state, avl_borradores,
-  bst_contactos, btree_favoritos;
+  bst_contactos, btree_favoritos, form_favoritos;
 
 type
 
@@ -22,6 +22,7 @@ type
     BtnPapelera: TButton;
     BtnProgramar: TButton;
     BtnBorradores: TButton;
+    BtnFavoritos: TButton;
     Button5: TButton;
     Button6: TButton;
     BtnContactos: TButton;
@@ -32,6 +33,7 @@ type
     procedure BtnBorradoresClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnContactosClick(Sender: TObject);
+    procedure BtnFavoritosClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
     procedure BtnProgramarClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
@@ -97,6 +99,13 @@ procedure TFormUsuario.BtnContactosClick(Sender: TObject);
 begin
   FormContactos := TFormContactos.Create(Self);
   FormContactos.ShowModal;
+end;
+
+procedure TFormUsuario.BtnFavoritosClick(Sender: TObject);
+begin
+  if FormFavoritos = nil then
+    FormFavoritos := TFormFavoritos.Create(Self);
+  FormFavoritos.ShowModal;  // modal (recomendado)
 end;
 
 procedure TFormUsuario.BtnPapeleraClick(Sender: TObject);

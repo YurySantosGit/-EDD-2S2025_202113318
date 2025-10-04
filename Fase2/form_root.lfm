@@ -1,10 +1,10 @@
 object FormRoot: TFormRoot
   Left = 1520
-  Height = 362
+  Height = 400
   Top = 32
   Width = 689
   Caption = 'Menu Principal'
-  ClientHeight = 362
+  ClientHeight = 400
   ClientWidth = 689
   OnCreate = FormCreate
   object Label1: TLabel
@@ -71,14 +71,14 @@ object FormRoot: TFormRoot
     Height = 25
     Top = 256
     Width = 171
-    Caption = 'Comunidades'
+    Caption = 'Comunidades (F1)'
     TabOrder = 5
     OnClick = ComunidadClick
   end
   object ReporteComunidades: TButton
     Left = 72
     Height = 25
-    Top = 304
+    Top = 288
     Width = 171
     Caption = 'Reporte Comunidades'
     TabOrder = 6
@@ -92,6 +92,15 @@ object FormRoot: TFormRoot
     Caption = 'Carga Masiva Correos'
     TabOrder = 7
     OnClick = CargaMasivaCorreosClick
+  end
+  object BtnCrearComunidadBST: TButton
+    Left = 72
+    Height = 25
+    Top = 336
+    Width = 171
+    Caption = 'Comunidad BST'
+    TabOrder = 8
+    OnClick = BtnCrearComunidadBSTClick
   end
   object OpenDialog1: TOpenDialog
     Left = 616

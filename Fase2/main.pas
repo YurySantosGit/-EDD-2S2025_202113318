@@ -31,7 +31,6 @@ type
 
 var
   Form1: TForm1;
-  UsuarioActualEmail: String;
 
 implementation
 
@@ -39,7 +38,7 @@ implementation
 
 uses
   usuarios, form_root, form_usuario, pila_papelera, cola_correos, form_bandeja,
-  lista_doble, form_registro, contactos, bandejas, comunidades;
+  lista_doble, form_registro, contactos, bandejas, comunidades, app_state;
 
 { TForm1 }
 

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  usuarios, comunidades, carga_masiva_correos;
+  usuarios, comunidades, carga_masiva_correos, form_comunidades_bst;
 
 type
 
@@ -17,6 +17,7 @@ type
     BtnReporteUsuarios: TButton;
     BtnReporteRelaciones: TButton;
     BtnCerrarSesion: TButton;
+    BtnCrearComunidadBST: TButton;
     CargaMasivaCorreos: TButton;
     ReporteComunidades: TButton;
     Comunidad: TButton;
@@ -34,6 +35,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure MemoLogChange(Sender: TObject);
     procedure ReporteComunidadesClick(Sender: TObject);
+    procedure BtnCrearComunidadBSTClick(Sender: TObject);
   private
 
   public
@@ -188,6 +190,13 @@ procedure TFormRoot.ReporteComunidadesClick(Sender: TObject);
 begin
   GenerarReporteComunidades;
   ShowMessage('Reporte de comunidades generado.');
+end;
+
+procedure TFormRoot.BtnCrearComunidadBSTClick(Sender: TObject);
+begin
+  if FormComunidadesBST = nil then
+    FormComunidadesBST := TFormComunidadesBST.Create(Self);
+  FormComunidadesBST.ShowModal;
 end;
 
 end.

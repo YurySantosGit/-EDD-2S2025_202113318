@@ -40,7 +40,7 @@ implementation
 {$R *.lfm}
 
 uses
-  form_bandeja, bandejas, main;
+  form_bandeja, bandejas, main, app_state;
 
 { TFormCorreosProgramados }
 

@@ -198,6 +198,22 @@
         <Filename Value="carga_masiva_correos.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="bst_comunidades.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_comunidades_bst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormComunidadesBST"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_mensaje_comunidad.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormMensajeComunidad"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
