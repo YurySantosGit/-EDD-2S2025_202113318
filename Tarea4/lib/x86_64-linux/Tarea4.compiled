@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="/usr/bin/fpc" Date="1625802185"/>
+  <Params Value="-MObjFPC -Scghi -Cg -O1 -gw3 -gl -l -vewnhibq -Fi/home/yury/Escritorio/[EDD]2S2025_202113318/[EDD]2S2025_202113318/Tarea4/lib/x86_64-linux -Fu/home/yury/Escritorio/[EDD]2S2025_202113318/[EDD]2S2025_202113318/Tarea4/ -FU/home/yury/Escritorio/[EDD]2S2025_202113318/[EDD]2S2025_202113318/Tarea4/lib/x86_64-linux/ -FE/home/yury/Escritorio/[EDD]2S2025_202113318/[EDD]2S2025_202113318/Tarea4/ -o/home/yury/Escritorio/[EDD]2S2025_202113318/[EDD]2S2025_202113318/Tarea4/Tarea4 Tarea4.lpr"/>
+</CONFIG>

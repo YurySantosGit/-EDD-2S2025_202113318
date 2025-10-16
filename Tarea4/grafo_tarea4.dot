@@ -1,0 +1,16 @@
+graph G {
+  node [shape=circle];
+  "Antigua";
+  "Coban";
+  "Escuintla";
+  "Guatemala";
+  "Huehuetenango";
+  "Puerto Barrios";
+  "Quetzaltenango";
+  "Antigua" -- "Guatemala";
+  "Antigua" -- "Escuintla";
+  "Coban" -- "Guatemala";
+  "Coban" -- "Puerto Barrios";
+  "Escuintla" -- "Guatemala";
+  "Huehuetenango" -- "Quetzaltenango";
+}
