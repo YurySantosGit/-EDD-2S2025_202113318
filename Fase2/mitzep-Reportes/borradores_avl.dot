@@ -1,3 +1,10 @@
 digraph AVL {
   node [shape=box, fontname="Helvetica"];
+  "2" [label="ID: 2\nRemitente: mitzep@edd.com\nAsunto: Borrador 2\nMensaje: Borrador 2"];
+  "2" -> "1";
+  "2" -> "4";
+  "1" [label="ID: 1\nRemitente: mitzep@edd.com\nAsunto: Borrador 1\nMensaje: Borrador 1"];
+  "4" [label="ID: 4\nRemitente: mitzep@edd.com\nAsunto: Borrador 4\nMensaje: Borrador 4"];
+  "4" -> "5";
+  "5" [label="ID: 5\nRemitente: mitzep@edd.com\nAsunto: Borrador 5\nMensaje: Borrador 5"];
 }

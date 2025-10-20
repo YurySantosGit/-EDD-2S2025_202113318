@@ -1,0 +1,127 @@
+object FormRoot: TFormRoot
+  Left = 1520
+  Height = 438
+  Top = 32
+  Width = 689
+  Caption = 'Menu Principal'
+  ClientHeight = 438
+  ClientWidth = 689
+  OnCreate = FormCreate
+  object Label1: TLabel
+    Left = 144
+    Height = 18
+    Top = 16
+    Width = 33
+    Caption = 'Root'
+  end
+  object BtnCargaMasiva: TButton
+    Left = 72
+    Height = 25
+    Top = 64
+    Width = 171
+    Caption = 'Carga Masiva Usuarios'
+    TabOrder = 0
+    OnClick = BtnCargaMasivaClick
+  end
+  object BtnReporteUsuarios: TButton
+    Left = 72
+    Height = 25
+    Top = 160
+    Width = 171
+    Caption = 'Reporte de Usuarios'
+    TabOrder = 1
+    OnClick = BtnReporteUsuariosClick
+  end
+  object BtnReporteRelaciones: TButton
+    Left = 72
+    Height = 25
+    Top = 208
+    Width = 171
+    Caption = 'Reporte de Relaciones'
+    TabOrder = 2
+    OnClick = BtnReporteRelacionesClick
+  end
+  object BtnCerrarSesion: TButton
+    Left = 560
+    Height = 25
+    Top = 200
+    Width = 120
+    Caption = 'Cerrar Sesion'
+    TabOrder = 3
+    OnClick = BtnCerrarSesionClick
+  end
+  object MemoLog: TMemo
+    Left = 272
+    Height = 121
+    Top = 64
+    Width = 408
+    ScrollBars = ssAutoVertical
+    TabOrder = 4
+    OnChange = MemoLogChange
+  end
+  object Label2: TLabel
+    Left = 272
+    Height = 18
+    Top = 40
+    Width = 145
+    Caption = 'Detalles Carga Masiva'
+  end
+  object Comunidad: TButton
+    Left = 72
+    Height = 25
+    Top = 256
+    Width = 171
+    Caption = 'Comunidades (F1)'
+    TabOrder = 5
+    OnClick = ComunidadClick
+  end
+  object ReporteComunidades: TButton
+    Left = 72
+    Height = 25
+    Top = 288
+    Width = 171
+    Caption = 'Reporte Comunidades'
+    TabOrder = 6
+    OnClick = ReporteComunidadesClick
+  end
+  object CargaMasivaCorreos: TButton
+    Left = 72
+    Height = 25
+    Top = 112
+    Width = 171
+    Caption = 'Carga Masiva Correos'
+    TabOrder = 7
+    OnClick = CargaMasivaCorreosClick
+  end
+  object BtnCrearComunidadBST: TButton
+    Left = 72
+    Height = 25
+    Top = 336
+    Width = 208
+    Caption = 'Comunidad BST'
+    TabOrder = 8
+    OnClick = BtnCrearComunidadBSTClick
+  end
+  object BtnVerMensajesComunidades: TButton
+    Left = 72
+    Height = 25
+    Top = 368
+    Width = 208
+    Caption = 'Ver Mensajes Comunidades'
+    TabOrder = 9
+    OnClick = BtnVerMensajesComunidadesClick
+  end
+  object BtnReporteComunidadesBST: TButton
+    Left = 72
+    Height = 25
+    Top = 400
+    Width = 208
+    Caption = 'Reporte Comunidades BST'
+    TabOrder = 10
+    OnClick = BtnReporteComunidadesBSTClick
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 616
+    Top = 8
+  end
+end

@@ -1,13 +1,15 @@
 digraph ComunidadesBST {
   rankdir=TB;
   node [style="rounded"];
-  n140458989543744 [shape=box, fontname="Helvetica", label="Grupo: Tareas\nCreado: 03-10-2025\nMensajes: 0"];
-  n140458989543744 -> n140458989544256;
-  n140458989543744 -> n140458989544640;
-  n140458989544256 [shape=box, fontname="Helvetica", label="Grupo: Series\nCreado: 03-10-2025\nMensajes: 0"];
-  n140458989544256 -> n140458989545152;
-  n140458989545152 [shape=box, fontname="Helvetica", label="Grupo: Proyectos\nCreado: 03-10-2025\nMensajes: 0"];
-  n140458989545152 -> n140458989545664;
-  n140458989545664 [shape=box, fontname="Helvetica", label="Grupo: Reddit\nCreado: 03-10-2025\nMensajes: 0"];
-  n140458989544640 [shape=box, fontname="Helvetica", label="Grupo: Ventas\nCreado: 03-10-2025\nMensajes: 0"];
+  n128466166777536 [shape=box, fontname="Helvetica", label="Grupo: comunidad 1\nCreado: 11-10-2025\nMensajes: 2"];
+  n128466166777536 -> n128466166776960;
+  n128466166776960 [shape=box, fontname="Helvetica", label="Grupo: comunidad 2\nCreado: 11-10-2025\nMensajes: 0"];
+  n128466166776960 -> n128466166776512;
+  n128466166776512 [shape=box, fontname="Helvetica", label="Grupo: comunidad 3\nCreado: 11-10-2025\nMensajes: 1"];
+  n128466166776512 -> n128466166776384;
+  n128466166776384 [shape=box, fontname="Helvetica", label="Grupo: comunidad 4\nCreado: 11-10-2025\nMensajes: 0"];
+  n128466166776384 -> n128466166781248;
+  n128466166781248 [shape=box, fontname="Helvetica", label="Grupo: comunidad 5\nCreado: 11-10-2025\nMensajes: 0"];
+  n128466166781248 -> n128466166781696;
+  n128466166781696 [shape=box, fontname="Helvetica", label="Grupo: comunidad 6\nCreado: 11-10-2025\nMensajes: 1"];
 }

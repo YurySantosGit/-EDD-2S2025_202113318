@@ -1,0 +1,60 @@
+object FormControlLogueo: TFormControlLogueo
+  Left = 474
+  Height = 403
+  Top = 32
+  Width = 602
+  Caption = 'FormControlLogueo'
+  ClientHeight = 403
+  ClientWidth = 602
+  OnCreate = FormCreate
+  OnShow = FormShow
+  object MemoLog: TMemo
+    Left = 224
+    Height = 376
+    Top = 16
+    Width = 360
+    TabOrder = 0
+    OnChange = MemoLogChange
+    OnClick = MemoLogClick
+  end
+  object BtnExportar: TButton
+    Left = 16
+    Height = 32
+    Top = 24
+    Width = 168
+    Caption = 'Exportar'
+    TabOrder = 1
+    OnClick = BtnExportarClick
+  end
+  object BtnVisualizar: TButton
+    Left = 16
+    Height = 32
+    Top = 72
+    Width = 168
+    Caption = 'Visualizar'
+    TabOrder = 2
+    OnClick = BtnVisualizarClick
+  end
+  object BtnCerrar: TButton
+    Left = 16
+    Height = 32
+    Top = 360
+    Width = 88
+    Caption = 'Cerrar'
+    TabOrder = 3
+    OnClick = BtnCerrarClick
+  end
+  object BtnGenerarReporte: TButton
+    Left = 16
+    Height = 32
+    Top = 120
+    Width = 168
+    Caption = 'Generar Reporte Log'
+    TabOrder = 4
+    OnClick = BtnGenerarReporteClick
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 136
+    Top = 392
+  end
+end

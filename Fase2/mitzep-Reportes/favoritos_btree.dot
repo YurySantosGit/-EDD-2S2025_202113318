@@ -1,4 +1,8 @@
 digraph BTree_Favoritos {
   rankdir=TB;
-  n138976169094144 [shape=box, fontname="Helvetica", label="ID: 54488\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: 7\nFecha: 02-10-2025 23:53\nMensaje: 7\n---\nID: 54881\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: 1\nFecha: 02-10-2025 23:53\nMensaje: 1\n---\nID: 59284\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: 2\nFecha: 02-10-2025 23:53\nMensaje: 2\n---\nID: 84426\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: 4\nFecha: 02-10-2025 23:53\nMensaje: 4"];
+  n128466169361632 [shape=box, fontname="Helvetica", label="ID: 9\nRemitente: smejia@edd.com\nEstado: NL\nAsunto: Revisión del diseño\nFecha: 11-10-2025 11:17\nMensaje: Adjunto el nuevo prototipo del módulo de configuración."];
+  n128466169361632 -> n128466169358112;
+  n128466169361632 -> n128466169361984;
+  n128466169358112 [shape=box, fontname="Helvetica", label="ID: 6\nRemitente: jcorbet@edd.com\nEstado: NL\nAsunto: Solicitud de revisión\nFecha: 11-10-2025 11:17\nMensaje: ¿Podrías revisar los permisos en el servidor de staging?\n---\nID: 8\nRemitente: jcorbet@edd.com\nEstado: NL\nAsunto: Reporte técnico\nFecha: 11-10-2025 11:17\nMensaje: El informe de rendimiento ya está disponible."];
+  n128466169361984 [shape=box, fontname="Helvetica", label="ID: 10\nRemitente: bfox@edd.com\nEstado: NL\nAsunto: Documentación técnica\nFecha: 11-10-2025 11:17\nMensaje: Se completó la documentación del módulo principal.\n---\nID: 14\nRemitente: smejia@edd.com\nEstado: NL\nAsunto: Re: Entrega de informe\nFecha: 11-10-2025 11:17\nMensaje: Recibido, muchas gracias. Lo revisaré hoy mismo."];
 }

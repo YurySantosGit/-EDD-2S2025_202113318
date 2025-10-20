@@ -10,7 +10,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="14"/>
         <CursorPos X="16" Y="32"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -19,9 +19,9 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="48"/>
+        <TopLine Value="76"/>
         <CursorPos X="44" Y="59"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -29,9 +29,9 @@
         <Filename Value="usuarios.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="352"/>
-        <CursorPos Y="377"/>
-        <UsageCount Value="125"/>
+        <TopLine Value="307"/>
+        <CursorPos Y="318"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -40,11 +40,10 @@
         <ComponentName Value="FormRoot"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <TopLine Value="95"/>
         <CursorPos X="5" Y="108"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -54,10 +53,10 @@
         <ComponentName Value="FormUsuario"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="113"/>
-        <CursorPos X="5" Y="118"/>
-        <UsageCount Value="125"/>
+        <CursorPos X="20" Y="3"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -67,7 +66,7 @@
         <EditorIndex Value="34"/>
         <TopLine Value="147"/>
         <CursorPos X="22" Y="147"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -79,7 +78,7 @@
         <EditorIndex Value="24"/>
         <TopLine Value="219"/>
         <CursorPos X="43" Y="225"/>
-        <UsageCount Value="125"/>
+        <UsageCount Value="135"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -89,7 +88,7 @@
         <EditorIndex Value="35"/>
         <TopLine Value="15"/>
         <CursorPos Y="39"/>
-        <UsageCount Value="122"/>
+        <UsageCount Value="132"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -100,7 +99,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="30"/>
         <CursorPos X="62"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="130"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -110,7 +109,7 @@
         <EditorIndex Value="31"/>
         <TopLine Value="73"/>
         <CursorPos X="5" Y="101"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="129"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -122,7 +121,7 @@
         <EditorIndex Value="32"/>
         <TopLine Value="37"/>
         <CursorPos X="28" Y="51"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="127"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -135,7 +134,7 @@
         <EditorIndex Value="33"/>
         <TopLine Value="31"/>
         <CursorPos X="47" Y="42"/>
-        <UsageCount Value="113"/>
+        <UsageCount Value="123"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -148,7 +147,7 @@
         <EditorIndex Value="29"/>
         <TopLine Value="55"/>
         <CursorPos X="3" Y="79"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="119"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -158,7 +157,7 @@
         <EditorIndex Value="28"/>
         <TopLine Value="187"/>
         <CursorPos X="18" Y="34"/>
-        <UsageCount Value="101"/>
+        <UsageCount Value="111"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -170,7 +169,7 @@
         <EditorIndex Value="26"/>
         <TopLine Value="181"/>
         <CursorPos X="10" Y="181"/>
-        <UsageCount Value="100"/>
+        <UsageCount Value="110"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -183,7 +182,7 @@
         <EditorIndex Value="18"/>
         <TopLine Value="94"/>
         <CursorPos X="26" Y="102"/>
-        <UsageCount Value="97"/>
+        <UsageCount Value="107"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -196,7 +195,7 @@
         <EditorIndex Value="20"/>
         <TopLine Value="76"/>
         <CursorPos X="7" Y="78"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="101"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -205,7 +204,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="27"/>
         <CursorPos X="57" Y="22"/>
-        <UsageCount Value="91"/>
+        <UsageCount Value="101"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -217,7 +216,7 @@
         <EditorIndex Value="19"/>
         <TopLine Value="34"/>
         <CursorPos X="28" Y="43"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="97"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -227,7 +226,7 @@
         <EditorIndex Value="17"/>
         <TopLine Value="231"/>
         <CursorPos X="29" Y="240"/>
-        <UsageCount Value="82"/>
+        <UsageCount Value="92"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -236,7 +235,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="4"/>
         <CursorPos X="76" Y="21"/>
-        <UsageCount Value="81"/>
+        <UsageCount Value="91"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -245,7 +244,7 @@
         <EditorIndex Value="15"/>
         <TopLine Value="175"/>
         <CursorPos X="21" Y="183"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="89"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -257,7 +256,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="85"/>
         <CursorPos X="49" Y="90"/>
-        <UsageCount Value="79"/>
+        <UsageCount Value="89"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -267,7 +266,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="20"/>
         <CursorPos X="58" Y="20"/>
-        <UsageCount Value="78"/>
+        <UsageCount Value="88"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -276,7 +275,7 @@
         <EditorIndex Value="22"/>
         <TopLine Value="190"/>
         <CursorPos Y="213"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="76"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -285,7 +284,7 @@
         <EditorIndex Value="23"/>
         <TopLine Value="10"/>
         <CursorPos X="29" Y="29"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -297,7 +296,7 @@
         <EditorIndex Value="12"/>
         <TopLine Value="13"/>
         <CursorPos X="44" Y="25"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="69"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -307,7 +306,7 @@
         <EditorIndex Value="21"/>
         <TopLine Value="124"/>
         <CursorPos X="58" Y="135"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="63"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -316,7 +315,7 @@
         <EditorIndex Value="25"/>
         <TopLine Value="221"/>
         <CursorPos Y="437"/>
-        <UsageCount Value="47"/>
+        <UsageCount Value="57"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -328,15 +327,9 @@
         <EditorIndex Value="13"/>
         <TopLine Value="117"/>
         <CursorPos X="46" Y="127"/>
-        <UsageCount Value="46"/>
+        <UsageCount Value="56"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="form_contactos.lfm"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="4"/>
-        <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="carga_masiva_correos.pas"/>
@@ -344,7 +337,7 @@
         <EditorIndex Value="14"/>
         <TopLine Value="201"/>
         <CursorPos X="9" Y="216"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -352,18 +345,19 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="10"/>
         <CursorPos X="26" Y="200"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="form_comunidades_bst.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormComunidadesBST"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="4"/>
         <TopLine Value="96"/>
         <CursorPos X="9" Y="108"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="36"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -371,11 +365,12 @@
         <Filename Value="form_mensaje_comunidad.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormMensajeComunidad"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="16"/>
         <TopLine Value="76"/>
         <CursorPos Y="101"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="35"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -383,11 +378,12 @@
         <Filename Value="formmensajescomunidadesroot.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormVerMensajes"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FormMensajesComunidadesRoot"/>
         <EditorIndex Value="11"/>
         <CursorPos X="14" Y="9"/>
-        <UsageCount Value="21"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -396,15 +392,17 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
         <CursorPos X="60" Y="34"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="form_contactos.lfm"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="3"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="bst_comunidades.pas"/>
-        <Caret Line="236" Column="13" TopLine="215"/>
-      </Position>
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="bst_comunidades.pas"/>
         <Caret Line="235" Column="52" TopLine="215"/>
@@ -494,10 +492,6 @@
       </Position>
       <Position>
         <Filename Value="form_root.pas"/>
-        <Caret Line="9" Column="75" TopLine="185"/>
-      </Position>
-      <Position>
-        <Filename Value="form_root.pas"/>
         <Caret Line="112" Column="5" TopLine="107"/>
       </Position>
       <Position>
@@ -519,6 +513,10 @@
       <Position>
         <Filename Value="form_root.pas"/>
         <Caret Line="10" Column="67"/>
+      </Position>
+      <Position>
+        <Filename Value="form_root.pas"/>
+        <Caret Line="108" Column="5" TopLine="95"/>
       </Position>
     </JumpHistory>
     <RunParams>

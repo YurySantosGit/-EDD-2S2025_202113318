@@ -1,4 +1,10 @@
 digraph BST_Contactos {
   node [shape=box, fontname="Helvetica"];
   "lgarcia@edd.com" [label="Email: lgarcia@edd.com\nNombre: Luis Garcia\nTel: 12345678"];
+  "lgarcia@edd.com" -> "gkroah-hartman@edd.com";
+  "lgarcia@edd.com" -> "mshuttleworth@edd.com";
+  "gkroah-hartman@edd.com" [label="Email: gkroah-hartman@edd.com\nNombre: Greg Kroah-Hartman\nTel: 31628954"];
+  "mshuttleworth@edd.com" [label="Email: mshuttleworth@edd.com\nNombre: Mark Shuttleworth\nTel: 76018423"];
+  "mshuttleworth@edd.com" -> "smejia@edd.com";
+  "smejia@edd.com" [label="Email: smejia@edd.com\nNombre: Steven Mejia\nTel: 23419875"];
 }

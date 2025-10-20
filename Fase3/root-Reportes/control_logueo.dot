@@ -1,0 +1,12 @@
+digraph ControlLogueo {
+  graph [bgcolor="white"];
+  rankdir=LR;
+  node [shape=record, style="rounded,filled", fillcolor="#E3F2FD", fontname="Helvetica"];
+  edge [arrowhead=vee, color="#555555"];
+  label="Control de Logueo (usuarios no-root)"; labelloc=top; fontsize=22;
+  n0 [label="{#1|Usuario: mitzep@edd.com|Entrada: 20-10-2025 16:09|Salida: 20-10-2025 16:10}"];
+  n1 [label="{#2|Usuario: smejia@edd.com|Entrada: 20-10-2025 16:11|Salida: 20-10-2025 16:12}"];
+  n2 [label="{#3|Usuario: bfox@edd.com|Entrada: 20-10-2025 16:12|Salida: 20-10-2025 16:13}"];
+  n0 -> n1;
+  n1 -> n2;
+}

@@ -1,0 +1,62 @@
+object FormBorradores: TFormBorradores
+  Left = 248
+  Height = 453
+  Top = 32
+  Width = 567
+  Caption = 'FormBorradores'
+  ClientHeight = 453
+  ClientWidth = 567
+  OnCreate = FormCreate
+  OnShow = FormShow
+  object MemoRecorridos: TMemo
+    Left = 72
+    Height = 288
+    Top = 24
+    Width = 454
+    TabOrder = 0
+    OnChange = MemoRecorridosChange
+  end
+  object BtnPre: TButton
+    Left = 72
+    Height = 25
+    Top = 328
+    Width = 128
+    Caption = 'PreOrden'
+    TabOrder = 1
+    OnClick = BtnPreClick
+  end
+  object BtnIn: TButton
+    Left = 72
+    Height = 25
+    Top = 360
+    Width = 128
+    Caption = 'InOrden'
+    TabOrder = 2
+    OnClick = BtnInClick
+  end
+  object BtnPost: TButton
+    Left = 72
+    Height = 25
+    Top = 392
+    Width = 128
+    Caption = 'PostOrden'
+    TabOrder = 3
+    OnClick = BtnPostClick
+  end
+  object EditID: TEdit
+    Left = 448
+    Height = 35
+    Top = 328
+    Width = 80
+    TabOrder = 4
+  end
+  object BtnCargarPorID: TButton
+    Left = 451
+    Height = 25
+    Top = 368
+    Width = 75
+    Caption = 'Enviar'
+    TabOrder = 5
+    OnClick = BtnCargarPorIDClick
+  end
+end
