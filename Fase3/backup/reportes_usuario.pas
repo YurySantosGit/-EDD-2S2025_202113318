@@ -484,7 +484,7 @@ begin
     dot.Add('  rankdir=LR;');
     dot.Add('  node [shape=record, style="rounded,filled", fillcolor="#E3F2FD", fontname="Helvetica"];');
     dot.Add('  edge [arrowhead=vee, color="#555555"];');
-    dot.Add('  label="Control de Logueo"; labelloc=top; fontsize=22;');
+    dot.Add('  label="Reporte Logueo"; labelloc=top; fontsize=22;');
 
     n := LoginLogCount;
     if n = 0 then

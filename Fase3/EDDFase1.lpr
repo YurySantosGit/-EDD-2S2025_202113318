@@ -19,7 +19,7 @@ uses
   bst_contactos, btree_favoritos, form_favoritos, carga_masiva_correos,
   bst_comunidades, form_comunidades_bst, form_mensaje_comunidad,
   FormMensajesComunidadesRoot, reportes_comunidades_bst, form_control_logueo,
-  merkle_favoritos, form_favoritos_merkle;
+  merkle_favoritos, form_favoritos_merkle, form_mi_logueo, blockchain;
 
 {$R *.res}
 
@@ -51,6 +51,7 @@ begin
   Application.CreateForm(TFormVerMensajes, FormVerMensajes);
   Application.CreateForm(TFormControlLogueo, FormControlLogueo);
   Application.CreateForm(TFormFavoritosMerkle, FormFavoritosMerkle);
+  Application.CreateForm(TFormMiLogueo, FormMiLogueo);
   Application.Run;
 end.
 

@@ -10,7 +10,7 @@ uses
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
   bandejas, form_perfil, reportes_usuario, form_borradores, app_state, avl_borradores,
   bst_contactos, btree_favoritos, form_favoritos, form_mensaje_comunidad,
-  form_favoritos_merkle, merkle_favoritos;
+  form_favoritos_merkle, merkle_favoritos, form_mi_logueo;
 
 type
 
@@ -26,6 +26,7 @@ type
     BtnFavoritos: TButton;
     BtnMensajeComunidad: TButton;
     BtnFavoritos_Merkle: TButton;
+    BtnMiLogueo: TButton;
     Button5: TButton;
     Button6: TButton;
     BtnContactos: TButton;
@@ -39,6 +40,7 @@ type
     procedure BtnFavoritosClick(Sender: TObject);
     procedure BtnFavoritos_MerkleClick(Sender: TObject);
     procedure BtnMensajeComunidadClick(Sender: TObject);
+    procedure BtnMiLogueoClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
     procedure BtnProgramarClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
@@ -129,6 +131,13 @@ begin
   FormMensajeComunidad.ShowModal;
 end;
 
+procedure TFormUsuario.BtnMiLogueoClick(Sender: TObject);
+begin
+  if FormMiLogueo = nil then
+    FormMiLogueo := TFormMiLogueo.Create(Self);
+  FormMiLogueo.ShowModal;
+end;
+
 procedure TFormUsuario.BtnPapeleraClick(Sender: TObject);
 begin
   FormPapelera := TFormPapelera.Create(Self);
@@ -170,6 +179,7 @@ begin
   GenerarReporteContactosBSTPorEmail(UsuarioActualEmail);
   GenerarReporteFavoritosBTreePorEmail(UsuarioActualEmail);
   Merkle_RebuildAndReport(UsuarioActualEmail);
+  GenerarReporteMiLogueoPorEmail(UsuarioActualEmail);
 
   ShowMessage('Reportes generados en "' + usuarioCarp + '-Reportes/".');
 end;

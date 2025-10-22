@@ -7,7 +7,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
   usuarios, comunidades, carga_masiva_correos, form_comunidades_bst,
-  FormMensajesComunidadesRoot, reportes_comunidades_bst, app_state;
+  FormMensajesComunidadesRoot, reportes_comunidades_bst, app_state,
+  form_control_logueo, blockchain;
 
 type
 
@@ -21,6 +22,8 @@ type
     BtnCrearComunidadBST: TButton;
     BtnVerMensajesComunidades: TButton;
     BtnReporteComunidadesBST: TButton;
+    BtnControlLogueo: TButton;
+    BtnGenerarBlockchainClick: TButton;
     CargaMasivaCorreos: TButton;
     ReporteComunidades: TButton;
     Comunidad: TButton;
@@ -29,6 +32,8 @@ type
     MemoLog: TMemo;
     OpenDialog1: TOpenDialog;
     procedure BtnCargaMasivaClick(Sender: TObject);
+    procedure BtnControlLogueoClick(Sender: TObject);
+    procedure BtnGenerarBlockchainClickClick(Sender: TObject);
     procedure BtnReporteComunidadesBSTClick(Sender: TObject);
     procedure BtnReporteRelacionesClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
@@ -41,6 +46,7 @@ type
     procedure MemoLogChange(Sender: TObject);
     procedure ReporteComunidadesClick(Sender: TObject);
     procedure BtnCrearComunidadBSTClick(Sender: TObject);
+
   private
 
   public
@@ -93,6 +99,19 @@ begin
   finally
     log.Free;
   end;
+end;
+
+procedure TFormRoot.BtnControlLogueoClick(Sender: TObject);
+begin
+  if FormControlLogueo = nil then
+    FormControlLogueo := TFormControlLogueo.Create(Self);
+  FormControlLogueo.ShowModal;
+end;
+
+procedure TFormRoot.BtnGenerarBlockchainClickClick(Sender: TObject);
+begin
+  GenerarReporteBlockchain_Global;
+  ShowMessage('Blockchain global generada en "root-Reportes/blockchain.png".');
 end;
 
 procedure TFormRoot.BtnReporteComunidadesBSTClick(Sender: TObject);

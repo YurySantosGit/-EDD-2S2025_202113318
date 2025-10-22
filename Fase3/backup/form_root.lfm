@@ -44,7 +44,7 @@ object FormRoot: TFormRoot
   object BtnCerrarSesion: TButton
     Left = 560
     Height = 25
-    Top = 200
+    Top = 400
     Width = 120
     Caption = 'Cerrar Sesion'
     TabOrder = 3
@@ -94,31 +94,49 @@ object FormRoot: TFormRoot
     OnClick = CargaMasivaCorreosClick
   end
   object BtnCrearComunidadBST: TButton
-    Left = 72
+    Left = 472
     Height = 25
-    Top = 336
+    Top = 208
     Width = 208
     Caption = 'Comunidad BST'
     TabOrder = 8
     OnClick = BtnCrearComunidadBSTClick
   end
   object BtnVerMensajesComunidades: TButton
-    Left = 72
+    Left = 472
     Height = 25
-    Top = 368
+    Top = 240
     Width = 208
     Caption = 'Ver Mensajes Comunidades'
     TabOrder = 9
     OnClick = BtnVerMensajesComunidadesClick
   end
   object BtnReporteComunidadesBST: TButton
-    Left = 72
+    Left = 472
     Height = 25
-    Top = 400
+    Top = 272
     Width = 208
     Caption = 'Reporte Comunidades BST'
     TabOrder = 10
     OnClick = BtnReporteComunidadesBSTClick
+  end
+  object BtnControlLogueo: TButton
+    Left = 72
+    Height = 25
+    Top = 344
+    Width = 171
+    Caption = 'Control de logueo'
+    TabOrder = 11
+    OnClick = BtnControlLogueoClick
+  end
+  object BtnGenerarBlockchainClick: TButton
+    Left = 72
+    Height = 25
+    Top = 384
+    Width = 171
+    Caption = 'Generar Blockchain'
+    TabOrder = 12
+    OnClick = BtnGenerarBlockchainClickClick
   end
   object OpenDialog1: TOpenDialog
     Left = 616

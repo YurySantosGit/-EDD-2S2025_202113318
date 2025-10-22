@@ -1,10 +1,10 @@
 object FormUsuario: TFormUsuario
   Left = 1520
-  Height = 370
+  Height = 412
   Top = 32
   Width = 528
   Caption = 'Menu Principal'
-  ClientHeight = 370
+  ClientHeight = 412
   ClientWidth = 528
   OnCreate = FormCreate
   object Label1: TLabel
@@ -35,7 +35,7 @@ object FormUsuario: TFormUsuario
   object BtnPapelera: TButton
     Left = 336
     Height = 25
-    Top = 264
+    Top = 312
     Width = 174
     Caption = 'Papelera'
     TabOrder = 2
@@ -96,9 +96,9 @@ object FormUsuario: TFormUsuario
     OnClick = Button9Click
   end
   object BtnCerrarSesion: TButton
-    Left = 392
+    Left = 390
     Height = 25
-    Top = 328
+    Top = 376
     Width = 120
     Caption = 'Cerrar Sesion'
     TabOrder = 9
@@ -139,5 +139,14 @@ object FormUsuario: TFormUsuario
     Caption = 'Favoritos Merkle'
     TabOrder = 13
     OnClick = BtnFavoritos_MerkleClick
+  end
+  object BtnMiLogueo: TButton
+    Left = 336
+    Height = 25
+    Top = 264
+    Width = 174
+    Caption = 'Mi Logueo'
+    TabOrder = 14
+    OnClick = BtnMiLogueoClick
   end
 end

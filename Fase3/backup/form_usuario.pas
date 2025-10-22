@@ -9,7 +9,8 @@ uses
   form_bandeja, lista_doble, form_papelera, form_correosprogramados,
   form_programarcorreo, form_agregar_contacto, form_contactos, form_enviarcorreo,
   bandejas, form_perfil, reportes_usuario, form_borradores, app_state, avl_borradores,
-  bst_contactos, btree_favoritos, form_favoritos, form_mensaje_comunidad;
+  bst_contactos, btree_favoritos, form_favoritos, form_mensaje_comunidad,
+  form_favoritos_merkle, merkle_favoritos, form_mi_logueo;
 
 type
 
@@ -24,6 +25,8 @@ type
     BtnBorradores: TButton;
     BtnFavoritos: TButton;
     BtnMensajeComunidad: TButton;
+    BtnFavoritos_Merkle: TButton;
+    BtnMiLogueo: TButton;
     Button5: TButton;
     Button6: TButton;
     BtnContactos: TButton;
@@ -35,7 +38,9 @@ type
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnContactosClick(Sender: TObject);
     procedure BtnFavoritosClick(Sender: TObject);
+    procedure BtnFavoritos_MerkleClick(Sender: TObject);
     procedure BtnMensajeComunidadClick(Sender: TObject);
+    procedure BtnMiLogueoClick(Sender: TObject);
     procedure BtnPapeleraClick(Sender: TObject);
     procedure BtnProgramarClick(Sender: TObject);
     procedure Button10Click(Sender: TObject);
@@ -112,11 +117,25 @@ begin
   FormFavoritos.ShowModal;  // modal (recomendado)
 end;
 
+procedure TFormUsuario.BtnFavoritos_MerkleClick(Sender: TObject);
+begin
+  if FormFavoritosMerkle = nil then
+    FormFavoritosMerkle := TFormFavoritosMerkle.Create(Self);
+  FormFavoritosMerkle.ShowModal;
+end;
+
 procedure TFormUsuario.BtnMensajeComunidadClick(Sender: TObject);
 begin
   if FormMensajeComunidad = nil then
     FormMensajeComunidad := TFormMensajeComunidad.Create(Self);
   FormMensajeComunidad.ShowModal;
+end;
+
+procedure TFormUsuario.BtnMiLogueoClick(Sender: TObject);
+begin
+  if FormMiLogueo = nil then
+    FormMiLogueo := TFormMiLogueo.Create(Self);
+  FormMiLogueo.ShowModal;
 end;
 
 procedure TFormUsuario.BtnPapeleraClick(Sender: TObject);
@@ -159,7 +178,7 @@ begin
   GenerarReporteBorradoresAVLPorEmail(UsuarioActualEmail);
   GenerarReporteContactosBSTPorEmail(UsuarioActualEmail);
   GenerarReporteFavoritosBTreePorEmail(UsuarioActualEmail);
-
+  Merkle_RebuildAndReport(UsuarioActualEmail);
 
   ShowMessage('Reportes generados en "' + usuarioCarp + '-Reportes/".');
 end;

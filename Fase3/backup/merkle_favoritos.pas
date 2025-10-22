@@ -165,13 +165,13 @@ begin
   Rewrite(f);
   try
     Writeln(f, 'digraph MerkleFavoritos {');
-    Writeln(f, '  rankdir=BT;');
+    Writeln(f, '  rankdir=TB;');
     Writeln(f, '  node [shape=box, fontname="Helvetica"];');
 
     lvl := 0;
     while (lvl <= High(lvlLists)) and (lvlLists[lvl] <> nil) do
     begin
-      Writeln(f, Format('  subgraph cluster_L%d { label="Nivel %d"; labelloc=top; style="rounded"; color="#dddddd";', [lvl, lvl]));
+      Writeln(f, '  { rank=same;');
       for i := 0 to lvlLists[lvl].Count - 1 do
       begin
         nodeId := IdOf(lvl, i);
@@ -195,7 +195,7 @@ begin
 
     root := RootFromLevels;
     if root <> '' then
-      Writeln(f, '  { rank=source; root [shape=ellipse, style="filled", fillcolor="#C8E6C9", label="Merkle Root\l', Esc(root), '"]; }');
+      Writeln(f, '  { rank=sink; root [shape=ellipse, style="filled", fillcolor="#C8E6C9", label="Merkle Root\l', root, '"]; }');
 
     Writeln(f, '}');
   finally

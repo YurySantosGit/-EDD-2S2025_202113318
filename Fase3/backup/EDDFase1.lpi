@@ -243,7 +243,18 @@
         <Filename Value="form_favoritos_merkle.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormFavoritosMerkle"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_mi_logueo.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormMiLogueo"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="blockchain.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>

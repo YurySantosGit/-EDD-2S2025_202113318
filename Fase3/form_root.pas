@@ -23,6 +23,7 @@ type
     BtnVerMensajesComunidades: TButton;
     BtnReporteComunidadesBST: TButton;
     BtnControlLogueo: TButton;
+    BtnGenerarBlockchainClick: TButton;
     CargaMasivaCorreos: TButton;
     ReporteComunidades: TButton;
     Comunidad: TButton;
@@ -32,6 +33,7 @@ type
     OpenDialog1: TOpenDialog;
     procedure BtnCargaMasivaClick(Sender: TObject);
     procedure BtnControlLogueoClick(Sender: TObject);
+    procedure BtnGenerarBlockchainClickClick(Sender: TObject);
     procedure BtnReporteComunidadesBSTClick(Sender: TObject);
     procedure BtnReporteRelacionesClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
@@ -59,7 +61,7 @@ implementation
 {$R *.lfm}
 
 uses
-  main, reportes_root, bandejas, reportes_comunidades, form_comunidades;
+  main, reportes_root, bandejas, reportes_comunidades, form_comunidades, blockchain;
 
 { TFormRoot }
 
@@ -104,6 +106,12 @@ begin
   if FormControlLogueo = nil then
     FormControlLogueo := TFormControlLogueo.Create(Self);
   FormControlLogueo.ShowModal;
+end;
+
+procedure TFormRoot.BtnGenerarBlockchainClickClick(Sender: TObject);
+begin
+  GenerarReporteBlockchain_Global;
+  ShowMessage('Blockchain global generada en "root-Reportes/blockchain.png".');
 end;
 
 procedure TFormRoot.BtnReporteComunidadesBSTClick(Sender: TObject);

@@ -1,9 +1,0 @@
-digraph Papelera {
-  graph [splines=ortho, bgcolor="white"];
-  rankdir=TB;
-  node [shape=box, style="filled", fillcolor="#FFECB3", fontname="Helvetica"];
-  edge [arrowhead=vee];
-  subgraph cluster_pila { label="Papelera (mitzep@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
-    empty [label="(papelera vacía)"];
-  }
-}

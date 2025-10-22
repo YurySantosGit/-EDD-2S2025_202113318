@@ -21,6 +21,7 @@ procedure SyncBSTContactosDesdeLista(const ownerEmail: String);
 procedure GenerarReporteFavoritosBTreePorEmail(const UsuarioEmail: String);
 
 procedure ReporteLogueos(const carpeta: string);
+procedure GenerarReporteMiLogueoPorEmail(const UsuarioEmail: String);
 
 
 
@@ -526,6 +527,73 @@ begin
   end;
 
   RunDot(rutaDot, rutaPng);
+end;
+
+procedure GenerarReporteMiLogueoPorEmail(const UsuarioEmail: String);
+var
+  usuarioCarp, dirU, dotFile, pngFile, dotPath: String;
+  f: Text;
+  i, idx, n: Integer;
+  e: TLogEntry;
+  P: TProcess;
+begin
+  usuarioCarp := Copy(UsuarioEmail, 1, Pos('@', UsuarioEmail) - 1);
+  if usuarioCarp = '' then usuarioCarp := 'usuario';
+  dirU := usuarioCarp + '-Reportes' + DirectorySeparator;
+  ForceDirectories(dirU);
+
+  dotFile := dirU + 'mi_logueo.dot';
+  pngFile := dirU + 'mi_logueo.png';
+
+  Assign(f, dotFile); Rewrite(f);
+  try
+    Writeln(f, 'digraph MiLogueo {');
+    Writeln(f, '  rankdir=TB;');
+    Writeln(f, '  node [shape=box, style="rounded", fontname="Helvetica"];');
+
+    idx := 0;
+    n := LoginLogCount;
+    for i := 0 to n - 1 do
+    begin
+      e := GetLoginLog(i);
+      if SameText(Trim(e.usuario), Trim(UsuarioEmail)) then
+      begin
+        Inc(idx);
+        Writeln(f, Format('  n%d [label="Entrada: %s\lSalida: %s"];',
+                 [idx,
+                  StringReplace(e.entrada, '"','\"',[rfReplaceAll]),
+                  StringReplace(e.salida , '"','\"',[rfReplaceAll])]));
+        if idx > 1 then
+          Writeln(f, Format('  n%d -> n%d;', [idx-1, idx]));
+      end;
+    end;
+
+    if idx = 0 then
+      Writeln(f, '  empty [label="(sin registros)"];');
+
+    Writeln(f, '}');
+  finally
+    Close(f);
+  end;
+
+  dotPath := FindDefaultExecutablePath({$IFDEF WINDOWS}'dot.exe'{$ELSE}'dot'{$ENDIF});
+  if (dotPath = '') and FileExists('/usr/bin/dot') then dotPath := '/usr/bin/dot';
+
+  if (dotPath <> '') then
+  begin
+    P := TProcess.Create(nil);
+    try
+      P.Executable := dotPath;
+      P.Parameters.Add('-Tpng');
+      P.Parameters.Add(dotFile);
+      P.Parameters.Add('-o');
+      P.Parameters.Add(pngFile);
+      P.Options := [poWaitOnExit];
+      P.Execute;
+    finally
+      P.Free;
+    end;
+  end;
 end;
 
 
