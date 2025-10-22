@@ -16,10 +16,10 @@ type
     BtnVerPorID: TButton;
     BtnRefrescar: TButton;
     EditID: TEdit;
-    Label1: TLabel;     // "Favoritos"
-    Label2: TLabel;     // "ID:"
-    LblCount: TLabel;   // "Favoritos: 0"
-    MemoFav: TMemo;     // listado
+    Label1: TLabel;
+    Label2: TLabel;
+    LblCount: TLabel;
+    MemoFav: TMemo;
     procedure BtnCerrarClick(Sender: TObject);
     procedure BtnEliminarPorIDClick(Sender: TObject);
     procedure BtnRefrescarClick(Sender: TObject);
@@ -46,7 +46,6 @@ uses
   reportes_usuario, form_bandeja, main;
 
 var
-  // Variables de módulo para el callback global
   gFavSL: TStringList = nil;
   gFavCount: Integer = 0;
 
@@ -85,14 +84,12 @@ var
 begin
   if not ParseID(id) then Exit;
 
-  // Verifica existencia en B-Tree
   if BFav_Search(FavoritosBTree, id) = nil then
   begin
     ShowMessage('El ID no está en Favoritos.');
     Exit;
   end;
 
-  // Busca el correo en la bandeja del usuario actual
   pB := ObtenerBandejaPtr(UsuarioActualEmail);
   C := BuscarCorreo(pB^, id);
   if C = nil then
@@ -101,7 +98,6 @@ begin
     Exit;
   end;
 
-  // Mostrar y marcar como leído
   ShowMessage('De: ' + C^.remitente + LineEnding +
               'Asunto: ' + C^.asunto + LineEnding +
               'Fecha: ' + C^.fecha + LineEnding +
@@ -109,7 +105,6 @@ begin
 
   C^.estado := 'L';
 
-  // Actualizar también en el B-Tree (estado cambió)
   F.id        := C^.id;
   F.remitente := C^.remitente;
   F.estado    := C^.estado;
@@ -136,7 +131,6 @@ begin
     Exit;
   end;
 
-  // Quitar la marca en la bandeja si el correo existe
   pB := ObtenerBandejaPtr(UsuarioActualEmail);
   C := BuscarCorreo(pB^, id);
   if C <> nil then
@@ -172,11 +166,10 @@ var
 begin
   SL := TStringList.Create;
   try
-    // Prepara variables del callback global
     gFavSL := SL;
     gFavCount := 0;
 
-    BFav_InOrder(FavoritosBTree, @AddLineGlobal); // callback global (no anidado)
+    BFav_InOrder(FavoritosBTree, @AddLineGlobal);
     MemoFav.Lines.Assign(SL);
     LblCount.Caption := 'Favoritos: ' + IntToStr(gFavCount);
   finally
@@ -185,7 +178,6 @@ begin
   end;
 end;
 
-// Handlers vacíos del diseñador (puedes quitarlos del .lfm si no los usas)
 procedure TFormFavoritos.EditIDChange(Sender: TObject);
 begin
 end;

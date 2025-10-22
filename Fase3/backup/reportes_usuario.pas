@@ -465,6 +465,7 @@ var
   rutaDot, rutaPng: string;
   i, n  : Integer;
   e     : TLogEntry;
+  prevIdx: Integer;
 
   function Esc(const s: string): string;
   begin
@@ -483,7 +484,7 @@ begin
     dot.Add('  rankdir=LR;');
     dot.Add('  node [shape=record, style="rounded,filled", fillcolor="#E3F2FD", fontname="Helvetica"];');
     dot.Add('  edge [arrowhead=vee, color="#555555"];');
-    dot.Add('  label="Control de Logueo (usuarios no-root)"; labelloc=top; fontsize=22;');
+    dot.Add('  label="Control de Logueo"; labelloc=top; fontsize=22;');
 
     n := LoginLogCount;
     if n = 0 then
@@ -504,7 +505,7 @@ begin
         ));
       end;
 
-      var prevIdx := -1;
+      prevIdx := -1;
       for i := 0 to n-1 do
       begin
         e := GetLoginLog(i);
@@ -515,7 +516,7 @@ begin
       end;
 
       if prevIdx = -1 then
-        dot.Add('  empty [shape=box, label="(sin registros de usuarios no-root)"];');
+        dot.Add('  empty [shape=box, label="(sin registros de usuarios)"];');
     end;
 
     dot.Add('}');
@@ -526,6 +527,7 @@ begin
 
   RunDot(rutaDot, rutaPng);
 end;
+
 
 
 end.

@@ -232,6 +232,17 @@
         <Filename Value="form_control_logueo.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormControlLogueo"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="merkle_favoritos.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="form_favoritos_merkle.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormFavoritosMerkle"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
     </Units>

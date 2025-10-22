@@ -1,0 +1,18 @@
+digraph CorreosRecibidos {
+  graph [splines=ortho, bgcolor="white"];
+  rankdir=LR;
+  node [shape=record, style="rounded,filled", fillcolor="#C9DFEC", fontname="Helvetica"];
+  edge [color="#2E2E2E", arrowsize=0.8];
+  subgraph cluster_lista { label="Correos Recibidos (mitzep@edd.com)"; labelloc=top; fontsize=22; style="rounded"; color="#C0C0C0";
+    n0 [label="{ID: 1|Remitente: lgarcia@edd.com|Asunto: Reunión de proyecto|Fecha: 22-10-2025 01:56|Estado: NL}"];
+    n1 [label="{ID: 2|Remitente: lgarcia@edd.com|Asunto: Reporte semanal|Fecha: 22-10-2025 01:56|Estado: L}"];
+    n0 -> n1;
+    n1 -> n0;
+    n2 [label="{ID: 14|Remitente: smejia@edd.com|Asunto: Re: Entrega de informe|Fecha: 22-10-2025 01:56|Estado: NL}"];
+    n1 -> n2;
+    n2 -> n1;
+    n3 [label="{ID: 21|Remitente: jcorbet@edd.com|Asunto: Artículo técnico|Fecha: 22-10-2025 01:56|Estado: L}"];
+    n2 -> n3;
+    n3 -> n2;
+  }
+}

@@ -116,9 +116,9 @@ object FormUsuario: TFormUsuario
   object BtnFavoritos: TButton
     Left = 72
     Height = 25
-    Top = 184
+    Top = 304
     Width = 174
-    Caption = 'Favoritos'
+    Caption = 'Favoritos (Fase 2)'
     TabOrder = 11
     OnClick = BtnFavoritosClick
   end
@@ -130,5 +130,14 @@ object FormUsuario: TFormUsuario
     Caption = 'Mensaje Comunidad'
     TabOrder = 12
     OnClick = BtnMensajeComunidadClick
+  end
+  object BtnFavoritos_Merkle: TButton
+    Left = 72
+    Height = 25
+    Top = 184
+    Width = 174
+    Caption = 'Favoritos Merkle'
+    TabOrder = 13
+    OnClick = BtnFavoritos_MerkleClick
   end
 end

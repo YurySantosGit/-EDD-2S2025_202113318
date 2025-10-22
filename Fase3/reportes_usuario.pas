@@ -484,7 +484,7 @@ begin
     dot.Add('  rankdir=LR;');
     dot.Add('  node [shape=record, style="rounded,filled", fillcolor="#E3F2FD", fontname="Helvetica"];');
     dot.Add('  edge [arrowhead=vee, color="#555555"];');
-    dot.Add('  label="Control de Logueo (usuarios no-root)"; labelloc=top; fontsize=22;');
+    dot.Add('  label="Reporte Logueo"; labelloc=top; fontsize=22;');
 
     n := LoginLogCount;
     if n = 0 then
@@ -516,7 +516,7 @@ begin
       end;
 
       if prevIdx = -1 then
-        dot.Add('  empty [shape=box, label="(sin registros de usuarios no-root)"];');
+        dot.Add('  empty [shape=box, label="(sin registros de usuarios)"];');
     end;
 
     dot.Add('}');

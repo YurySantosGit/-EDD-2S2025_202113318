@@ -96,7 +96,7 @@ object FormUsuario: TFormUsuario
     OnClick = Button9Click
   end
   object BtnCerrarSesion: TButton
-    Left = 390
+    Left = 392
     Height = 25
     Top = 328
     Width = 120

@@ -1,0 +1,3 @@
+digraph BST_Contactos {
+  node [shape=box, fontname="Helvetica"];
+}

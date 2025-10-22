@@ -1,0 +1,4 @@
+digraph BTree_Favoritos {
+  rankdir=TB;
+  n138997930194848 [shape=box, fontname="Helvetica", label="ID: 1\nRemitente: lgarcia@edd.com\nEstado: NL\nAsunto: Reunión de proyecto\nFecha: 22-10-2025 01:56\nMensaje: Confirmar asistencia a la reunión de equipo del lunes.\n---\nID: 2\nRemitente: lgarcia@edd.com\nEstado: L\nAsunto: Reporte semanal\nFecha: 22-10-2025 01:56\nMensaje: Adjunto el reporte semanal de actividades del área de desarrollo.\n---\nID: 14\nRemitente: smejia@edd.com\nEstado: NL\nAsunto: Re: Entrega de informe\nFecha: 22-10-2025 01:56\nMensaje: Recibido, muchas gracias. Lo revisaré hoy mismo.\n---\nID: 21\nRemitente: jcorbet@edd.com\nEstado: L\nAsunto: Artículo técnico\nFecha: 22-10-2025 01:56\nMensaje: He publicado un artículo sobre el nuevo scheduler, te puede interesar."];
+}

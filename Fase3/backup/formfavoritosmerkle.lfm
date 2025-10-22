@@ -1,0 +1,7 @@
+object form_favoritos_merkle: Tform_favoritos_merkle
+  Left = 436
+  Height = 240
+  Top = 32
+  Width = 320
+  Caption = 'form_favoritos_merkle'
+end
