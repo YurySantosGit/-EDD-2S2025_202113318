@@ -5,7 +5,7 @@ unit contactos;
 interface
 
 uses
-  Classes, SysUtils, fpjson, jsonparser;
+  Classes, SysUtils, fpjson, jsonparser, usuarios;
 
 type
   PContacto = ^TContacto;
@@ -50,6 +50,13 @@ function ObtenerSiguienteIDContacto(const lista: TListaContactos): Integer;
 
 procedure CargarContactosDesdeJSON(var lista: TListaContactos; const archivo: String);
 procedure GuardarContactosEnJSON(const lista: TListaContactos; const archivo: String);
+
+function BuscarUsuarioPorUsuario(const username: string): PUsuario;
+procedure CargarContactosMasivoFormatoUsuarios(var lista: TListaContactos; const archivo: String);
+
+procedure CargarContactosMasivosDesdeJSON(const archivo: string;
+  out totalOwners, totalAgregados, totalIgnorados: Integer);
+
 
 implementation
 
@@ -306,6 +313,239 @@ begin
       WriteLn('Error al guardar contactos: ', E.Message);
   end;
 end;
+
+function BuscarUsuarioPorUsuario(const username: string): PUsuario;
+var
+  u: PUsuario;
+  k: string;
+begin
+  k := LowerCase(Trim(username));
+  u := ListaUsuarios;
+  while u <> nil do
+  begin
+    if LowerCase(Trim(u^.usuario)) = k then
+      Exit(u);
+    u := u^.siguiente;
+  end;
+  Result := nil;
+end;
+
+procedure CargarContactosMasivoFormatoUsuarios(var lista: TListaContactos; const archivo: String);
+var
+  sl         : TStringList;
+  jd         : TJSONData;
+  root       : TJSONObject;
+  arrUsers   : TJSONArray;
+  i, j       : Integer;
+  ownerUser  : String;
+  ownerU     : PUsuario;
+  contactsA  : TJSONArray;
+  contactUser: String;
+  contactU   : PUsuario;
+  ownerEmail : String;
+  nuevoId    : Integer;
+begin
+  if not FileExists(archivo) then Exit;
+
+  sl := TStringList.Create;
+  jd := nil;
+  try
+    sl.LoadFromFile(archivo);
+    jd := GetJSON(sl.Text);
+    if (jd = nil) or (jd.JSONType <> jtObject) then Exit;
+
+    root := TJSONObject(jd);
+    if not root.Find('Usuarios', arrUsers) then Exit;
+
+    for i := 0 to arrUsers.Count - 1 do
+    begin
+      if arrUsers.Items[i].JSONType <> jtObject then Continue;
+
+      ownerUser := TJSONObject(arrUsers.Objects[i]).Get('Usuario', '');
+      if ownerUser = '' then Continue;
+
+      ownerU := BuscarUsuarioPorUsuario(ownerUser);
+      if ownerU = nil then Continue;
+
+      if not TJSONObject(arrUsers.Objects[i]).Find('Contactos', contactsA) then Continue;
+      if contactsA = nil then Continue;
+
+      ownerEmail := ownerU^.email;
+
+      for j := 0 to contactsA.Count - 1 do
+      begin
+        if contactsA.Items[j].JSONType <> jtString then Continue;
+        contactUser := contactsA.Strings[j];
+        if Trim(contactUser) = '' then Continue;
+
+        contactU := BuscarUsuarioPorUsuario(contactUser);
+        if contactU = nil then Continue;
+
+        if ExisteContactoEmail(lista, ownerEmail, contactU^.email) then Continue;
+
+        nuevoId := ObtenerSiguienteIDContacto(lista);
+        AgregarContacto(
+          lista,
+          nuevoId,
+          ownerEmail,
+          contactU^.nombre,
+          contactU^.email,
+          contactU^.telefono
+        );
+      end;
+    end;
+
+  finally
+    if Assigned(jd) then jd.Free;
+    sl.Free;
+  end;
+end;
+
+
+procedure CargarContactosMasivosDesdeJSON(const archivo: string;
+  out totalOwners, totalAgregados, totalIgnorados: Integer);
+var
+  sl: TStringList;
+  jd: TJSONData;
+  root, item: TJSONObject;
+  arrUsers, arrContacts: TJSONArray;
+  i, j, nextId: Integer;
+  ownerId: Integer;
+  ownerUser, ownerEmail, contactUserOrEmail, contactEmail: String;
+  uOwner, uContact: PUsuario;
+
+  function GetStringAnyKey(const obj: TJSONObject; const keys: array of string; const def: string = ''): string;
+  var k: String; d: TJSONData;
+  begin
+    Result := def;
+    for k in keys do
+    begin
+      d := obj.FindPath(k);
+      if Assigned(d) then
+      begin
+        if (d.JSONType = jtString) then
+          Exit(d.AsString)
+        else
+          Exit(d.AsJSON);
+      end;
+    end;
+  end;
+
+  function FindArrayAnyKey(const obj: TJSONObject; const keys: array of string): TJSONArray;
+  var k: String; d: TJSONData;
+  begin
+    Result := nil;
+    for k in keys do
+    begin
+      d := obj.FindPath(k);
+      if Assigned(d) and (d.JSONType = jtArray) then
+        Exit(TJSONArray(d));
+    end;
+  end;
+
+begin
+  totalOwners := 0; totalAgregados := 0; totalIgnorados := 0;
+  if not FileExists(archivo) then Exit;
+
+  sl := TStringList.Create; jd := nil;
+  try
+    sl.LoadFromFile(archivo);
+    jd := GetJSON(sl.Text);
+    if not (jd.JSONType in [jtObject]) then Exit;
+
+    root := TJSONObject(jd);
+
+    arrUsers := nil;
+    if not root.Find('usuarios', arrUsers) then
+      root.Find('Usuarios', arrUsers);
+    if arrUsers = nil then Exit;
+
+    for i := 0 to arrUsers.Count - 1 do
+    begin
+      if arrUsers.Items[i].JSONType <> jtObject then Continue;
+      item := arrUsers.Objects[i];
+
+      ownerUser  := GetStringAnyKey(item, ['Usuario', 'usuario', 'owner', 'Owner', 'user'], '');
+      ownerEmail := GetStringAnyKey(item, ['email', 'Email', 'correo', 'Correo'], '');
+
+      if (ownerEmail = '') and (ownerUser <> '') then
+      begin
+        uOwner := BuscarUsuarioPorUsuario(ownerUser);
+        if Assigned(uOwner) then ownerEmail := uOwner^.email;
+      end;
+
+      if Trim(ownerEmail) = '' then
+      begin
+        Inc(totalIgnorados);
+        Continue;
+      end;
+
+      Inc(totalOwners);
+
+
+      arrContacts := FindArrayAnyKey(item, ['Contactos', 'contactos', 'friends']);
+      if arrContacts = nil then
+      begin
+
+        Continue;
+      end;
+
+      for j := 0 to arrContacts.Count - 1 do
+      begin
+
+        if arrContacts.Items[j].JSONType = jtString then
+          contactUserOrEmail := arrContacts.Strings[j]
+        else
+          contactUserOrEmail := arrContacts.Items[j].AsJSON;
+
+        contactUserOrEmail := Trim(contactUserOrEmail);
+        if contactUserOrEmail = '' then
+        begin
+          Inc(totalIgnorados);
+          Continue;
+        end;
+
+
+        if Pos('@', contactUserOrEmail) > 0 then
+          contactEmail := contactUserOrEmail
+        else
+        begin
+          uContact := BuscarUsuarioPorUsuario(contactUserOrEmail);
+          if Assigned(uContact) then
+            contactEmail := uContact^.email
+          else
+            contactEmail := '';
+        end;
+
+
+        if (contactEmail = '') then
+        begin
+          Inc(totalIgnorados);
+          Continue;
+        end;
+        if SameText(contactEmail, ownerEmail) then
+        begin
+          Inc(totalIgnorados);
+          Continue;
+        end;
+        if ExisteContactoEmail(ListaContactos, ownerEmail, contactEmail) then
+        begin
+          Inc(totalIgnorados);
+          Continue;
+        end;
+
+        nextId := ObtenerSiguienteIDContacto(ListaContactos);
+        AgregarContacto(ListaContactos, nextId, ownerEmail, contactEmail, contactEmail, ''); // nombre=email si no hay nombre
+        Inc(totalAgregados);
+      end;
+    end;
+
+  finally
+    if Assigned(jd) then jd.Free;
+    sl.Free;
+  end;
+end;
+
 
 end.
 

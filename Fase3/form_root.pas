@@ -24,6 +24,8 @@ type
     BtnReporteComunidadesBST: TButton;
     BtnControlLogueo: TButton;
     BtnGenerarBlockchainClick: TButton;
+    BtnReporteGrafo: TButton;
+    BtnCargaContactos: TButton;
     CargaMasivaCorreos: TButton;
     ReporteComunidades: TButton;
     Comunidad: TButton;
@@ -35,11 +37,12 @@ type
     procedure BtnControlLogueoClick(Sender: TObject);
     procedure BtnGenerarBlockchainClickClick(Sender: TObject);
     procedure BtnReporteComunidadesBSTClick(Sender: TObject);
+    procedure BtnReporteGrafoClick(Sender: TObject);
     procedure BtnReporteRelacionesClick(Sender: TObject);
     procedure BtnCerrarSesionClick(Sender: TObject);
     procedure BtnReporteUsuariosClick(Sender: TObject);
     procedure BtnVerMensajesComunidadesClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure BtnCargaContactosClick(Sender: TObject);
     procedure CargaMasivaCorreosClick(Sender: TObject);
     procedure ComunidadClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -61,7 +64,9 @@ implementation
 {$R *.lfm}
 
 uses
-  main, reportes_root, bandejas, reportes_comunidades, form_comunidades, blockchain;
+  main, reportes_root, bandejas, reportes_comunidades, form_comunidades, blockchain,
+  grafo_correos, contactos,
+  fpjson, jsonparser;
 
 { TFormRoot }
 
@@ -126,6 +131,17 @@ begin
               usuarioCarp + '-Reportes/comunidades_bst.png".');
 end;
 
+procedure TFormRoot.BtnReporteGrafoClick(Sender: TObject);
+  var
+  outDir: string;
+begin
+  G_RebuildFromContactList;
+  outDir := 'root-Reportes' + DirectorySeparator;
+  G_SaveDOT_PNG_All(outDir);
+  ShowMessage('Grafo global generado en: ' + outDir);
+
+end;
+
 procedure TFormRoot.BtnCerrarSesionClick(Sender: TObject);
 begin
   Form1.Show;
@@ -145,39 +161,27 @@ begin
   FormVerMensajes.ShowModal;
 end;
 
-procedure TFormRoot.Button1Click(Sender: TObject);
-var
-  agregados, rechazados: Integer;
-  log: TStringList;
-begin
-  if not Assigned(OpenDialog1) then
+procedure TFormRoot.BtnCargaContactosClick(Sender: TObject);
+  var
+    ruta, outDir: string;
+    owners, agregados, ignorados: Integer;
   begin
-    ShowMessage('No se encontró OpenDialog1 en el formulario.');
-    Exit;
+    OpenDialog1.Title := 'Selecciona archivo de contactos';
+    OpenDialog1.Filter := 'JSON|*.json|Todos|*.*';
+    OpenDialog1.Options := OpenDialog1.Options + [ofFileMustExist];
+
+    if not OpenDialog1.Execute then Exit;
+    ruta := OpenDialog1.FileName;
+
+
+    CargarContactosMasivosDesdeJSON(ruta, owners, agregados, ignorados);
+    ShowMessage(Format('Owners procesados: %d | Agregados: %d | Ignorados: %d',
+                       [owners, agregados, ignorados]));
+
+    G_RebuildFromContactList;
+    outDir := 'root-Reportes' + DirectorySeparator;
+    G_SaveDOT_PNG_All(outDir);
   end;
-
-  OpenDialog1.Title  := 'Selecciona el archivo JSON de correos';
-  OpenDialog1.Filter := 'Archivos JSON|*.json|Todos|*.*';
-  if not OpenDialog1.Execute then Exit;
-
-  log := TStringList.Create;
-  try
-    CargaMasivaCorreosDesdeJSON(OpenDialog1.FileName, agregados, rechazados, log);
-
-    ShowMessage(Format('Carga masiva de correos finalizada.' + LineEnding +
-                       'Agregados: %d' + LineEnding +
-                       'Rechazados: %d',
-                       [agregados, rechazados]));
-
-    if Assigned(MemoLog) then
-    begin
-      MemoLog.Lines.Clear;
-      MemoLog.Lines.AddStrings(log);
-    end;
-  finally
-    log.Free;
-  end;
-end;
 
 procedure TFormRoot.CargaMasivaCorreosClick(Sender: TObject);
 var

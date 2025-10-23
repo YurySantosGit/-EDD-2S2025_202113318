@@ -138,6 +138,24 @@ object FormRoot: TFormRoot
     TabOrder = 12
     OnClick = BtnGenerarBlockchainClickClick
   end
+  object BtnReporteGrafo: TButton
+    Left = 272
+    Height = 25
+    Top = 344
+    Width = 171
+    Caption = 'Reporte Grafo'
+    TabOrder = 13
+    OnClick = BtnReporteGrafoClick
+  end
+  object BtnCargaContactos: TButton
+    Left = 272
+    Height = 25
+    Top = 384
+    Width = 171
+    Caption = 'Carga Masiva Contactos'
+    TabOrder = 14
+    OnClick = BtnCargaContactosClick
+  end
   object OpenDialog1: TOpenDialog
     Left = 616
     Top = 8

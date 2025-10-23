@@ -1,0 +1,15 @@
+digraph GrafoGlobal {
+  rankdir=LR;
+  node [shape=ellipse, fontname="Helvetica"];
+  "jcorbet@edd.com" -> "mitzep@edd.com";
+  "jcorbet@edd.com" -> "smejia@edd.com";
+  "jcorbet@edd.com" -> "lgarcia@edd.com";
+  "smejia@edd.com" -> "jcorbet@edd.com";
+  "smejia@edd.com" -> "lgarcia@edd.com";
+  "mitzep@edd.com" -> "jcorbet@edd.com";
+  "mitzep@edd.com" -> "smejia@edd.com";
+  "mitzep@edd.com" -> "lgarcia@edd.com";
+  "lgarcia@edd.com" -> "jcorbet@edd.com";
+  "lgarcia@edd.com" -> "smejia@edd.com";
+  "lgarcia@edd.com" -> "mitzep@edd.com";
+}
