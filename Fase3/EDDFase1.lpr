@@ -20,7 +20,7 @@ uses
   bst_comunidades, form_comunidades_bst, form_mensaje_comunidad,
   FormMensajesComunidadesRoot, reportes_comunidades_bst, form_control_logueo,
   merkle_favoritos, form_favoritos_merkle, form_mi_logueo, blockchain,
-grafo_correos;
+grafo_correos, lzw_comp;
 
 {$R *.res}
 

@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, StrUtils,
-  lista_doble, pila_papelera;
+  lista_doble, pila_papelera, btree_favoritos, app_state, lzw_comp;
 
 type
 
@@ -18,10 +18,12 @@ type
     BtnOrdenar: TButton;
     BtnCerrar: TButton;
     BtnFavorito: TButton;
+    BtnDescargar: TButton;
     Label1: TLabel;
     LblNoLeidos: TLabel;
     ListCorreos: TListBox;
     procedure BtnCerrarClick(Sender: TObject);
+    procedure BtnDescargarClick(Sender: TObject);
     procedure BtnEliminarCorreoClick(Sender: TObject);
     procedure BtnFavoritoClick(Sender: TObject);
     procedure BtnOrdenarClick(Sender: TObject);
@@ -74,11 +76,100 @@ begin
   Close;
 end;
 
+procedure TFormBandeja.BtnDescargarClick(Sender: TObject);
+var
+  id: Integer;
+  c: PCorreo;
+  comp: TCompresorLZW;
+  codes: TCodeArray;
+
+  userDir, baseDir: string;
+  resumenTxtPath, resumenBinPath, resumenLzwPath: string;
+
+  resumenText: AnsiString;
+  sl: TStringList;
+  i: Integer;
+  sCodes: string;
+begin
+  if not TryGetIDSeleccionado(id) then
+  begin
+    ShowMessage('Selecciona un correo.');
+    Exit;
+  end;
+
+  c := BuscarCorreo(BandejaPtr^, id);
+  if c = nil then
+  begin
+    ShowMessage('No se encontró el correo.');
+    Exit;
+  end;
+
+  userDir := Copy(UsuarioActualEmail, 1, Pos('@', UsuarioActualEmail) - 1);
+  if userDir = '' then userDir := 'usuario';
+  baseDir := userDir + '-CorreoDescargado(' + IntToStr(id) + ')' + DirectorySeparator;
+  ForceDirectories(baseDir);
+
+  resumenTxtPath := baseDir + 'resumen.txt';
+  resumenBinPath := baseDir + 'resumen.bin';
+  resumenLzwPath := baseDir + 'resumen.lzw';
+
+  resumenText :=
+    'ID: '      + AnsiString(IntToStr(c^.id))        + sLineBreak +
+    'De: '      + AnsiString(c^.remitente)           + sLineBreak +
+    'Asunto: '  + AnsiString(c^.asunto)              + sLineBreak +
+    'Fecha: '   + AnsiString(c^.fecha)               + sLineBreak +
+    'Estado: '  + AnsiString(c^.estado)              + sLineBreak +
+    'Mensaje:'  + sLineBreak +
+    AnsiString(c^.mensaje);
+
+  sl := TStringList.Create;
+  try
+    sl.Text := string(resumenText);
+    sl.SaveToFile(resumenTxtPath);
+  finally
+    sl.Free;
+  end;
+
+  comp := TCompresorLZW.Create;
+  try
+    codes := comp.Comprimir(resumenText);
+    LZW_SaveCodesAsBin(codes, resumenBinPath);
+
+    sCodes := '';
+    for i := 0 to High(codes) do
+    begin
+      if i > 0 then sCodes := sCodes + ',';
+      sCodes := sCodes + IntToStr(codes[i]);
+    end;
+
+    sl := TStringList.Create;
+    try
+      sl.Text := sCodes;
+      sl.SaveToFile(resumenLzwPath);
+    finally
+      sl.Free;
+    end;
+  finally
+    comp.Free;
+  end;
+
+  ShowMessage(
+    'Archivos guardados en:' + LineEnding + baseDir + LineEnding + LineEnding +
+    'resumen.txt (original)'  + LineEnding +
+    'resumen.bin (LZW binario)' + LineEnding +
+    'resumen.lzw (LZW legible)'
+  );
+end;
+
+
+
 procedure TFormBandeja.BtnEliminarCorreoClick(Sender: TObject);
 var
   id: Integer;
   c: PCorreo;
   info: TCorreoInfo;
+  wasFav: Boolean;
+
 begin
   if not TryGetIDSeleccionado(id) then
   begin
@@ -89,11 +180,13 @@ begin
   c := BuscarCorreo(BandejaPtr^, id);
   if c <> nil then
   begin
+    wasFav := c^.favorito;
     info := CorreoToInfo(c);
     PushCorreo(PapeleraGlobal, info);
 
     if EliminarCorreo(BandejaPtr^, id) then
     begin
+      if wasFav then BFav_Delete(FavoritosBTree, id);
       ShowMessage('Correo enviado a la papelera');
       CargarBandejaPtr(BandejaPtr);
     end;
@@ -104,6 +197,8 @@ procedure TFormBandeja.BtnFavoritoClick(Sender: TObject);
 var
   id: Integer;
   c: PCorreo;
+  F: TFavorito;
+
 begin
   if (BandejaPtr = nil) then Exit;
 
@@ -123,9 +218,21 @@ begin
   c^.favorito := not c^.favorito;
 
   if c^.favorito then
-    ShowMessage('Correo marcado como favorito.')
+  begin
+    F.id        := c^.id;
+    F.remitente := c^.remitente;
+    F.estado    := c^.estado;
+    F.asunto    := c^.asunto;
+    F.fecha     := c^.fecha;
+    F.mensaje   := c^.mensaje;
+    BFav_Insert(FavoritosBTree, F);
+    ShowMessage('Correo marcado como favorito.');
+  end
   else
+  begin
+    BFav_Delete(FavoritosBTree, c^.id);
     ShowMessage('Correo quitado de favoritos.');
+  end;
 
   // Refresca lista y contador NL
   CargarBandejaPtr(BandejaPtr);
@@ -142,6 +249,7 @@ procedure TFormBandeja.BtnVerCorreoClick(Sender: TObject);
 var
   id: Integer;
   correo: PCorreo;
+  F: TFavorito;
 begin
   if not TryGetIDSeleccionado(id) then
   begin
@@ -158,6 +266,18 @@ begin
                 'Mensaje:' + LineEnding + correo^.mensaje);
 
     correo^.estado := 'L';
+
+    if correo^.favorito then
+    begin
+      F.id        := correo^.id;
+      F.remitente := correo^.remitente;
+      F.estado    := correo^.estado;
+      F.asunto    := correo^.asunto;
+      F.fecha     := correo^.fecha;
+      F.mensaje   := correo^.mensaje;
+      BFav_Insert(FavoritosBTree, F);
+    end;
+
     CargarBandejaPtr(BandejaPtr);
   end;
 end;

@@ -10,14 +10,14 @@ object FormBandeja: TFormBandeja
   object Label1: TLabel
     Left = 208
     Height = 18
-    Top = 16
+    Top = 8
     Width = 130
     Caption = 'Bandeja de Entrada'
   end
   object ListCorreos: TListBox
     Left = 40
     Height = 192
-    Top = 56
+    Top = 32
     Width = 464
     ItemHeight = 0
     TabOrder = 0
@@ -27,14 +27,14 @@ object FormBandeja: TFormBandeja
   object LblNoLeidos: TLabel
     Left = 40
     Height = 18
-    Top = 272
+    Top = 240
     Width = 77
     Caption = 'No leidos: 0'
   end
   object BtnVerCorreo: TButton
     Left = 200
     Height = 25
-    Top = 272
+    Top = 240
     Width = 136
     Caption = 'Ver Correo'
     TabOrder = 1
@@ -43,16 +43,16 @@ object FormBandeja: TFormBandeja
   object BtnEliminarCorreo: TButton
     Left = 202
     Height = 25
-    Top = 392
+    Top = 400
     Width = 136
     Caption = 'Eliminar'
     TabOrder = 2
     OnClick = BtnEliminarCorreoClick
   end
   object BtnOrdenar: TButton
-    Left = 200
+    Left = 202
     Height = 25
-    Top = 352
+    Top = 360
     Width = 136
     Caption = 'Ordenar (A-Z)'
     TabOrder = 3
@@ -70,10 +70,19 @@ object FormBandeja: TFormBandeja
   object BtnFavorito: TButton
     Left = 202
     Height = 25
-    Top = 312
+    Top = 320
     Width = 136
     Caption = 'Favorito'
     TabOrder = 5
     OnClick = BtnFavoritoClick
+  end
+  object BtnDescargar: TButton
+    Left = 200
+    Height = 25
+    Top = 280
+    Width = 136
+    Caption = 'Descargar'
+    TabOrder = 6
+    OnClick = BtnDescargarClick
   end
 end

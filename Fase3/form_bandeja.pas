@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, StrUtils,
-  lista_doble, pila_papelera, btree_favoritos, app_state;
+  lista_doble, pila_papelera, btree_favoritos, app_state, lzw_comp;
 
 type
 
@@ -18,10 +18,12 @@ type
     BtnOrdenar: TButton;
     BtnCerrar: TButton;
     BtnFavorito: TButton;
+    BtnDescargar: TButton;
     Label1: TLabel;
     LblNoLeidos: TLabel;
     ListCorreos: TListBox;
     procedure BtnCerrarClick(Sender: TObject);
+    procedure BtnDescargarClick(Sender: TObject);
     procedure BtnEliminarCorreoClick(Sender: TObject);
     procedure BtnFavoritoClick(Sender: TObject);
     procedure BtnOrdenarClick(Sender: TObject);
@@ -73,6 +75,97 @@ procedure TFormBandeja.BtnCerrarClick(Sender: TObject);
 begin
   Close;
 end;
+
+procedure TFormBandeja.BtnDescargarClick(Sender: TObject);
+var
+  id: Integer;
+  c: PCorreo;
+  comp: TCompresorLZW;
+  resumenOriginal, resumenCompleto, codigosStr, descomp: AnsiString;
+  codes: TCodeArray;
+  userCarp, baseDir, resumenTxt, resumenLzw, resumenBin: string;
+  SL: TStringList;
+  i: Integer;
+begin
+  if (BandejaPtr = nil) then Exit;
+
+  if not TryGetIDSeleccionado(id) then
+  begin
+    ShowMessage('Selecciona un correo.');
+    Exit;
+  end;
+
+  c := BuscarCorreo(BandejaPtr^, id);
+  if c = nil then
+  begin
+    ShowMessage('No se encontró el correo.');
+    Exit;
+  end;
+
+  userCarp := Copy(UsuarioActualEmail, 1, Pos('@', UsuarioActualEmail) - 1);
+  if userCarp = '' then userCarp := 'usuario';
+  baseDir := Format('%s-CorreoDescargado(%d)%s', [userCarp, c^.id, DirectorySeparator]);
+  ForceDirectories(baseDir);
+
+  resumenTxt := baseDir + 'resumen.txt';
+  resumenLzw := baseDir + 'resumen.lzw';
+  resumenBin := baseDir + 'resumen.bin';
+
+  resumenOriginal :=
+    'ID: '      + IntToStr(c^.id)       + LineEnding +
+    'De: '      + c^.remitente          + LineEnding +
+    'Asunto: '  + c^.asunto             + LineEnding +
+    'Fecha: '   + c^.fecha              + LineEnding +
+    'Estado: '  + c^.estado             + LineEnding +
+    'Mensaje:'  + LineEnding +
+    c^.mensaje  + LineEnding;
+
+  comp := TCompresorLZW.Create;
+  try
+    codes := comp.Comprimir(resumenOriginal);
+    // armar string de códigos separados por coma
+    codigosStr := '';
+    for i := 0 to High(codes) do
+    begin
+      if i > 0 then codigosStr := codigosStr + ',';
+      codigosStr := codigosStr + IntToStr(codes[i]);
+    end;
+    descomp := comp.Descomprimir(codes);
+  finally
+    comp.Free;
+  end;
+
+  resumenCompleto :=
+    '=== TEXTO ORIGINAL ===' + LineEnding +
+    resumenOriginal + LineEnding +
+    '=== CODIGOS COMPROMIDOS (LZW) ===' + LineEnding +
+    codigosStr + LineEnding + LineEnding +
+    '=== TEXTO DESCOMPRIMIDO ===' + LineEnding +
+    descomp + LineEnding;
+
+  SL := TStringList.Create;
+  try
+    // Guardar resumen.txt (con original, códigos y descompreso — EXACTO al formato que pediste)
+    SL.Text := resumenCompleto;
+    SL.SaveToFile(resumenTxt);
+
+    // Guardar resumen.lzw como CÓDIGOS en texto (para poder verlos y comparar tamaños)
+    SL.Text := codigosStr;
+    SL.SaveToFile(resumenLzw);
+  finally
+    SL.Free;
+  end;
+
+  // Guardar resumen.bin como CÓDIGOS en binario (más compacto)
+  LZW_SaveCodesAsBin(codes, resumenBin);
+
+  ShowMessage('Archivos generados en: ' + baseDir + LineEnding +
+              ' - resumen.txt' + LineEnding +
+              ' - resumen.lzw (códigos en texto)' + LineEnding +
+              ' - resumen.bin (códigos en binario)');
+end;
+
+
 
 procedure TFormBandeja.BtnEliminarCorreoClick(Sender: TObject);
 var
